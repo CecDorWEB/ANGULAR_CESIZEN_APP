@@ -11,6 +11,9 @@ $background-color: rgba(255, 254, 254, 1);
 html {
   background-color: $background-color;
 }
+main {
+  margin: 2em;
+}
 
 button {
   all: unset;
