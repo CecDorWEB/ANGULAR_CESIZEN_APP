@@ -1,4 +1,4 @@
-$background-color: rgba(255, 254, 254, 1);
+@import "variables";
 
 * {
   text-decoration: none;
@@ -11,8 +11,29 @@ $background-color: rgba(255, 254, 254, 1);
 html {
   background-color: $background-color;
 }
-main {
-  margin: 2em;
+
+h1 {
+  font-family: $title_font;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-size: 2em;
+}
+
+h2 {
+  font-family: $secondTitle_font;
+  font-weight: 500;
+}
+
+p,
+label,
+input {
+  font-family: $paragraph_font;
+  font-size: 1.25em;
+}
+
+.subtitle {
+  font-family: $subtitle;
+  font-size: 1em;
 }
 
 button {

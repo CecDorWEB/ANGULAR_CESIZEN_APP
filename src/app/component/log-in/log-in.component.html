@@ -1,29 +1,32 @@
-<div class="log_in_form">
-  <form (ngSubmit)="onSubmit()">
-    <label for="email">Email:</label>
-    <input
-      type="email"
-      [(ngModel)]="LogInfos.email"
-      name="email"
-      id="email"
-      required
-    />
-    <label for="password">Mot de passe:</label>
-    <input
-      type="text"
-      [(ngModel)]="LogInfos.password"
-      name="password"
-      id="password"
-      required
-      #password="ngModel"
-    />
-    <div *ngIf="password.errors">
-      <span *ngIf="password.errors?.['required']"
-        >Le Mot de passe est requis</span
-      >
-    </div>
-    <p><link />Mot de passe oublié?<link /></p>
-    <p><link />Créer un compte<link /></p>
-    <input type="submit" value="Connexion" />
-  </form>
-</div>
+<section>
+  <h1>Connexion</h1>
+  <div class="log_in_form">
+    <form (ngSubmit)="onSubmit()">
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        [(ngModel)]="LogInfos.email"
+        name="email"
+        id="email"
+        required
+      />
+      <label for="password">Mot de passe:</label>
+      <input
+        type="text"
+        [(ngModel)]="LogInfos.password"
+        name="password"
+        id="password"
+        required
+        #password="ngModel"
+      />
+      <div *ngIf="password.errors">
+        <p *ngIf="password.errors?.['required']">Le Mot de passe est requis</p>
+      </div>
+      <p><link />Mot de passe oublié?<link /></p>
+      <p>
+        <a [routerLink]="['/register']">Créer un compte</a>
+      </p>
+      <input type="submit" value="Connexion" />
+    </form>
+  </div>
+</section>
