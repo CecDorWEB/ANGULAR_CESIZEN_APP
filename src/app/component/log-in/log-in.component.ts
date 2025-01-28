@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../service/user.service';
+import { Router } from '@angular/router';
+import { UserService } from '../../service/user/user.service';
+import { AuthService } from '../../service/auth/auth.service';
 import { User } from '../../model/user.model';
 
 @Component({
@@ -14,12 +16,22 @@ export class LogInComponent {
     password: '',
   };
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   onSubmit(): void {
     this.userService.getUser(this.LogInfos).subscribe({
       next: (response) => {
         console.log('Réponse du back:', response);
+
+        // Enregistrer les données utilisateur dans le service
+        this.authService.setUser(response);
+
+        // Rediriger vers une autre page (par exemple, le tableau de bord)
+        this.router.navigate(['/home']);
       },
       error: (error) => {
         console.error('Erreur :', error.error);
