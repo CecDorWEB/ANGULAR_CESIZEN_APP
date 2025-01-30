@@ -28,7 +28,7 @@ export class LogInComponent {
         console.log('Réponse du back:', response);
 
         // Enregistrer les données utilisateur dans le service
-        this.authService.setUser(response);
+        this.authService.setUser(JSON.parse(response));
 
         // Rediriger vers une autre page (par exemple, le tableau de bord)
         this.router.navigate(['/home']);
