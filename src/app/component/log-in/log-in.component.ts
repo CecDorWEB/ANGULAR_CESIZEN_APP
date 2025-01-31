@@ -26,12 +26,17 @@ export class LogInComponent {
     this.userService.getUser(this.LogInfos).subscribe({
       next: (response) => {
         console.log('Réponse du back:', response);
-
+        const user =
+          typeof response === 'string' ? JSON.parse(response) : response;
         // Enregistrer les données utilisateur dans le service
-        this.authService.setUser(JSON.parse(response));
+        this.authService.setUser(user);
 
         // Rediriger vers une autre page (par exemple, le tableau de bord)
-        this.router.navigate(['/home']);
+        if (user.role == 2) {
+          this.router.navigate(['/register']);
+        } else {
+          this.router.navigate(['/home']);
+        }
       },
       error: (error) => {
         console.error('Erreur :', error.error);
