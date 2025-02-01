@@ -1,8 +1,23 @@
-<header>
+<header *ngIf="user$ | async as user; else notLoggedIn">
   <nav>
-    <a [routerLink]="['/home']"><h2>Accueil</h2></a>
+    <button>
+      <a [routerLink]="['/home']"><h2>Accueil</h2></a>
+    </button>
     <img src="assets/logo.png" alt="logo" [routerLink]="['/home']" />
-    <a [routerLink]="['/login']"><h2>Connexion</h2></a>
-    <!-- <a [routerLink]="['/register']"><h2>Inscription</h2></a>-->
+    <button (click)="logout()"><h2>Deconnexion</h2></button>
   </nav>
 </header>
+
+<ng-template #notLoggedIn>
+  <header>
+    <nav>
+      <button>
+        <a [routerLink]="['/home']"><h2>Accueil</h2></a>
+      </button>
+      <img src="assets/logo.png" alt="logo" [routerLink]="['/home']" />
+      <button>
+        <a [routerLink]="['/login']"><h2>Connexion</h2></a>
+      </button>
+    </nav>
+  </header>
+</ng-template>

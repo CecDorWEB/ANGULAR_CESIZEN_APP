@@ -16,6 +16,8 @@ export class LogInComponent {
     password: '',
   };
 
+  errorMessage: string | null = null;
+
   constructor(
     private userService: UserService,
     private authService: AuthService,
@@ -23,23 +25,28 @@ export class LogInComponent {
   ) {}
 
   onSubmit(): void {
+    this.errorMessage = null;
+
     this.userService.getUser(this.LogInfos).subscribe({
       next: (response) => {
         console.log('Réponse du back:', response);
         const user =
           typeof response === 'string' ? JSON.parse(response) : response;
         // Enregistrer les données utilisateur dans le service
-        this.authService.setUser(user);
+        this.authService.login(user);
 
         // Rediriger vers une autre page (par exemple, le tableau de bord)
         if (user.role == 2) {
-          this.router.navigate(['/register']);
+          this.router.navigate(['/admin']);
         } else {
           this.router.navigate(['/home']);
         }
       },
       error: (error) => {
         console.error('Erreur :', error.error);
+        this.errorMessage =
+          error.error?.message ||
+          'Échec de la connexion. Vérifiez vos informations.';
       },
       complete: () => {
         console.log('Requête terminée');

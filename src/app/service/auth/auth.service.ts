@@ -5,37 +5,39 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private userData: any = null;
-  private userSubject: BehaviorSubject<any>;
   private storageKey = 'userData';
+  private userSubject: BehaviorSubject<any>;
 
   constructor() {
     // Initialise l'état utilisateur à partir du LocalStorage
-    const userData = localStorage.getItem(this.storageKey);
+    const savedUser = localStorage.getItem(this.storageKey);
     this.userSubject = new BehaviorSubject<any>(
-      userData ? JSON.parse(userData) : null
+      savedUser ? JSON.parse(savedUser) : null
     );
   }
 
-  setUser(data: any): void {
-    this.userSubject.next(data); // Met à jour le BehaviorSubject
-    localStorage.setItem(this.storageKey, JSON.stringify(data));
+  login(userData: any): void {
+    console.log('Connexion réussie:', userData);
+    this.userSubject.next(userData); // Met à jour l'état global
+    localStorage.setItem(this.storageKey, JSON.stringify(userData)); // Sauvegarde dans localStorage
+  }
+
+  logout(): void {
+    console.log('Déconnexion en cours...');
+    this.userSubject.next(null); // Réinitialise l'état global
+    localStorage.removeItem(this.storageKey); // Supprime les données stockées
+  }
+
+  /** ✅ Getter simplifié pour récupérer l'utilisateur en tant qu'Observable */
+  get user$(): Observable<any> {
+    return this.userSubject.asObservable();
   }
 
   getUser(): any {
     return this.userSubject.value;
   }
 
-  getUserObservable(): Observable<any> {
-    return this.userSubject.asObservable();
-  }
-
-  isLoggedIn(): boolean {
-    return !!this.userData; // Retourne true si les données utilisateur existent
-  }
-
-  clearUser(): void {
-    this.userSubject.next(null);
-    localStorage.removeItem(this.storageKey);
+  isAuthenticated(): boolean {
+    return this.userSubject.value !== null;
   }
 }

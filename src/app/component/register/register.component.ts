@@ -19,9 +19,22 @@ export class RegisterComponent {
     role_id: 1,
   };
 
+  errorMessage: string | null = null;
+
   constructor(private userService: UserService) {}
 
   onSubmit(): void {
+    this.errorMessage = null;
+    if (
+      !this.newUser.firstname ||
+      !this.newUser.lastname ||
+      !this.newUser.email ||
+      !this.newUser.password
+    ) {
+      this.errorMessage = 'Tous les champs sont requis !';
+      return;
+    }
+
     this.userService.addUser(this.newUser).subscribe({
       next: (response) => {
         console.log('Formulaire inscription envoyé !', response);
@@ -34,10 +47,4 @@ export class RegisterComponent {
       },
     });
   }
-
-  sayHello(): void {
-    alert(`Bonjour ! ${this.newUser.firstname}`);
-  }
-
-  songList: string[] = ['Alejandro', 'Ne me quitte pas', 'Le temps est bon'];
 }

@@ -1,4 +1,4 @@
-<div *ngIf="user; else notLoggedIn">
+<div *ngIf="user$ | async as user; else notLoggedIn">
   <h1>Bienvenue {{ user.firstname }} Chez Cesizen !</h1>
   <h2>Vous êtes à l'accueil du site</h2>
   <p>
@@ -10,5 +10,5 @@
 </div>
 
 <ng-template #notLoggedIn>
-  <h1>Bienvenue sur l'application, veuillez vous connecter.</h1>
+  <h1>Bienvenue sur l'application Cesizen, veuillez vous connecter.</h1>
 </ng-template>

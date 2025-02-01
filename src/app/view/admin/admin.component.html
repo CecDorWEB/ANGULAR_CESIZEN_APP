@@ -1,0 +1,15 @@
+<div *ngIf="user$ | async as user; else notLoggedIn">
+  <h1>Bienvenue {{ user.firstname }} sur la page Administrateur</h1>
+  <h2>Gérer les comptes utilisateurs</h2>
+  <p>Ici liste des utilisateurs du site.</p>
+  <h2>Gérer les comptes Administrateurs</h2>
+  <p class="subtitle">Ici liste des administrateurs du site.</p>
+  <h2>Gérer les comptes ressources</h2>
+  <p class="subtitle">Ici liste des ressources du site.</p>
+</div>
+
+<ng-template #notLoggedIn>
+  <h1>
+    Bienvenue sur l'application Cesizen, désolé vous n'avez pas les droits.
+  </h1>
+</ng-template>

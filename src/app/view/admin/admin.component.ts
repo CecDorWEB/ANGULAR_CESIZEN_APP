@@ -3,13 +3,13 @@ import { AuthService } from '../../service/auth/auth.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-admin',
   standalone: false,
 
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+  templateUrl: './admin.component.html',
+  styleUrl: './admin.component.scss',
 })
-export class HomeComponent {
+export class AdminComponent {
   user$: Observable<any>;
 
   constructor(private authService: AuthService) {
