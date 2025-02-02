@@ -12,6 +12,7 @@ import { UserService } from '../../service/user/user.service';
 export class RegisterComponent {
   newUser: User = {
     type: 'MEMBER',
+    id: 0,
     firstname: '',
     lastname: '',
     email: '',

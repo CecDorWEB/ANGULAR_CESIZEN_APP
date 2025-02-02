@@ -5,13 +5,23 @@ import { LogInComponent } from './component/log-in/log-in.component';
 import { RegisterComponent } from './component/register/register.component';
 import { HomeComponent } from './view/home/home.component';
 import { AdminComponent } from './view/admin/admin.component';
+import { AdminDashbordComponent } from './component/admin-dashbord/admin-dashbord.component';
+import { UserManagementComponent } from './component/user-management/user-management.component';
 
 const routes: Routes = [
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'admin', component: AdminComponent },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [
+      { path: '', redirectTo: 'dashbord', pathMatch: 'full' },
+      { path: 'dashbord', component: AdminDashbordComponent },
+      { path: 'users', component: UserManagementComponent },
+    ],
+  },
 ];
 
 @NgModule({

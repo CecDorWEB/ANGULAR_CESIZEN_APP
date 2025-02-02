@@ -1,12 +1,15 @@
-<div *ngIf="user$ | async as user; else notLoggedIn">
-  <h1>Bienvenue {{ user.firstname }} sur la page Administrateur</h1>
-  <h2>Gérer les comptes utilisateurs</h2>
-  <p>Ici liste des utilisateurs du site.</p>
-  <h2>Gérer les comptes Administrateurs</h2>
-  <p class="subtitle">Ici liste des administrateurs du site.</p>
-  <h2>Gérer les comptes ressources</h2>
-  <p class="subtitle">Ici liste des ressources du site.</p>
-</div>
+<section class="admin_section" *ngIf="user$ | async as user; else notLoggedIn">
+  <p>
+    Bonjour {{ user.firstname }}, vous êtes sur votre espace administrateur,
+    quelle action souhaitez-vous effectuer?
+  </p>
+  <section class="admin_button">
+    <button routerLink="users"><h2>Gérer les utilisateurs</h2></button>
+    <button>Gérer les Articles</button>
+    <button>Gérer les Tests</button>
+  </section>
+  <router-outlet></router-outlet>
+</section>
 
 <ng-template #notLoggedIn>
   <h1>

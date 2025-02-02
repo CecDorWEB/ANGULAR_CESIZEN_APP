@@ -12,6 +12,10 @@ html {
   background-color: $background-color;
 }
 
+body {
+  margin: 0em 2em;
+}
+
 h1 {
   font-family: $title_font;
   font-weight: 600;
@@ -39,6 +43,11 @@ input {
 button {
   all: unset;
   cursor: pointer;
+  background-color: $button_color;
+  color: $background-color;
+  font-family: $secondTitle_font;
+  border-radius: 1em;
+  padding: 1em;
 }
 
 input {

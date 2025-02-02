@@ -3,20 +3,6 @@
   <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
     <p>Veuillez remplir les champs ci-dessous:</p>
     <div>
-      <label for="firstname">Prénom:</label>
-      <input
-        type="text"
-        name="firstname"
-        [(ngModel)]="newUser.firstname"
-        [ngModelOptions]="{ standalone: true }"
-        #firstname="ngModel"
-        required
-      />
-    </div>
-    <div *ngIf="firstname.invalid && firstname.touched">
-      <span *ngIf="firstname.errors?.['required']">Prénom requis</span>
-    </div>
-    <div>
       <label for="lastname">Nom:</label>
       <input
         type="text"
@@ -29,6 +15,20 @@
     </div>
     <div *ngIf="lastname.invalid && lastname.touched">
       <span *ngIf="lastname.errors?.['required']">Nom requis</span>
+    </div>
+    <div>
+      <label for="firstname">Prénom:</label>
+      <input
+        type="text"
+        name="firstname"
+        [(ngModel)]="newUser.firstname"
+        [ngModelOptions]="{ standalone: true }"
+        #firstname="ngModel"
+        required
+      />
+    </div>
+    <div *ngIf="firstname.invalid && firstname.touched">
+      <span *ngIf="firstname.errors?.['required']">Prénom requis</span>
     </div>
     <div>
       <label for="email">Email:</label>

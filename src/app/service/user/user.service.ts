@@ -7,17 +7,21 @@ import { User } from '../../model/user.model';
   providedIn: 'root',
 })
 export class UserService {
-  private registerUrl = 'http://localhost:8080/user';
-  private logInUrl = 'http://localhost:8080/user/login';
+  private userUrl = 'http://localhost:8080/user';
+  private userLogInUrl = 'http://localhost:8080/user/login';
 
   constructor(private http: HttpClient) {}
 
+  getAllUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.userUrl);
+  }
+
   addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.registerUrl, user);
+    return this.http.post<User>(this.userUrl, user);
   }
 
   getUser(loginInfo: Partial<User>): Observable<string> {
-    return this.http.post<string>(this.logInUrl, loginInfo, {
+    return this.http.post<string>(this.userLogInUrl, loginInfo, {
       responseType: 'text' as 'json',
     });
   }

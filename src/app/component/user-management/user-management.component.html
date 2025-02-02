@@ -1,0 +1,8 @@
+<h2>Liste des utilisateurs:</h2>
+<article *ngFor="let user of users$ | async">
+  <p>Id :{{ user.id }}</p>
+  <p>Prénom : {{ user.firstname }}</p>
+  <p>Nom:{{ user.lastname }}</p>
+  <p>Email : {{ user.email }}</p>
+  <p>Role : {{ user.type }}</p>
+</article>

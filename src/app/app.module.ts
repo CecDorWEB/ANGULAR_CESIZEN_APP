@@ -12,6 +12,8 @@ import { RegisterComponent } from './component/register/register.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { HomeComponent } from './view/home/home.component';
 import { AdminComponent } from './view/admin/admin.component';
+import { AdminDashbordComponent } from './component/admin-dashbord/admin-dashbord.component';
+import { UserManagementComponent } from './component/user-management/user-management.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { AdminComponent } from './view/admin/admin.component';
     NavbarComponent,
     HomeComponent,
     AdminComponent,
+    AdminDashbordComponent,
+    UserManagementComponent,
   ],
   imports: [
     BrowserModule,
