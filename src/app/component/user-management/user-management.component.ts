@@ -18,4 +18,9 @@ export class UserManagementComponent {
   ngOnInit() {
     this.users$ = this.userService.getAllUsers();
   }
+
+  showRegister = false;
+  toggleRegister() {
+    this.showRegister = true;
+  }
 }

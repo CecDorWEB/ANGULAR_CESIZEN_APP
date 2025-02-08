@@ -1,4 +1,4 @@
-@import "variables";
+@use "variables" as *;
 
 * {
   text-decoration: none;
@@ -43,7 +43,7 @@ input {
 button {
   all: unset;
   cursor: pointer;
-  background-color: $button_color;
+  background-color: $Primary_color;
   color: $background-color;
   font-family: $secondTitle_font;
   border-radius: 1em;

@@ -1,8 +1,28 @@
 <h2>Liste des utilisateurs:</h2>
-<article *ngFor="let user of users$ | async">
-  <p>Id :{{ user.id }}</p>
-  <p>Prénom : {{ user.firstname }}</p>
-  <p>Nom:{{ user.lastname }}</p>
-  <p>Email : {{ user.email }}</p>
-  <p>Role : {{ user.type }}</p>
-</article>
+<div class="userPanel">
+  <section class="user_list">
+    <article *ngFor="let user of users$ | async">
+      <div class="user_infos">
+        <p>Id : {{ user.id }}</p>
+        <hr />
+        <p>Prénom : {{ user.firstname }}</p>
+        <hr />
+        <p>Nom: {{ user.lastname }}</p>
+      </div>
+      <div class="user_infos">
+        <p>Email : {{ user.email }}</p>
+        <hr />
+        <p>Role : {{ user.type }}</p>
+      </div>
+      <div class="user_infos">
+        <p [ngStyle]="{ color: user.statut ? 'green' : 'red' }">
+          Statut : {{ user.statut == true ? "Actif" : "Suspendu" }}
+        </p>
+      </div>
+    </article>
+  </section>
+  <section>
+    <button (click)="toggleRegister()">Ajouter un nouveau Membre</button>
+    <app-register *ngIf="showRegister"></app-register>
+  </section>
+</div>

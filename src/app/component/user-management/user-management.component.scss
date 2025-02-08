@@ -1,8 +1,20 @@
-article {
+@use "../../../variables" as *;
+
+.userPanel {
   display: flex;
-  border: 1px solid black;
-  gap: 1em;
-  p {
+  justify-content: space-between;
+  article {
+    border: 1px solid black;
+    border-collapse: separate;
     padding: 0.5em;
+    gap: 0.5em;
+    .user_infos {
+      display: flex;
+      gap: 0.5em;
+      hr {
+        border-width: 0.07em;
+        border-color: $primary_light;
+      }
+    }
   }
 }

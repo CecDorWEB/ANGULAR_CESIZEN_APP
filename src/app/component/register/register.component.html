@@ -1,5 +1,4 @@
 <section>
-  <h1>Inscrivez-vous !</h1>
   <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
     <p>Veuillez remplir les champs ci-dessous:</p>
     <div>
@@ -61,6 +60,37 @@
     <div *ngIf="password.invalid && password.touched">
       <span *ngIf="password.errors?.['required']">Mot de passe requis</span>
       <span *ngIf="password.errors?.['minlength']">Minimum 6 caractères</span>
+    </div>
+    <!-- Pavé spécial pour choisir le rôle de l'utilisateur -->
+    <div
+      class="adminRoleChoise"
+      *ngIf="(user$ | async)?.type == 'administrator'"
+    >
+      <p>Sélectionner le profil du nouveau membre:</p>
+      <div>
+        <input
+          type="radio"
+          id="1"
+          name="role"
+          value="MEMBER"
+          [(ngModel)]="newUser.type"
+          (change)="onTypeChange()"
+          checked
+        />
+        <label for="MEMBER">Membre</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="2"
+          name="role"
+          value="ADMIN"
+          [(ngModel)]="newUser.type"
+          (change)="onTypeChange()"
+          checked
+        />
+        <label for="ADMIN">Admin</label>
+      </div>
     </div>
     <input type="submit" value="Inscription" [disabled]="form.invalid" />
     <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { User } from '../../model/user.model';
 import { UserService } from '../../service/user/user.service';
+import { AuthService } from '../../service/auth/auth.service';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -18,11 +21,23 @@ export class RegisterComponent {
     email: '',
     password: '',
     role_id: 1,
+    statut: true,
   };
 
   errorMessage: string | null = null;
 
-  constructor(private userService: UserService) {}
+  user$: Observable<any>;
+
+  constructor(
+    private userService: UserService,
+    private authService: AuthService
+  ) {
+    this.user$ = this.authService.user$; // Observable directement utilisable dans le HTML
+  }
+
+  onTypeChange() {
+    this.newUser.role_id = this.newUser.type === 'MEMBER' ? 1 : 2;
+  }
 
   onSubmit(): void {
     this.errorMessage = null;
