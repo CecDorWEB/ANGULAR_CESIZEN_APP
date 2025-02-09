@@ -6,5 +6,6 @@ export interface User {
   password: string;
   email: string;
   role_id: number;
-  statut: boolean;
+  statut?: boolean;
+  adhesionDate?: Date;
 }

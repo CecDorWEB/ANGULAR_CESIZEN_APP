@@ -2,26 +2,37 @@
 <div class="userPanel">
   <section class="user_list">
     <article *ngFor="let user of users$ | async">
-      <div class="user_infos">
-        <p>Id : {{ user.id }}</p>
-        <hr />
-        <p>Prénom : {{ user.firstname }}</p>
-        <hr />
-        <p>Nom: {{ user.lastname }}</p>
+      <div class="user_infos_container">
+        <div class="user_infos">
+          <p>Id : {{ user.id }}</p>
+          <hr />
+          <p>Prénom : {{ user.firstname }}</p>
+          <hr />
+          <p>Nom: {{ user.lastname }}</p>
+        </div>
+        <div class="user_infos">
+          <p>Email : {{ user.email }}</p>
+          <hr />
+          <p>Role : {{ user.type }}</p>
+        </div>
+        <div class="user_infos">
+          <p>
+            Date d'inscription :
+            {{ user.adhesionDate | date : "dd/MM/yyyy" }}
+          </p>
+          <hr />
+          <p [ngStyle]="{ color: user.statut ? 'green' : 'red' }">
+            Statut : {{ user.statut == true ? "Actif" : "Suspendu" }}
+          </p>
+        </div>
       </div>
-      <div class="user_infos">
-        <p>Email : {{ user.email }}</p>
-        <hr />
-        <p>Role : {{ user.type }}</p>
-      </div>
-      <div class="user_infos">
-        <p [ngStyle]="{ color: user.statut ? 'green' : 'red' }">
-          Statut : {{ user.statut == true ? "Actif" : "Suspendu" }}
-        </p>
+      <div class="admin_user_tools">
+        <button class="disable">D</button>
+        <button class="delete" (click)="deleteUser(user.id)">X</button>
       </div>
     </article>
   </section>
-  <section>
+  <section class="addNewUser">
     <button (click)="toggleRegister()">Ajouter un nouveau Membre</button>
     <app-register *ngIf="showRegister"></app-register>
   </section>

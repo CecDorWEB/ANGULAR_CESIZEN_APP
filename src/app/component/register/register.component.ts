@@ -21,7 +21,6 @@ export class RegisterComponent {
     email: '',
     password: '',
     role_id: 1,
-    statut: true,
   };
 
   errorMessage: string | null = null;

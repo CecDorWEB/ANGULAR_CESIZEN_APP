@@ -15,6 +15,12 @@ import { AdminComponent } from './view/admin/admin.component';
 import { AdminDashbordComponent } from './component/admin-dashbord/admin-dashbord.component';
 import { UserManagementComponent } from './component/user-management/user-management.component';
 
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import { LOCALE_ID } from '@angular/core';
+
+registerLocaleData(localeFr);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +40,7 @@ import { UserManagementComponent } from './component/user-management/user-manage
     RouterModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -17,10 +17,29 @@ export class UserManagementComponent {
 
   ngOnInit() {
     this.users$ = this.userService.getAllUsers();
+    this.users$.subscribe((users) => {
+      console.log('Liste des utilisateurs :', users);
+    });
   }
 
   showRegister = false;
   toggleRegister() {
-    this.showRegister = true;
+    this.showRegister = !this.showRegister;
+  }
+
+  deleteUser(userId: number) {
+    if (confirm('Voulez-vous vraiment supprimer cet utilisateur ?')) {
+      this.userService.deleteUser(userId).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert('Utilisateur supprimé avec succès !');
+          this.ngOnInit();
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression :', error);
+          alert('Erreur : ' + error.error);
+        },
+      });
+    }
   }
 }

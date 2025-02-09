@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../../model/user.model';
 
@@ -9,6 +9,7 @@ import { User } from '../../model/user.model';
 export class UserService {
   private userUrl = 'http://localhost:8080/user';
   private userLogInUrl = 'http://localhost:8080/user/login';
+  private userDeleteUrl = 'http://localhost:8080/user/delete';
 
   constructor(private http: HttpClient) {}
 
@@ -24,5 +25,16 @@ export class UserService {
     return this.http.post<string>(this.userLogInUrl, loginInfo, {
       responseType: 'text' as 'json',
     });
+  }
+
+  deleteUser(userId: number): Observable<string> {
+    return this.http.post<string>(
+      this.userDeleteUrl,
+      { id: userId }, // Envoie l'ID dans le corps de la requête
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        responseType: 'text' as 'json',
+      }
+    );
   }
 }

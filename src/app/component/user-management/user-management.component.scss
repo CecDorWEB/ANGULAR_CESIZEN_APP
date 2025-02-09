@@ -3,18 +3,48 @@
 .userPanel {
   display: flex;
   justify-content: space-between;
-  article {
-    border: 1px solid black;
-    border-collapse: separate;
-    padding: 0.5em;
-    gap: 0.5em;
-    .user_infos {
+  gap: 2em;
+  section {
+    article {
       display: flex;
+      justify-content: space-between;
+      border: 1px solid black;
+      border-collapse: separate;
+      padding: 0.5em;
       gap: 0.5em;
-      hr {
-        border-width: 0.07em;
-        border-color: $primary_light;
+      .admin_user_tools {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 1em;
+        border-left: 1px solid black;
+        button {
+          border-radius: 0.5em;
+          padding: 0.2em 0.5em 0.2em 0.5em;
+        }
+        .delete {
+          background-color: red;
+        }
+        .disable {
+          color: black;
+          background-color: orange;
+        }
+      }
+      .user_infos {
+        display: flex;
+        gap: 0.8em;
+        hr {
+          border-width: 0.07em;
+          border-color: $primary_light;
+        }
       }
     }
   }
+}
+
+.addNewUser {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 1em;
 }
