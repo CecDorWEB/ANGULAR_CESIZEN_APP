@@ -12,10 +12,6 @@ html {
   background-color: $background-color;
 }
 
-body {
-  margin: 0em 2em;
-}
-
 h1 {
   font-family: $title_font;
   font-weight: 600;
@@ -26,6 +22,7 @@ h1 {
 h2 {
   font-family: $secondTitle_font;
   font-weight: 500;
+  font-size: 1.5em;
 }
 
 p,
@@ -68,5 +65,11 @@ form {
     span {
       color: red;
     }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  h2 {
+    font-size: 1em;
   }
 }

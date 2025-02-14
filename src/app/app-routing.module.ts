@@ -7,11 +7,12 @@ import { HomeComponent } from './view/home/home.component';
 import { AdminComponent } from './view/admin/admin.component';
 import { AdminDashbordComponent } from './component/admin-dashbord/admin-dashbord.component';
 import { UserManagementComponent } from './component/user-management/user-management.component';
+import { AuthGuard } from './service/auth.guard';
 
 const routes: Routes = [
   { path: 'login', component: LogInComponent },
   { path: 'register', component: RegisterComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent },
   {
     path: 'admin',

@@ -44,9 +44,15 @@ export class LogInComponent {
       },
       error: (error) => {
         console.error('Erreur :', error.error);
-        this.errorMessage =
-          error.error?.message ||
-          'Échec de la connexion. Vérifiez vos informations.';
+        if (error.status === 403) {
+          this.errorMessage =
+            "Compte suspendu. Veuillez contacter l'administrateur.";
+        } else if (error.status === 401) {
+          this.errorMessage = 'Identifiant ou mot de passe invalide.';
+        } else {
+          this.errorMessage =
+            'Échec de la connexion. Vérifiez vos informations.';
+        }
       },
       complete: () => {
         console.log('Requête terminée');

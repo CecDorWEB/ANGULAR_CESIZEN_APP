@@ -53,6 +53,8 @@ export class RegisterComponent {
     this.userService.addUser(this.newUser).subscribe({
       next: (response) => {
         console.log('Formulaire inscription envoyé !', response);
+        alert('Inscription réussie !');
+        window.location.reload();
       },
       error: (error) => {
         console.error('Erreur lors de l’ajout de l’utilisateur', error);

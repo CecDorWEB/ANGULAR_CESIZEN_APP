@@ -42,4 +42,24 @@ export class UserManagementComponent {
       });
     }
   }
+
+  changeUserStatut(userId: number, userStatut: boolean) {
+    const confirmationMessage = userStatut
+      ? 'Voulez-vous vraiment suspendre cet utilisateur ?'
+      : 'Voulez-vous autoriser cet utilisateur ?';
+
+    if (confirm(confirmationMessage)) {
+      this.userService.autorizationUser(userId).subscribe({
+        next: (response) => {
+          console.log(response); // Affiche la réponse du backend
+          alert('Changement de statut réalisé avec succès !');
+          this.ngOnInit(); // Recharge la liste après mise à jour
+        },
+        error: (error) => {
+          console.error("Erreur lors du changement d'autorisation :", error);
+          alert('Erreur : ' + error.error);
+        },
+      });
+    }
+  }
 }

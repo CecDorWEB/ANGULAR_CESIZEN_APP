@@ -21,14 +21,26 @@
             {{ user.adhesionDate | date : "dd/MM/yyyy" }}
           </p>
           <hr />
-          <p [ngStyle]="{ color: user.statut ? 'green' : 'red' }">
+          <p
+            [ngStyle]="{ color: user.statut ? 'rgba(0, 163, 136, 1)' : 'red' }"
+          >
             Statut : {{ user.statut == true ? "Actif" : "Suspendu" }}
           </p>
         </div>
       </div>
       <div class="admin_user_tools">
-        <button class="disable">D</button>
-        <button class="delete" (click)="deleteUser(user.id)">X</button>
+        <button
+          class="disable"
+          [ngStyle]="{
+            background: user.statut
+              ? 'rgba(244, 195, 0, 1)'
+              : 'rgba(0, 163, 136, 1)'
+          }"
+          (click)="changeUserStatut(user.id, user.statut ?? false)"
+        >
+          {{ user.statut ? "Suspendre" : "Autoriser" }}
+        </button>
+        <button class="delete" (click)="deleteUser(user.id)">Supprimer</button>
       </div>
     </article>
   </section>

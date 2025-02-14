@@ -23,11 +23,22 @@
   <header>
     <nav>
       <button>
-        <a [routerLink]="['/home']"><h2>Accueil</h2></a>
+        <a [routerLink]="['/home']"
+          ><img src="assets/Home.svg" alh="house" />
+          <h2>Accueil</h2></a
+        >
       </button>
-      <img src="assets/logo.png" alt="logo" [routerLink]="['/home']" />
+      <img
+        class="logo"
+        src="assets/logo.png"
+        alt="logo"
+        [routerLink]="['/home']"
+      />
       <button>
-        <a [routerLink]="['/login']"><h2>Connexion</h2></a>
+        <a [routerLink]="['/login']"
+          ><img src="assets/Connexion.svg" alh="people" />
+          <h2>Connexion</h2></a
+        >
       </button>
     </nav>
   </header>
