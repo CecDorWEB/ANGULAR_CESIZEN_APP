@@ -1,0 +1,49 @@
+<h2>Liste des articles:</h2>
+<section class="createItems">
+  <button>Ajouter un nouvel article</button>
+</section>
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Titre</th>
+      <th>Introduction</th>
+      <th>Date de Publication</th>
+      <th>Modifié le</th>
+      <th>Statut</th>
+      <th>Outils</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let article of articles$ | async">
+      <td>{{ article.id }}</td>
+      <td>{{ article.title }}</td>
+      <td>{{ article.headerIntroduction }}</td>
+      <td>{{ article.publicationDate }}</td>
+      <td>{{ article.updateDate }}</td>
+      <td>{{ article.statut }}</td>
+    </tr>
+  </tbody>
+</table>
+<!-- 
+      <div class="adminPanel">
+        <section class="admin_item_list">
+          <article *ngFor="let article of articles$ | async">
+            <div class="admin_item_infos">
+              <p>Id: {{ article.id }}</p>
+              <hr />
+              <p>Titre : {{ article.title }}</p>
+              <hr />
+              <p>Introduction: {{ article.headerIntroduction }}</p>
+              <hr />
+            </div>
+            <div class="admin_item_infos">
+              <p>Date de publication: {{ article.publicationDate }}</p>
+              <hr />
+              <p>Modifié le: {{ article.updateDate }}</p>
+              <hr />
+              <p>Statit : {{ article.statut }}</p>
+            </div>
+          </article>
+        </section>
+      </div> -->

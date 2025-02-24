@@ -18,6 +18,7 @@ import { UserManagementComponent } from './component/user-management/user-manage
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { LOCALE_ID } from '@angular/core';
+import { EditArticleComponent } from './component/edit-article/edit-article.component';
 
 registerLocaleData(localeFr);
 
@@ -31,6 +32,7 @@ registerLocaleData(localeFr);
     AdminComponent,
     AdminDashbordComponent,
     UserManagementComponent,
+    EditArticleComponent,
   ],
   imports: [
     BrowserModule,
