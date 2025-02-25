@@ -1,4 +1,8 @@
 <div class="adminPanel">
+  <section class="createItems">
+    <button (click)="toggleRegister()">Ajouter un nouveau Membre</button>
+    <app-register *ngIf="showRegister"></app-register>
+  </section>
   <section class="listItems">
     <h2>Liste des utilisateurs:</h2>
     <table>
@@ -48,9 +52,5 @@
         </tr>
       </tbody>
     </table>
-  </section>
-  <section class="createItems">
-    <button (click)="toggleRegister()">Ajouter un nouveau Membre</button>
-    <app-register *ngIf="showRegister"></app-register>
   </section>
 </div>

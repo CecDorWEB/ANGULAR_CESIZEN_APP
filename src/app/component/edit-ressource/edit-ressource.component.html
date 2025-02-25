@@ -1,4 +1,9 @@
 <div class="adminPanel">
+  <section class="createItems">
+    <button>
+      Ajouter un {{ type === "tests" ? "nouveau test" : "nouvel article" }}
+    </button>
+  </section>
   <section class="listItems">
     <h2>Liste des {{ type === "tests" ? "tests" : "articles" }}:</h2>
     <table>
@@ -24,10 +29,5 @@
         </tr>
       </tbody>
     </table>
-  </section>
-  <section class="createItems">
-    <button>
-      Ajouter un {{ type === "tests" ? "nouveau test" : "nouvel article" }}
-    </button>
   </section>
 </div>
