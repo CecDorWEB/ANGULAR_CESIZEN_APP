@@ -1,0 +1,33 @@
+<div class="adminPanel">
+  <section class="listItems">
+    <h2>Liste des {{ type === "tests" ? "tests" : "articles" }}:</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Titre</th>
+          <th>Introduction</th>
+          <th>Date de Publication</th>
+          <th>Modifié le</th>
+          <th>Statut</th>
+          <th>Outils</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ressource of ressources$ | async">
+          <td>{{ ressource.id }}</td>
+          <td>{{ ressource.title }}</td>
+          <td>{{ ressource.headerIntroduction }}</td>
+          <td>{{ ressource.publicationDate }}</td>
+          <td>{{ ressource.updateDate }}</td>
+          <td>{{ ressource.statut }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="createItems">
+    <button>
+      Ajouter un {{ type === "tests" ? "nouveau test" : "nouvel article" }}
+    </button>
+  </section>
+</div>

@@ -1,50 +1,56 @@
-<h2>Liste des utilisateurs:</h2>
-<section class="createItems">
-  <button (click)="toggleRegister()">Ajouter un nouveau Membre</button>
-  <app-register *ngIf="showRegister"></app-register>
-</section>
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Nom</th>
-      <th>Prénom</th>
-      <th>Email</th>
-      <th>Rôle</th>
-      <th>Date d'adhésion</th>
-      <th>Statut</th>
-      <th>Outils</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users$ | async">
-      <td>{{ user.id }}</td>
-      <td>{{ user.lastname }}</td>
-      <td>{{ user.firstname }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.type }}</td>
-      <td>{{ user.adhesionDate | date : "dd/MM/yyyy" }}</td>
-      <td [ngStyle]="{ color: user.statut ? 'rgba(0, 163, 136, 1)' : 'red' }">
-        {{ user.statut == true ? "Actif" : "Suspendu" }}
-      </td>
-      <td>
-        <div class="admin_tools">
-          <button
-            class="disable"
-            [ngStyle]="{
-              background: user.statut
-                ? 'rgba(244, 195, 0, 1)'
-                : 'rgba(0, 163, 136, 1)'
-            }"
-            (click)="changeUserStatut(user.id, user.statut ?? false)"
+<div class="adminPanel">
+  <section class="listItems">
+    <h2>Liste des utilisateurs:</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Rôle</th>
+          <th>Date d'adhésion</th>
+          <th>Statut</th>
+          <th>Outils</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users$ | async">
+          <td>{{ user.id }}</td>
+          <td>{{ user.lastname }}</td>
+          <td>{{ user.firstname }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.type }}</td>
+          <td>{{ user.adhesionDate | date : "dd/MM/yyyy" }}</td>
+          <td
+            [ngStyle]="{ color: user.statut ? 'rgba(0, 163, 136, 1)' : 'red' }"
           >
-            {{ user.statut ? "Suspendre" : "Autoriser" }}
-          </button>
-          <button class="delete" (click)="deleteUser(user.id)">
-            Supprimer
-          </button>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+            {{ user.statut == true ? "Actif" : "Suspendu" }}
+          </td>
+          <td>
+            <div class="admin_tools">
+              <button
+                class="disable"
+                [ngStyle]="{
+                  background: user.statut
+                    ? 'rgba(244, 195, 0, 1)'
+                    : 'rgba(0, 163, 136, 1)'
+                }"
+                (click)="changeUserStatut(user.id, user.statut ?? false)"
+              >
+                {{ user.statut ? "Suspendre" : "Autoriser" }}
+              </button>
+              <button class="delete" (click)="deleteUser(user.id)">
+                Supprimer
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section class="createItems">
+    <button (click)="toggleRegister()">Ajouter un nouveau Membre</button>
+    <app-register *ngIf="showRegister"></app-register>
+  </section>
+</div>

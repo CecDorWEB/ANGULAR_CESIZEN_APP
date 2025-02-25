@@ -8,7 +8,7 @@ import { AdminComponent } from './view/admin/admin.component';
 import { AdminDashbordComponent } from './component/admin-dashbord/admin-dashbord.component';
 import { UserManagementComponent } from './component/user-management/user-management.component';
 import { AuthGuard } from './service/auth.guard';
-import { EditArticleComponent } from './component/edit-article/edit-article.component';
+import { EditRessourceComponent } from './component/edit-ressource/edit-ressource.component';
 
 const routes: Routes = [
   { path: 'login', component: LogInComponent },
@@ -22,7 +22,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashbord', pathMatch: 'full' },
       { path: 'dashbord', component: AdminDashbordComponent },
       { path: 'users', component: UserManagementComponent },
-      { path: 'editArticle', component: EditArticleComponent },
+      { path: 'ressource/:type', component: EditRessourceComponent },
     ],
   },
 ];
