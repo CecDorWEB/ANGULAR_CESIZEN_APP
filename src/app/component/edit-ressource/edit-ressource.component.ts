@@ -64,4 +64,24 @@ export class EditRessourceComponent {
       });
     }
   }
+
+  changeRessourceStatut(ressourceId: number, ressourceStatut: boolean) {
+    const confirmationMessage = ressourceStatut
+      ? 'Voulez-vous vraiment suspendre cette ressource ?'
+      : 'Voulez-vous autoriser cette ressource ?';
+
+    if (confirm(confirmationMessage)) {
+      this.ressourceService.autorizationRessource(ressourceId).subscribe({
+        next: (response) => {
+          console.log(response); // Affiche la réponse du backend
+          alert('Changement de statut réalisé avec succès !');
+          this.ngOnInit(); // Recharge la liste après mise à jour
+        },
+        error: (error) => {
+          console.error("Erreur lors du changement d'autorisation :", error);
+          alert('Erreur : ' + error.error);
+        },
+      });
+    }
+  }
 }

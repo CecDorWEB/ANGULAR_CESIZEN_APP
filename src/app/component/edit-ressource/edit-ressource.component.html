@@ -24,9 +24,15 @@
           <td>{{ ressource.id }}</td>
           <td>{{ ressource.title }}</td>
           <td>{{ ressource.headerIntroduction }}</td>
-          <td>{{ ressource.publicationDate }}</td>
-          <td>{{ ressource.updateDate }}</td>
-          <td>{{ ressource.statut }}</td>
+          <td>{{ ressource.publicationDate | date : "dd/MM/yyyy" }}</td>
+          <td>{{ ressource.updateDate | date : "dd/MM/yyyy" }}</td>
+          <td
+            [ngStyle]="{
+              color: ressource.statut ? 'rgba(0, 163, 136, 1)' : 'red'
+            }"
+          >
+            {{ ressource.statut ? "Active" : "Suspendue" }}
+          </td>
           <td>
             <button class="consulter">Consulter</button>
             <button
@@ -36,6 +42,9 @@
                   ? 'rgba(244, 195, 0, 1)'
                   : 'rgba(0, 163, 136, 1)'
               }"
+              (click)="
+                changeRessourceStatut(ressource.id, ressource.statut ?? false)
+              "
             >
               {{ ressource.statut ? "Suspendre" : "Autoriser" }}
             </button>

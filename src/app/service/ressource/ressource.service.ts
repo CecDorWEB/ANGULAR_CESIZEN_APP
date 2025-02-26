@@ -11,6 +11,8 @@ export class RessourceService {
   private testUrl = 'http://localhost:8080/ressource/test';
   private ressourceUrl = 'http://localhost:8080/ressource';
   private ressourceDeleteUrl = 'http://localhost:8080/ressource/delete';
+  private ressourceAutorizationUrl =
+    'http://localhost:8080/ressource/autorization';
 
   constructor(private http: HttpClient) {}
 
@@ -30,6 +32,17 @@ export class RessourceService {
     return this.http.post<string>(
       this.ressourceDeleteUrl,
       { id: ressourceId }, // Envoie l'ID dans le corps de la requête
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        responseType: 'text' as 'json',
+      }
+    );
+  }
+
+  autorizationRessource(ressourceId: number): Observable<string> {
+    return this.http.post<string>(
+      this.ressourceAutorizationUrl,
+      { id: ressourceId },
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         responseType: 'text' as 'json',
