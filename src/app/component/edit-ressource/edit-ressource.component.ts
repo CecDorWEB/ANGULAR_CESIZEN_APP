@@ -48,4 +48,20 @@ export class EditRessourceComponent {
       });
     }
   }
+
+  deleteRessource(ressourceId: number) {
+    if (confirm('Voulez-vous vraiment supprimer cette ressource ?')) {
+      this.ressourceService.deleteRessource(ressourceId).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert('Ressource supprimée avec succès !');
+          this.ngOnInit();
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression :', error);
+          alert('Erreur : ' + error.error);
+        },
+      });
+    }
+  }
 }

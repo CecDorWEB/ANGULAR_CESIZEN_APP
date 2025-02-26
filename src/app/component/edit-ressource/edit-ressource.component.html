@@ -39,7 +39,9 @@
             >
               {{ ressource.statut ? "Suspendre" : "Autoriser" }}
             </button>
-            <button class="delete">Supprimer</button>
+            <button class="delete" (click)="deleteRessource(ressource.id)">
+              Supprimer
+            </button>
           </td>
         </tr>
       </tbody>
