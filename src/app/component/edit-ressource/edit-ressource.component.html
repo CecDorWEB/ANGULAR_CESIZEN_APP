@@ -1,8 +1,9 @@
 <div class="adminPanel">
   <section class="createItems">
-    <button>
+    <button (click)="toggleRegister()">
       Ajouter un {{ type === "tests" ? "nouveau test" : "nouvel article" }}
     </button>
+    <app-create-ressource *ngIf="showRegister"></app-create-ressource>
   </section>
   <section class="listItems">
     <h2>Liste des {{ type === "tests" ? "tests" : "articles" }}:</h2>
@@ -26,6 +27,20 @@
           <td>{{ ressource.publicationDate }}</td>
           <td>{{ ressource.updateDate }}</td>
           <td>{{ ressource.statut }}</td>
+          <td>
+            <button class="consulter">Consulter</button>
+            <button
+              class="disable"
+              [ngStyle]="{
+                background: ressource.statut
+                  ? 'rgba(244, 195, 0, 1)'
+                  : 'rgba(0, 163, 136, 1)'
+              }"
+            >
+              {{ ressource.statut ? "Suspendre" : "Autoriser" }}
+            </button>
+            <button class="delete">Supprimer</button>
+          </td>
         </tr>
       </tbody>
     </table>

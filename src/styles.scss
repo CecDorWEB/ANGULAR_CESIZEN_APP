@@ -123,6 +123,11 @@ td {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
   section.listItems {
     width: 100%;
     table {

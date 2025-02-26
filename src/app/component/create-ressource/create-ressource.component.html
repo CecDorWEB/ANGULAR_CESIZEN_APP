@@ -1,0 +1,48 @@
+<section>
+  <input type="hidden" [value]="(user$ | async)?.id" />
+  <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <p>Veuillez remplir les champs ci-dessous:</p>
+    <div>
+      <label for="title">Titre:</label>
+      <input
+        type="text"
+        name="title"
+        [(ngModel)]="newRessource.title"
+        [ngModelOptions]="{ standalone: true }"
+        #title="ngModel"
+        required
+      />
+    </div>
+    <div *ngIf="title.invalid && title.touched">
+      <span *ngIf="title.errors?.['required']">Titre requis</span>
+    </div>
+    <div>
+      <label for="header_introduction">Introduction:</label>
+      <input
+        type="text"
+        name="header_introduction"
+        [(ngModel)]="newRessource.headerIntroduction"
+        [ngModelOptions]="{ standalone: true }"
+        #headerIntroduction="ngModel"
+        required
+      />
+    </div>
+    <div *ngIf="headerIntroduction.invalid && headerIntroduction.touched">
+      <span *ngIf="headerIntroduction.errors?.['required']"
+        >Introduction requise</span
+      >
+    </div>
+    <div>
+      <label for="header_image">Image:</label>
+      <input
+        type="text"
+        name="header_image"
+        [(ngModel)]="newRessource.headerImage"
+        [ngModelOptions]="{ standalone: true }"
+        #headerImage="ngModel"
+      />
+    </div>
+    <input type="submit" value="Créer" [disabled]="form.invalid" />
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </form>
+</section>

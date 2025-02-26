@@ -19,6 +19,7 @@ import { EditRessourceComponent } from './component/edit-ressource/edit-ressourc
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { LOCALE_ID } from '@angular/core';
+import { CreateRessourceComponent } from './component/create-ressource/create-ressource.component';
 
 registerLocaleData(localeFr);
 
@@ -33,6 +34,7 @@ registerLocaleData(localeFr);
     AdminDashbordComponent,
     UserManagementComponent,
     EditRessourceComponent,
+    CreateRessourceComponent,
   ],
   imports: [
     BrowserModule,

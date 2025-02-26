@@ -20,6 +20,11 @@ export class EditRessourceComponent {
     private ressourceService: RessourceService
   ) {}
 
+  showRegister = false;
+  toggleRegister() {
+    this.showRegister = !this.showRegister;
+  }
+
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       this.type = params.get('type') || '';
