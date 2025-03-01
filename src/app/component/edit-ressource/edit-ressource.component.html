@@ -34,7 +34,10 @@
             {{ ressource.statut ? "Active" : "Suspendue" }}
           </td>
           <td>
-            <button class="consulter">Consulter</button>
+            <!-- <button class="consulter" (click)="modifier()">Modifier</button> -->
+            <button class="consulter" [routerLink]="[ressource.id, 'modify']">
+              Modifier
+            </button>
             <button
               class="disable"
               [ngStyle]="{

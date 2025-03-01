@@ -9,6 +9,7 @@ import { AdminDashbordComponent } from './component/admin-dashbord/admin-dashbor
 import { UserManagementComponent } from './component/user-management/user-management.component';
 import { AuthGuard } from './service/auth.guard';
 import { EditRessourceComponent } from './component/edit-ressource/edit-ressource.component';
+import { ModifyRessourceComponent } from './component/modify-ressource/modify-ressource.component';
 
 const routes: Routes = [
   { path: 'login', component: LogInComponent },
@@ -23,6 +24,10 @@ const routes: Routes = [
       { path: 'dashbord', component: AdminDashbordComponent },
       { path: 'users', component: UserManagementComponent },
       { path: 'ressource/:type', component: EditRessourceComponent },
+      {
+        path: 'ressource/:type/:id/modify',
+        component: ModifyRessourceComponent,
+      },
     ],
   },
 ];

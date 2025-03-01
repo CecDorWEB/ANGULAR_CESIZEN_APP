@@ -20,6 +20,7 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { LOCALE_ID } from '@angular/core';
 import { CreateRessourceComponent } from './component/create-ressource/create-ressource.component';
+import { ModifyRessourceComponent } from './component/modify-ressource/modify-ressource.component';
 
 registerLocaleData(localeFr);
 
@@ -35,6 +36,7 @@ registerLocaleData(localeFr);
     UserManagementComponent,
     EditRessourceComponent,
     CreateRessourceComponent,
+    ModifyRessourceComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RessourceService } from '../../service/ressource/ressource.service';
 import { Ressource } from '../../model/ressource.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-ressource',
@@ -16,6 +16,7 @@ export class EditRessourceComponent {
   type: string = '';
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private ressourceService: RessourceService
   ) {}
@@ -83,5 +84,9 @@ export class EditRessourceComponent {
         },
       });
     }
+  }
+
+  modifier() {
+    this.router.navigate(['modify'], { relativeTo: this.route });
   }
 }
