@@ -13,6 +13,7 @@ export class RessourceService {
   private ressourceDeleteUrl = 'http://localhost:8080/ressource/delete';
   private ressourceAutorizationUrl =
     'http://localhost:8080/ressource/autorization';
+  private ressourceByIdUrl = 'http://localhost:8080/ressource/';
 
   constructor(private http: HttpClient) {}
 
@@ -22,6 +23,13 @@ export class RessourceService {
 
   getAllTest(): Observable<Ressource[]> {
     return this.http.get<Ressource[]>(this.testUrl);
+  }
+
+  getRessourceById(ressourceId: number): Observable<Ressource[]> {
+    const url = `http://localhost:8080/ressource/${ressourceId}`;
+    return this.http.get<Ressource[]>(url, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    });
   }
 
   addRessource(ressource: Ressource): Observable<Ressource> {
