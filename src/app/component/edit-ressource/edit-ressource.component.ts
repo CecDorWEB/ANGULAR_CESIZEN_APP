@@ -37,12 +37,12 @@ export class EditRessourceComponent {
   }
 
   loadRessources(type: string) {
-    if (type === 'articles') {
+    if (type === 'article') {
       this.ressources$ = this.ressourceService.getAllArticles();
       this.ressources$.subscribe((ressource) => {
         console.log('Liste des articles :', ressource);
       });
-    } else if (type === 'tests') {
+    } else if (type === 'test') {
       this.ressources$ = this.ressourceService.getAllTest();
       this.ressources$.subscribe((ressource) => {
         console.log('Liste des tests :', ressource);

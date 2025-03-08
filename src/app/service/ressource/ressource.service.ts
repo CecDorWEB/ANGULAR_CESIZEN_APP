@@ -25,9 +25,8 @@ export class RessourceService {
     return this.http.get<Ressource[]>(this.testUrl);
   }
 
-  getRessourceById(ressourceId: number): Observable<Ressource[]> {
-    const url = `http://localhost:8080/ressource/${ressourceId}`;
-    return this.http.get<Ressource[]>(url, {
+  getRessourceById(ressourceId: number): Observable<Ressource> {
+    return this.http.get<Ressource>(`${this.ressourceByIdUrl}${ressourceId}`, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     });
   }

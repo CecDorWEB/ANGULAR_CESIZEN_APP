@@ -1,12 +1,12 @@
 <div class="adminPanel">
   <section class="createItems">
     <button (click)="toggleRegister()">
-      Ajouter un {{ type === "tests" ? "nouveau test" : "nouvel article" }}
+      Ajouter un {{ type === "test" ? "nouveau test" : "nouvel article" }}
     </button>
     <app-create-ressource *ngIf="showRegister"></app-create-ressource>
   </section>
   <section class="listItems">
-    <h2>Liste des {{ type === "tests" ? "tests" : "articles" }}:</h2>
+    <h2>Liste des {{ type === "test" ? "tests" : "articles" }}:</h2>
     <table>
       <thead>
         <tr>

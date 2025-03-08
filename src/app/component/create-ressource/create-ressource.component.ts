@@ -49,7 +49,7 @@ export class CreateRessourceComponent {
       return;
     }
 
-    this.newRessource.type_id = this.type === 'articles' ? 1 : 2;
+    this.newRessource.type_id = this.type === 'article' ? 1 : 2;
 
     // Souscription à l'Observable pour récupérer user_id
     this.user$.pipe(take(1)).subscribe((user) => {
