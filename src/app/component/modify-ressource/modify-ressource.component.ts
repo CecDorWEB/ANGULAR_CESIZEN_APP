@@ -46,9 +46,27 @@ export class ModifyRessourceComponent {
     this.isEditing = !this.isEditing;
   }
 
-  saveRessource() {
-    console.log('Article modifié:', this.ressource);
-    this.isEditing = false;
+  updateRessource(): void {
+    if (!this.ressource || !this.ressource.id) {
+      console.error('Impossible de modifier : ressource invalide.');
+      return;
+    }
+
+    if (!this.type) {
+      console.error('Impossible de modifier : type non défini.');
+      return;
+    }
+
+    this.ressourceService.updateRessource(this.ressource, this.type).subscribe({
+      next: (response) => {
+        console.log('Mise à jour effectuée avec succès:', response);
+        this.ressource = response;
+        this.isEditing = false;
+      },
+      error: (error) => {
+        console.error('Erreur lors de la modification de la ressource:', error);
+      },
+    });
   }
 
   retour() {
