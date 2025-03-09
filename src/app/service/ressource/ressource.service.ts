@@ -13,7 +13,6 @@ export class RessourceService {
   private ressourceDeleteUrl = 'http://localhost:8080/ressource/delete';
   private ressourceAutorizationUrl =
     'http://localhost:8080/ressource/autorization';
-  private ressourceByIdUrl = 'http://localhost:8080/ressource/';
 
   constructor(private http: HttpClient) {}
 
@@ -26,7 +25,7 @@ export class RessourceService {
   }
 
   getRessourceById(ressourceId: number): Observable<Ressource> {
-    return this.http.get<Ressource>(`${this.ressourceByIdUrl}${ressourceId}`, {
+    return this.http.get<Ressource>(`${this.ressourceUrl}/${ressourceId}`, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     });
   }
@@ -35,13 +34,12 @@ export class RessourceService {
     return this.http.post<Ressource>(this.ressourceUrl, ressource);
   }
 
-  deleteRessource(ressourceId: number): Observable<string> {
-    return this.http.post<string>(
-      this.ressourceDeleteUrl,
-      { id: ressourceId }, // Envoie l'ID dans le corps de la requête
+  updateRessource(ressource: Ressource, type: String): Observable<Ressource> {
+    return this.http.put<Ressource>(
+      `${this.ressourceUrl}/${type}/${ressource.id}/modify`,
+      ressource,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-        responseType: 'text' as 'json',
       }
     );
   }
@@ -50,6 +48,17 @@ export class RessourceService {
     return this.http.post<string>(
       this.ressourceAutorizationUrl,
       { id: ressourceId },
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        responseType: 'text' as 'json',
+      }
+    );
+  }
+
+  deleteRessource(ressourceId: number): Observable<string> {
+    return this.http.post<string>(
+      this.ressourceDeleteUrl,
+      { id: ressourceId }, // Envoie l'ID dans le corps de la requête
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         responseType: 'text' as 'json',

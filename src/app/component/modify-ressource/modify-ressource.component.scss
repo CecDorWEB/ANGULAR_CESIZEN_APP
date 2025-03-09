@@ -1,0 +1,77 @@
+section.modify_ressource_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button {
+    min-width: 100px;
+    margin: auto;
+  }
+  div.ressource_display {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    div.ressource_header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5em;
+      h1 {
+        margin: 0;
+      }
+      p {
+        margin: 0;
+      }
+      div.ressource_date_info {
+        display: flex;
+        gap: 2em;
+        background-color: #d4ecdd5e;
+        padding: 0.2em 1em;
+        border-radius: 1em;
+      }
+      img {
+        max-height: 200px;
+        min-width: 100%;
+        object-fit: cover;
+        object-position: 50% 60%;
+      }
+    }
+  }
+}
+
+div.ressource_header,
+div.ressource_modify_button {
+  padding: 1em 0;
+}
+
+//Pour les écrants de plus de 768px (tablette)
+@media screen and (min-width: 768px) {
+  section.modify_ressource_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div.ressource_display {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      max-width: 80%;
+
+      div.ressource_header {
+        img {
+          max-height: 380px;
+          min-width: 100%;
+          object-fit: cover;
+          object-position: 50% 60%;
+        }
+      }
+    }
+  }
+  div.ressource_header,
+  div.ressource_modify_button {
+    padding: 1em;
+  }
+  form {
+    width: 50%;
+  }
+}

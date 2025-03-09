@@ -8,8 +8,8 @@
     <table>
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Nom</th>
+          <th class="sticky">Id</th>
+          <th class="sticky">Nom</th>
           <th>Prénom</th>
           <th>Email</th>
           <th>Rôle</th>
@@ -20,8 +20,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let user of users$ | async">
-          <td>{{ user.id }}</td>
-          <td>{{ user.lastname }}</td>
+          <td class="sticky">{{ user.id }}</td>
+          <td class="sticky">{{ user.lastname }}</td>
           <td>{{ user.firstname }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.type }}</td>

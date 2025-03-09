@@ -2,11 +2,13 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 2em;
+  gap: 1em;
   article {
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    justify-content: center;
+    width: 100%;
+    gap: 1em;
   }
 }
 
