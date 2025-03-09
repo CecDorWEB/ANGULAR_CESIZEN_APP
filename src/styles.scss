@@ -3,20 +3,24 @@
 * {
   text-decoration: none;
   list-style: none;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  max-width: 100%;
 }
 
-html {
+html,
+body {
+  width: 100%;
   background-color: $background-color;
+  overflow-x: hidden;
 }
 
 h1 {
   font-family: $title_font;
   font-weight: 600;
   letter-spacing: 1px;
-  font-size: 2em;
+  font-size: 2.5em;
 }
 
 h2 {
@@ -27,7 +31,8 @@ h2 {
 
 p,
 label,
-input {
+input,
+textarea {
   font-family: $paragraph_font;
   font-size: 1.25em;
 }
@@ -37,9 +42,16 @@ input {
   font-size: 1em;
 }
 
-button {
+.introduction {
+  font-family: $subtitle;
+  font-size: 1.5em;
+}
+
+button,
+input[type="submit"] {
   all: unset;
   cursor: pointer;
+  text-align: center;
   background-color: $Primary_color;
   color: $background-color;
   font-family: $secondTitle_font;
@@ -47,17 +59,20 @@ button {
   padding: 0.6em;
 }
 
-input {
+input[type="submit"] {
   cursor: pointer;
+  min-width: 150px;
+  margin: auto;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  padding: 2em;
+  padding: 1em;
   border: solid 1px black;
   border-radius: 1em;
   gap: 1em;
+  margin: auto;
   div {
     display: flex;
     justify-content: space-between;
@@ -123,6 +138,24 @@ td {
   display: flex;
   flex-direction: column;
   gap: 1em;
+  width: 100%;
+  overflow-x: auto;
+  .sticky {
+    position: sticky;
+    left: -1px;
+    background: white;
+    border: 1px solid black;
+    z-index: 2;
+  }
+
+  .sticky:nth-child(2) {
+    /* La deuxième colonne */
+    left: 20px;
+  }
+
+  th.sticky {
+    z-index: 3;
+  }
   section {
     display: flex;
     flex-direction: column;
@@ -147,24 +180,18 @@ td {
   }
 }
 
-//Pour les écrants de plus de 1024px
-// @media screen and (min-width: 1024px) {
-//   h2 {
-//     font-size: 1em;
-//   }
+textarea,
+input {
+  width: auto; /* Ajuste la taille selon le contenu */
+  min-width: 100px; /* Taille minimale pour éviter qu'il soit trop petit */
+  max-width: 100%; /* Évite qu'il déborde de l'écran */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-//   .adminPanel {
-//     display: flex;
-//     flex-direction: row;
-//     gap: 2em;
-//     section {
-//       display: flex;
-//       flex-direction: column;
-//       gap: 1em;
-//       width: auto;
-//       table {
-//         table-layout: auto;
-//       }
-//     }
-//   }
-// }
+//Pour les écrants de plus de 1024px
+@media screen and (min-width: 1024px) {
+  form {
+    width: 80%;
+  }
+}

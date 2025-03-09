@@ -6,3 +6,8 @@ td {
   border-collapse: collapse;
   padding: 0.25em;
 }
+
+.sticky:nth-child(2) {
+  /* La deuxième colonne */
+  left: 30px;
+}

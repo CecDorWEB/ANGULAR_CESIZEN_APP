@@ -10,8 +10,8 @@
     <table>
       <thead>
         <tr>
-          <th>Id</th>
-          <th>Titre</th>
+          <th class="sticky">Id</th>
+          <th class="sticky">Titre</th>
           <th>Introduction</th>
           <th>Date de Publication</th>
           <th>Modifié le</th>
@@ -21,8 +21,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let ressource of ressources$ | async">
-          <td>{{ ressource.id }}</td>
-          <td>{{ ressource.title }}</td>
+          <td class="sticky">{{ ressource.id }}</td>
+          <td class="sticky">{{ ressource.title }}</td>
           <td>{{ ressource.headerIntroduction }}</td>
           <td>{{ ressource.publicationDate | date : "dd/MM/yyyy" }}</td>
           <td>{{ ressource.updateDate | date : "dd/MM/yyyy" }}</td>

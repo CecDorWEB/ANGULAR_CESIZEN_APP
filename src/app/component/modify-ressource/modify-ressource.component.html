@@ -1,42 +1,48 @@
 <h2>
   Page de modification {{ type === "test" ? "du test" : "de l'article" }}:
 </h2>
-<section class="ressource-header" *ngIf="ressource">
-  <div *ngIf="!isEditing; else editMode">
-    <h1>{{ ressource.title }}</h1>
-    <p>
-      <strong>Date de création :</strong>
-      {{ ressource.publicationDate | date }}
-    </p>
-    <p>
-      <strong>Date de modification :</strong>
-      {{ ressource.updateDate | date }}
-    </p>
-    <p>{{ ressource.headerIntroduction }}</p>
-    <img [src]="ressource.headerImage" alt="Image de l'ressourceData" />
+<section class="modify_ressource_container" *ngIf="ressource">
+  <div class="ressource_display" *ngIf="!isEditing; else editMode">
+    <div class="ressource_header">
+      <h1>{{ ressource.title }}</h1>
+      <div class="ressource_date_info">
+        <p class="subtitle">
+          <strong>Date de création :</strong>
+          {{ ressource.publicationDate | date }}
+        </p>
+        <p class="subtitle">
+          <strong>Date dernière modification :</strong>
+          {{ ressource.updateDate | date }}
+        </p>
+      </div>
 
-    <button (click)="toggleEdit()">Modifier</button>
+      <p class="introduction">{{ ressource.headerIntroduction }}</p>
+      <img [src]="ressource.headerImage" alt="Image de l'ressourceData" />
+    </div>
+    <div class="ressource_modify_button">
+      <button (click)="toggleEdit()">Modifier</button>
+    </div>
   </div>
 
   <!-- Mode édition -->
   <ng-template #editMode>
     <form #ressourceForm="ngForm">
       <label>Titre :</label>
-      <input type="text" [(ngModel)]="ressource.title" name="title" />
+      <textarea [(ngModel)]="ressource.title" name="title" rows="3"></textarea>
 
       <label>Introduction :</label>
       <textarea
         [(ngModel)]="ressource.headerIntroduction"
         name="introduction"
+        rows="5"
       ></textarea>
 
       <label>Image :</label>
-      <input
-        type="text"
+      <textarea
         [(ngModel)]="ressource.headerImage"
         name="image"
-        placeholder="URL de l'image"
-      />
+        rows="3"
+      ></textarea>
 
       <button type="button" (click)="updateRessource()">Enregistrer</button>
       <button type="button" (click)="toggleEdit()">Annuler</button>
@@ -44,4 +50,4 @@
   </ng-template>
 </section>
 
-<button (click)="retour()">Retour</button>
+<button class="retour" (click)="retour()">Retour</button>
