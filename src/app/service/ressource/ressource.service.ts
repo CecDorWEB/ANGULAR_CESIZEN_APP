@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ressource } from '../../model/ressource.model';
+import { Paragraph } from '../../model/paragraph.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class RessourceService {
   private ressourceDeleteUrl = 'http://localhost:8080/ressource/delete';
   private ressourceAutorizationUrl =
     'http://localhost:8080/ressource/autorization';
+  private paragraphUrl = 'http://localhost:8080/ressource/article';
 
   constructor(private http: HttpClient) {}
 
@@ -32,6 +34,16 @@ export class RessourceService {
 
   addRessource(ressource: Ressource): Observable<Ressource> {
     return this.http.post<Ressource>(this.ressourceUrl, ressource);
+  }
+
+  addParagraph(
+    ressourceId: number,
+    paragraph: Paragraph
+  ): Observable<Paragraph> {
+    return this.http.post<Paragraph>(
+      `${this.paragraphUrl}/${ressourceId}/paragraph`,
+      paragraph
+    );
   }
 
   updateRessource(ressource: Ressource, type: String): Observable<Ressource> {

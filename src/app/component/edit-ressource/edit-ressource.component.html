@@ -34,26 +34,27 @@
             {{ ressource.statut ? "Active" : "Suspendue" }}
           </td>
           <td>
-            <!-- <button class="consulter" (click)="modifier()">Modifier</button> -->
-            <button class="consulter" [routerLink]="[ressource.id, 'modify']">
-              Modifier
-            </button>
-            <button
-              class="disable"
-              [ngStyle]="{
-                background: ressource.statut
-                  ? 'rgba(244, 195, 0, 1)'
-                  : 'rgba(0, 163, 136, 1)'
-              }"
-              (click)="
-                changeRessourceStatut(ressource.id, ressource.statut ?? false)
-              "
-            >
-              {{ ressource.statut ? "Suspendre" : "Autoriser" }}
-            </button>
-            <button class="delete" (click)="deleteRessource(ressource.id)">
-              Supprimer
-            </button>
+            <div class="admin_tools">
+              <button class="consulter" [routerLink]="[ressource.id, 'modify']">
+                Modifier
+              </button>
+              <button
+                class="disable"
+                [ngStyle]="{
+                  background: ressource.statut
+                    ? 'rgba(244, 195, 0, 1)'
+                    : 'rgba(0, 163, 136, 1)'
+                }"
+                (click)="
+                  changeRessourceStatut(ressource.id, ressource.statut ?? false)
+                "
+              >
+                {{ ressource.statut ? "Suspendre" : "Autoriser" }}
+              </button>
+              <button class="delete" (click)="deleteRessource(ressource.id)">
+                X
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
