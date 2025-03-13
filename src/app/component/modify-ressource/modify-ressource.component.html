@@ -50,4 +50,62 @@
   </ng-template>
 </section>
 
+<!-- Ajouter un Paragraph ou une question -->
+<button (click)="showAddParagraphOrQuestion()">
+  Ajouter {{ type === "article" ? "un paragraphe" : " une question" }}
+</button>
+<!--Formulaire d'ajout d'un Paragraphe-->
+<section *ngIf="AddParagraphOrQuestion && type === 'article'">
+  <form #form="ngForm" (ngSubmit)="onSubmitNewParagraph()" novalidate>
+    <p>Veuillez remplir les champs ci-dessous:</p>
+    <label for="paragraphOrder">N° ordre d'affichage:</label>
+    <input
+      name="paragraphOrder"
+      [(ngModel)]="newParagraph.paragraphOrder"
+      [ngModelOptions]="{ standalone: true }"
+      #paragraphOrder="ngModel"
+      required
+    />
+    <div *ngIf="paragraphOrder.invalid && paragraphOrder.touched">
+      <span *ngIf="paragraphOrder.errors?.['required']">N° requis</span>
+    </div>
+    <label for="title">Titre du paragraphe:</label>
+    <textarea
+      name="title"
+      [(ngModel)]="newParagraph.title"
+      [ngModelOptions]="{ standalone: true }"
+      #title="ngModel"
+    ></textarea>
+    <label for="body">Contenu du paragraphe:</label>
+    <textarea
+      name="body"
+      [(ngModel)]="newParagraph.body"
+      [ngModelOptions]="{ standalone: true }"
+      #body="ngModel"
+      required
+    ></textarea>
+    <div *ngIf="body.invalid && body.touched">
+      <span *ngIf="body.errors?.['required']">Contenu requis</span>
+    </div>
+    <label for="visualSupport">Support visuel (lien http):</label>
+    <textarea
+      name="visualSupport"
+      [(ngModel)]="newParagraph.visualSupport"
+      [ngModelOptions]="{ standalone: true }"
+      #visualSupport="ngModel"
+    ></textarea>
+    <input
+      type="submit"
+      value="Ajouter le paragraphe"
+      [disabled]="form.invalid"
+    />
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </form>
+</section>
+
+<!--Formulaire d'ajout d'une Question-->
+<section *ngIf="AddParagraphOrQuestion && type === 'test'">
+  <h1>Ici Ajout d'une question</h1>
+</section>
+
 <button class="retour" (click)="retour()">Retour</button>

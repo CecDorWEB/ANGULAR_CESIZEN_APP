@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../../service/ressource/ressource.service';
 import { Ressource } from '../../model/ressource.model';
+import { Paragraph } from '../../model/paragraph.model';
 
 @Component({
   selector: 'app-modify-ressource',
@@ -15,6 +16,15 @@ export class ModifyRessourceComponent {
   ressource!: Ressource;
   ressourceId!: number;
   isEditing: boolean = false;
+  AddParagraphOrQuestion: boolean = false;
+  newParagraph: Paragraph = {
+    id: 0,
+    paragraphOrder: 0,
+    title: '',
+    body: '',
+    visualSupport: '',
+  };
+  errorMessage: string | null = null;
 
   constructor(
     private router: Router,
@@ -67,6 +77,39 @@ export class ModifyRessourceComponent {
         console.error('Erreur lors de la modification de la ressource:', error);
       },
     });
+  }
+
+  showAddParagraphOrQuestion() {
+    this.AddParagraphOrQuestion = !this.AddParagraphOrQuestion;
+  }
+
+  onSubmitNewParagraph() {
+    this.errorMessage = null;
+    if (
+      !this.newParagraph.paragraphOrder ||
+      this.newParagraph.paragraphOrder === 0 ||
+      !this.newParagraph.body
+    ) {
+      this.errorMessage =
+        "Attention renseigner le numéro d'ordre d'affichage du paragraphe (différent de 0) et le contenu";
+      return;
+    }
+
+    this.ressourceService
+      .addParagraph(this.ressourceId, this.newParagraph)
+      .subscribe({
+        next: (response) => {
+          console.log('Formulaire envoyé !', response);
+          alert('Ajout ressource réussie !');
+          window.location.reload();
+        },
+        error: (error) => {
+          console.error('Erreur lors de l’ajout du paragraphe', error);
+        },
+        complete: () => {
+          console.log('Requête terminée');
+        },
+      });
   }
 
   retour() {

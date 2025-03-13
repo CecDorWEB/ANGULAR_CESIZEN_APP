@@ -194,4 +194,17 @@ input {
   form {
     width: 80%;
   }
+  td {
+    .admin_tools {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5em;
+    }
+  }
+  .adminPanel section.listItems table {
+    max-width: 100%;
+  }
+  .adminPanel .sticky {
+    background: transparent;
+  }
 }
