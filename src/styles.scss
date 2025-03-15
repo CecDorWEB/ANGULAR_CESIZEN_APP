@@ -26,7 +26,7 @@ h1 {
 h2 {
   font-family: $secondTitle_font;
   font-weight: 500;
-  font-size: 1.5em;
+  font-size: 2em;
 }
 
 p,
@@ -120,18 +120,17 @@ td {
   font-family: $secondTitle_font;
 }
 
-td {
-  .admin_tools {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5em;
-  }
-  .delete {
-    background-color: red;
-  }
-  .disable {
-    color: white;
-  }
+.admin_tools {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.delete {
+  background-color: red;
+}
+.disable {
+  color: white;
 }
 
 .adminPanel {
@@ -191,15 +190,26 @@ input {
 
 //Pour les écrants de plus de 1024px
 @media screen and (min-width: 1024px) {
+  button {
+    min-width: 100px;
+  }
+  h1 {
+    font-size: $h1_desktop_size;
+  }
+
+  h2 {
+    font-size: $h2_desktop_size;
+  }
+
+  p,
+  label,
+  input,
+  textarea {
+    font-size: $p_desktop_size;
+  }
+
   form {
     width: 80%;
-  }
-  td {
-    .admin_tools {
-      display: flex;
-      flex-direction: row;
-      gap: 0.5em;
-    }
   }
   .adminPanel section.listItems table {
     max-width: 100%;

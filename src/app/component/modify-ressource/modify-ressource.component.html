@@ -2,6 +2,9 @@
   Page de modification {{ type === "test" ? "du test" : "de l'article" }}:
 </h2>
 <section class="modify_ressource_container" *ngIf="ressource">
+  <div class="ressource_modify_button">
+    <button (click)="toggleEdit()">Modifier</button>
+  </div>
   <div class="ressource_display" *ngIf="!isEditing; else editMode">
     <div class="ressource_header">
       <h1>{{ ressource.title }}</h1>
@@ -18,9 +21,6 @@
 
       <p class="introduction">{{ ressource.headerIntroduction }}</p>
       <img [src]="ressource.headerImage" alt="Image de l'ressourceData" />
-    </div>
-    <div class="ressource_modify_button">
-      <button (click)="toggleEdit()">Modifier</button>
     </div>
   </div>
 
@@ -50,62 +50,102 @@
   </ng-template>
 </section>
 
-<!-- Ajouter un Paragraph ou une question -->
-<button (click)="showAddParagraphOrQuestion()">
-  Ajouter {{ type === "article" ? "un paragraphe" : " une question" }}
-</button>
-<!--Formulaire d'ajout d'un Paragraphe-->
-<section *ngIf="AddParagraphOrQuestion && type === 'article'">
-  <form #form="ngForm" (ngSubmit)="onSubmitNewParagraph()" novalidate>
-    <p>Veuillez remplir les champs ci-dessous:</p>
-    <label for="paragraphOrder">N° ordre d'affichage:</label>
-    <input
-      name="paragraphOrder"
-      [(ngModel)]="newParagraph.paragraphOrder"
-      [ngModelOptions]="{ standalone: true }"
-      #paragraphOrder="ngModel"
-      required
-    />
-    <div *ngIf="paragraphOrder.invalid && paragraphOrder.touched">
-      <span *ngIf="paragraphOrder.errors?.['required']">N° requis</span>
-    </div>
-    <label for="title">Titre du paragraphe:</label>
-    <textarea
-      name="title"
-      [(ngModel)]="newParagraph.title"
-      [ngModelOptions]="{ standalone: true }"
-      #title="ngModel"
-    ></textarea>
-    <label for="body">Contenu du paragraphe:</label>
-    <textarea
-      name="body"
-      [(ngModel)]="newParagraph.body"
-      [ngModelOptions]="{ standalone: true }"
-      #body="ngModel"
-      required
-    ></textarea>
-    <div *ngIf="body.invalid && body.touched">
-      <span *ngIf="body.errors?.['required']">Contenu requis</span>
-    </div>
-    <label for="visualSupport">Support visuel (lien http):</label>
-    <textarea
-      name="visualSupport"
-      [(ngModel)]="newParagraph.visualSupport"
-      [ngModelOptions]="{ standalone: true }"
-      #visualSupport="ngModel"
-    ></textarea>
-    <input
-      type="submit"
-      value="Ajouter le paragraphe"
-      [disabled]="form.invalid"
-    />
-    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
-  </form>
+<section class="Add_paragraph_or_question">
+  <!-- Ajouter un Paragraph ou une question -->
+  <button (click)="showAddParagraphOrQuestion()">
+    + Ajouter {{ type === "article" ? "un paragraphe" : " une question" }}
+  </button>
+  <!--Formulaire d'ajout d'un Paragraphe-->
+  <section *ngIf="AddParagraphOrQuestion && type === 'article'">
+    <form #form="ngForm" (ngSubmit)="onSubmitNewParagraph()" novalidate>
+      <p>Veuillez remplir les champs ci-dessous:</p>
+      <label for="paragraphOrder">N° ordre d'affichage:</label>
+      <input
+        name="paragraphOrder"
+        [(ngModel)]="newParagraph.paragraphOrder"
+        [ngModelOptions]="{ standalone: true }"
+        #paragraphOrder="ngModel"
+        required
+      />
+      <div *ngIf="paragraphOrder.invalid && paragraphOrder.touched">
+        <span *ngIf="paragraphOrder.errors?.['required']">N° requis</span>
+      </div>
+      <label for="title">Titre du paragraphe:</label>
+      <textarea
+        name="title"
+        [(ngModel)]="newParagraph.title"
+        [ngModelOptions]="{ standalone: true }"
+        #title="ngModel"
+      ></textarea>
+      <label for="body">Contenu du paragraphe:</label>
+      <textarea
+        name="body"
+        [(ngModel)]="newParagraph.body"
+        [ngModelOptions]="{ standalone: true }"
+        #body="ngModel"
+        required
+      ></textarea>
+      <div *ngIf="body.invalid && body.touched">
+        <span *ngIf="body.errors?.['required']">Contenu requis</span>
+      </div>
+      <label for="visualSupport">Support visuel (lien http):</label>
+      <textarea
+        name="visualSupport"
+        [(ngModel)]="newParagraph.visualSupport"
+        [ngModelOptions]="{ standalone: true }"
+        #visualSupport="ngModel"
+      ></textarea>
+      <label for="altVisualSupport"
+        >Description du Support visuel (à disposition des malvoyants):</label
+      >
+      <input
+        name="altVisualSupport"
+        [(ngModel)]="newParagraph.altVisualSupport"
+        [ngModelOptions]="{ standalone: true }"
+        #altVisualSupport="ngModel"
+      />
+      <input
+        type="submit"
+        value="Ajouter le paragraphe"
+        [disabled]="form.invalid"
+      />
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
+  </section>
+
+  <!--Formulaire d'ajout d'une Question-->
+  <section *ngIf="AddParagraphOrQuestion && type === 'test'">
+    <h1>Ici Ajout d'une question</h1>
+  </section>
 </section>
 
-<!--Formulaire d'ajout d'une Question-->
-<section *ngIf="AddParagraphOrQuestion && type === 'test'">
-  <h1>Ici Ajout d'une question</h1>
+<!--Affichage des paragraphes ou des questions-->
+<section class="view_paragraph_or_question">
+  <div class="article" *ngIf="type === 'article'">
+    <article class="num_order">
+      <p>N° ordre:</p>
+      <p class="border">1</p>
+    </article>
+    <article class="paragraph_container">
+      <h2>
+        Quels outils pour protéger mon enfant dans son usage du numérique ?
+      </h2>
+      <p>
+        Portail d'information unique sur la parentalité numérique, le site
+        jeprotegemonenfant.gouv.fr s'adresse aux parents d'enfants et
+        d’adolescents pour les accompagner dans les usages des outils numériques
+        et l’exposition à du contenu choquant en ligne.
+      </p>
+      <img
+        src="https://images.pexels.com/photos/31120801/pexels-photo-31120801/free-photo-of-paysage-de-plage-pittoresque-avec-ile-rocheuse.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+        alt="image description"
+      />
+    </article>
+    <article class="paragraph_admin_tools">
+      <button>Modifier</button>
+      <button class="delete">Supprimer</button>
+    </article>
+  </div>
 </section>
 
 <button class="retour" (click)="retour()">Retour</button>

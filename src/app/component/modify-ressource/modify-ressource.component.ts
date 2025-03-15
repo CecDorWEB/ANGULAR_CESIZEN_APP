@@ -23,6 +23,7 @@ export class ModifyRessourceComponent {
     title: '',
     body: '',
     visualSupport: '',
+    altVisualSupport: '',
   };
   errorMessage: string | null = null;
 
