@@ -86,4 +86,14 @@ export class RessourceService {
       }
     );
   }
+
+  deleteParagraph(paragraphId: number): Observable<string> {
+    return this.http.delete<string>(
+      `${this.paragraphUrl}/paragraph/${paragraphId}`,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        responseType: 'text' as 'json',
+      }
+    );
+  }
 }

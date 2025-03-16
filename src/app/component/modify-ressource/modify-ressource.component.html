@@ -129,7 +129,9 @@
     <app-display-paragraph [paragraph]="paragraph"></app-display-paragraph>
     <article class="paragraph_admin_tools">
       <button>Modifier</button>
-      <button class="delete">Supprimer</button>
+      <button class="delete" (click)="deleteParagraph(paragraph.id)">
+        Supprimer
+      </button>
     </article>
   </div>
 </section>

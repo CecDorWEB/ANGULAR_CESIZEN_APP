@@ -130,6 +130,22 @@ export class ModifyRessourceComponent {
       });
   }
 
+  deleteParagraph(paragraphId: number) {
+    if (confirm('Voulez-vous vraiment supprimer ce paragraphe ?')) {
+      this.ressourceService.deleteParagraph(paragraphId).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert('Paragraphe supprimé avec succès !');
+          this.ngOnInit();
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression :', error);
+          alert('Erreur : ' + error.error);
+        },
+      });
+    }
+  }
+
   retour() {
     this.router.navigate(['../../'], { relativeTo: this.route });
   }
