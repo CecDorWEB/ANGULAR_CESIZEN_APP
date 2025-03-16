@@ -41,45 +41,51 @@ section.modify_ressource_container {
 }
 
 .view_paragraph_or_question {
-  .article {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1em;
-    margin: 1em 0;
-    .num_order {
-      text-align: center;
-      .border {
-        border: 1px solid grey;
-      }
-      p {
-        width: 100%;
-      }
-    }
-    .paragraph_container {
+  .display_mode_container {
+    .article {
       display: flex;
       flex-direction: column;
-      text-align: center;
       align-items: center;
-      width: 100%;
-      gap: 1em;
-      p {
-        text-align: left;
-        hyphens: auto;
-        line-height: 1.5rem;
+      justify-content: space-between;
+      margin: 1em 0;
+      gap: 0.5em;
+      .num_order {
+        text-align: center;
+        .border {
+          border: 1px solid grey;
+        }
+        p {
+          width: 100%;
+        }
       }
-      img {
-        max-height: 200px;
-        object-fit: contain;
-        object-position: 50% 60%;
-        border-radius: 8px;
+      .paragraph_container {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        width: 100%;
+        gap: 1em;
+        p {
+          text-align: left;
+          hyphens: auto;
+          line-height: 1.5rem;
+        }
+        img {
+          max-height: 200px;
+          object-fit: contain;
+          object-position: 50% 60%;
+          border-radius: 8px;
+        }
+      }
+      .paragraph_admin_tools {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
       }
     }
-    .paragraph_admin_tools {
-      display: flex;
-      gap: 1em;
-    }
+  }
+  .form_paragraph_mode {
+    margin: 1em auto;
   }
 }
 
@@ -119,30 +125,31 @@ section.modify_ressource_container {
   }
 
   .view_paragraph_or_question {
-    .article {
-      display: flex;
-      flex-direction: row;
-      align-items: start;
-      gap: 1.5em;
-      max-width: 90%;
-      .paragraph_container {
-        img {
-          text-align: center;
-          object-fit: cover;
-          border-radius: 20px;
-          max-height: 380px;
-          max-width: 80%;
-        }
-        p {
-          text-align: justify;
-          hyphens: auto;
-          word-spacing: -0.5px;
-        }
-      }
-      .paragraph_admin_tools {
+    .display_mode_container {
+      .article {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        align-items: start;
+        gap: 3em;
+        max-width: 95%;
+        .paragraph_container {
+          img {
+            text-align: center;
+            object-fit: cover;
+            border-radius: 20px;
+            max-height: 380px;
+            max-width: 80%;
+          }
+          p {
+            text-align: justify;
+            hyphens: auto;
+            word-spacing: -0.5px;
+          }
+        }
       }
+    }
+    .form_paragraph_mode {
+      width: 70%;
     }
   }
 }

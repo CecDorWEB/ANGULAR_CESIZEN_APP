@@ -120,20 +120,86 @@
 </section>
 
 <!--Affichage des paragraphes ou des questions -->
-<section class="view_paragraph_or_question">
-  <div class="article" *ngFor="let paragraph of paragraphList">
-    <article class="num_order">
-      <p>N° ordre:</p>
-      <p class="border">{{ paragraph.paragraphOrder }}</p>
-    </article>
-    <app-display-paragraph [paragraph]="paragraph"></app-display-paragraph>
-    <article class="paragraph_admin_tools">
-      <button>Modifier</button>
-      <button class="delete" (click)="deleteParagraph(paragraph.id)">
-        Supprimer
-      </button>
-    </article>
+<section
+  class="view_paragraph_or_question"
+  *ngFor="let paragraph of paragraphList"
+>
+  <div
+    class="display_mode_container"
+    *ngIf="!paragraph.isEditing; else editParagraphMode"
+  >
+    <div class="article">
+      <article class="num_order">
+        <p>N° ordre:</p>
+        <p class="border">{{ paragraph.paragraphOrder }}</p>
+      </article>
+      <app-display-paragraph [paragraph]="paragraph"></app-display-paragraph>
+      <article class="paragraph_admin_tools">
+        <button (click)="toggleParagraphEdit(paragraph)">Modifier</button>
+        <button class="delete" (click)="deleteParagraph(paragraph.id)">
+          Supprimer
+        </button>
+      </article>
+    </div>
   </div>
+  <!--Mode édition paragraphe-->
+  <ng-template #editParagraphMode>
+    <form class="form_paragraph_mode" #form="ngForm" novalidate>
+      <p>Veuillez modifier les champs ci-dessous:</p>
+      <label for="paragraphOrder">N° ordre d'affichage:</label>
+      <input
+        name="paragraphOrder"
+        [(ngModel)]="paragraph.paragraphOrder"
+        [ngModelOptions]="{ standalone: true }"
+        #paragraphOrder="ngModel"
+        required
+      />
+      <div *ngIf="paragraphOrder.invalid && paragraphOrder.touched">
+        <span *ngIf="paragraphOrder.errors?.['required']">N° requis</span>
+      </div>
+      <label for="title">Titre du paragraphe:</label>
+      <textarea
+        name="title"
+        [(ngModel)]="paragraph.title"
+        [ngModelOptions]="{ standalone: true }"
+        #title="ngModel"
+      ></textarea>
+      <label for="body">Contenu du paragraphe:</label>
+      <textarea
+        name="body"
+        [(ngModel)]="paragraph.body"
+        [ngModelOptions]="{ standalone: true }"
+        #body="ngModel"
+        required
+      ></textarea>
+      <div *ngIf="body.invalid && body.touched">
+        <span *ngIf="body.errors?.['required']">Contenu requis</span>
+      </div>
+      <label for="visualSupport">Support visuel (lien http):</label>
+      <textarea
+        name="visualSupport"
+        [(ngModel)]="paragraph.visualSupport"
+        [ngModelOptions]="{ standalone: true }"
+        #visualSupport="ngModel"
+      ></textarea>
+      <label for="altVisualSupport"
+        >Description du Support visuel (à disposition des malvoyants):</label
+      >
+      <input
+        name="altVisualSupport"
+        [(ngModel)]="paragraph.altVisualSupport"
+        [ngModelOptions]="{ standalone: true }"
+        #altVisualSupport="ngModel"
+      />
+      <input
+        type="submit"
+        value="Modifier le paragraphe"
+        [disabled]="form.invalid"
+      />
+      <button type="button" (click)="toggleParagraphEdit(null)">Annuler</button>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
+  </ng-template>
 </section>
 
 <button class="retour" (click)="retour()">Retour</button>

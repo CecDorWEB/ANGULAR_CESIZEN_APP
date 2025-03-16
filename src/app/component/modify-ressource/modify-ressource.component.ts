@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../../service/ressource/ressource.service';
 import { Ressource } from '../../model/ressource.model';
 import { Paragraph } from '../../model/paragraph.model';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-modify-ressource',
@@ -18,6 +17,7 @@ export class ModifyRessourceComponent {
   ressourceId!: number;
   isEditing: boolean = false;
   AddParagraphOrQuestion: boolean = false;
+
   newParagraph: Paragraph = {
     id: 0,
     paragraphOrder: 0,
@@ -27,6 +27,7 @@ export class ModifyRessourceComponent {
     altVisualSupport: '',
   };
   paragraphList: Paragraph[] = [];
+
   errorMessage: string | null = null;
 
   constructor(
@@ -72,6 +73,11 @@ export class ModifyRessourceComponent {
 
   toggleEdit() {
     this.isEditing = !this.isEditing;
+  }
+
+  toggleParagraphEdit(paragraph: any): void {
+    this.paragraphList.forEach((p) => (p.isEditing = false)); // Réinitialise les autres
+    paragraph.isEditing = true;
   }
 
   updateRessource(): void {

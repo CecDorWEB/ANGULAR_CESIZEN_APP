@@ -57,6 +57,9 @@ input[type="submit"] {
   font-family: $secondTitle_font;
   border-radius: 1em;
   padding: 0.6em;
+  width: fit-content;
+  min-width: 100px;
+  margin: auto;
 }
 
 input[type="submit"] {
@@ -190,9 +193,6 @@ input {
 
 //Pour les écrants de plus de 1024px
 @media screen and (min-width: 1024px) {
-  button {
-    min-width: 100px;
-  }
   h1 {
     font-size: $h1_desktop_size;
   }
