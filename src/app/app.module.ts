@@ -21,6 +21,7 @@ import localeFr from '@angular/common/locales/fr';
 import { LOCALE_ID } from '@angular/core';
 import { CreateRessourceComponent } from './component/create-ressource/create-ressource.component';
 import { ModifyRessourceComponent } from './component/modify-ressource/modify-ressource.component';
+import { DisplayParagraphComponent } from './component/display-paragraph/display-paragraph.component';
 
 registerLocaleData(localeFr);
 
@@ -37,6 +38,7 @@ registerLocaleData(localeFr);
     EditRessourceComponent,
     CreateRessourceComponent,
     ModifyRessourceComponent,
+    DisplayParagraphComponent,
   ],
   imports: [
     BrowserModule,

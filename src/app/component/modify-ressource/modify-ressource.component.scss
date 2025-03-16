@@ -65,7 +65,9 @@ section.modify_ressource_container {
       width: 100%;
       gap: 1em;
       p {
-        text-align: start;
+        text-align: left;
+        hyphens: auto;
+        line-height: 1.5rem;
       }
       img {
         max-height: 200px;
@@ -130,6 +132,11 @@ section.modify_ressource_container {
           border-radius: 20px;
           max-height: 380px;
           max-width: 80%;
+        }
+        p {
+          text-align: justify;
+          hyphens: auto;
+          word-spacing: -0.5px;
         }
       }
       .paragraph_admin_tools {

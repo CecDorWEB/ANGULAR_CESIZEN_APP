@@ -119,28 +119,14 @@
   </section>
 </section>
 
-<!--Affichage des paragraphes ou des questions-->
+<!--Affichage des paragraphes ou des questions -->
 <section class="view_paragraph_or_question">
-  <div class="article" *ngIf="type === 'article'">
+  <div class="article" *ngFor="let paragraph of paragraphList">
     <article class="num_order">
       <p>N° ordre:</p>
-      <p class="border">1</p>
+      <p class="border">{{ paragraph.paragraphOrder }}</p>
     </article>
-    <article class="paragraph_container">
-      <h2>
-        Quels outils pour protéger mon enfant dans son usage du numérique ?
-      </h2>
-      <p>
-        Portail d'information unique sur la parentalité numérique, le site
-        jeprotegemonenfant.gouv.fr s'adresse aux parents d'enfants et
-        d’adolescents pour les accompagner dans les usages des outils numériques
-        et l’exposition à du contenu choquant en ligne.
-      </p>
-      <img
-        src="https://images.pexels.com/photos/31120801/pexels-photo-31120801/free-photo-of-paysage-de-plage-pittoresque-avec-ile-rocheuse.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-        alt="image description"
-      />
-    </article>
+    <app-display-paragraph [paragraph]="paragraph"></app-display-paragraph>
     <article class="paragraph_admin_tools">
       <button>Modifier</button>
       <button class="delete">Supprimer</button>

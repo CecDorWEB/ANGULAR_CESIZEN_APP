@@ -32,6 +32,15 @@ export class RessourceService {
     });
   }
 
+  getParagraphListbyArticleId(ressourceId: number): Observable<Paragraph[]> {
+    return this.http.get<Paragraph[]>(
+      `${this.paragraphUrl}/${ressourceId}/paragraph`,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      }
+    );
+  }
+
   addRessource(ressource: Ressource): Observable<Ressource> {
     return this.http.post<Ressource>(this.ressourceUrl, ressource);
   }

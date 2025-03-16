@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../../service/ressource/ressource.service';
 import { Ressource } from '../../model/ressource.model';
 import { Paragraph } from '../../model/paragraph.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-modify-ressource',
@@ -25,6 +26,7 @@ export class ModifyRessourceComponent {
     visualSupport: '',
     altVisualSupport: '',
   };
+  paragraphList: Paragraph[] = [];
   errorMessage: string | null = null;
 
   constructor(
@@ -39,6 +41,7 @@ export class ModifyRessourceComponent {
       this.ressourceId = Number(params.get('id'));
 
       this.loadRessources();
+      this.loadParagraphList();
     });
   }
 
@@ -51,6 +54,20 @@ export class ModifyRessourceComponent {
         console.error('Erreur lors de la récupération de la ressource', error);
       }
     );
+  }
+
+  loadParagraphList(): void {
+    this.ressourceService
+      .getParagraphListbyArticleId(this.ressourceId)
+      .subscribe(
+        (paragraphs) => {
+          this.paragraphList = paragraphs;
+          console.log('Liste des paragraphes:', paragraphs);
+        },
+        (error) => {
+          console.error('Erreur lors du chargement des paragraphes:', error);
+        }
+      );
   }
 
   toggleEdit() {
