@@ -27,6 +27,7 @@ export class ModifyRessourceComponent {
     altVisualSupport: '',
   };
   paragraphList: Paragraph[] = [];
+  paragraph: any = {};
 
   errorMessage: string | null = null;
 
@@ -99,6 +100,30 @@ export class ModifyRessourceComponent {
       },
       error: (error) => {
         console.error('Erreur lors de la modification de la ressource:', error);
+      },
+    });
+  }
+
+  setParagraphToEdit(selectedParagraph: any) {
+    this.paragraph = { ...selectedParagraph }; // Copie les données dans l'objet utilisé par le formulaire
+  }
+
+  // Méthode pour soumettre le formulaire
+  updateParagraph() {
+    if (!this.paragraph.id) {
+      console.error('Aucun ID de paragraphe fourni');
+      return;
+    }
+
+    this.ressourceService.updateParagraph(this.paragraph).subscribe({
+      next: (updatedParagraph) => {
+        console.log('Paragraphe mis à jour :', updatedParagraph);
+        alert('Mise à jour réussie !');
+        this.loadParagraphList();
+      },
+      error: (err) => {
+        console.error('Erreur lors de la mise à jour du paragraphe :', err);
+        alert('Échec de la mise à jour.');
       },
     });
   }

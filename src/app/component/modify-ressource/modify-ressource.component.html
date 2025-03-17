@@ -144,7 +144,12 @@
   </div>
   <!--Mode édition paragraphe-->
   <ng-template #editParagraphMode>
-    <form class="form_paragraph_mode" #form="ngForm" novalidate>
+    <form
+      class="form_paragraph_mode"
+      #form="ngForm"
+      novalidate
+      (ngSubmit)="updateParagraph()"
+    >
       <p>Veuillez modifier les champs ci-dessous:</p>
       <label for="paragraphOrder">N° ordre d'affichage:</label>
       <input
@@ -191,11 +196,14 @@
         [ngModelOptions]="{ standalone: true }"
         #altVisualSupport="ngModel"
       />
-      <input
+      <button
+        (click)="setParagraphToEdit(paragraph)"
         type="submit"
         value="Modifier le paragraphe"
         [disabled]="form.invalid"
-      />
+      >
+        Modifier
+      </button>
       <button type="button" (click)="toggleParagraphEdit(null)">Annuler</button>
       <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
     </form>

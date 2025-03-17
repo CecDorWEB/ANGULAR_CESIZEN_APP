@@ -76,6 +76,13 @@ export class RessourceService {
     );
   }
 
+  updateParagraph(paragraph: Paragraph): Observable<any> {
+    return this.http.put(
+      `${this.paragraphUrl}/paragraph/${paragraph.id}/modify`,
+      paragraph
+    );
+  }
+
   deleteRessource(ressourceId: number): Observable<string> {
     return this.http.post<string>(
       this.ressourceDeleteUrl,
