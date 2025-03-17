@@ -1,39 +1,42 @@
 <nav *ngIf="user$ | async as user; else notLoggedIn">
-  <ul>
+  <div class="burger-menu" (click)="toggleMenu()">☰</div>
+  <ul class="top_mobile_navbar" [class.active]="menuOpen">
     <div class="left_nav">
-      <li [routerLink]="['/home']">Accueil</li>
-      <li>Articles</li>
-      <li>Tests</li>
+      <li [routerLink]="['/home']" (click)="closeMenu()">Accueil</li>
+      <li (click)="closeMenu()">Articles</li>
+      <li (click)="closeMenu()">Tests</li>
     </div>
     <div class="right_nav">
       <div *ngIf="user.type == 'member'">
-        <li>Favoris</li>
-        <li>Mon espace personnel</li>
+        <li (click)="closeMenu()">Favoris</li>
+        <li (click)="closeMenu()">Mon espace personnel</li>
       </div>
       <div *ngIf="user.type == 'administrator'">
         <li
           [routerLink]="
             user.type == 'administrator' ? ['/admin/dashbord'] : ['/home']
           "
+          (click)="closeMenu()"
         >
           Mon espace Admin
         </li>
       </div>
-      <li (click)="logout()">Déconnexion</li>
+      <li (click)="logout()" (click)="closeMenu()">Déconnexion</li>
     </div>
   </ul>
 </nav>
 
 <ng-template #notLoggedIn>
   <nav>
-    <ul class="burger_menu desktop_menu">
+    <div class="burger-menu" (click)="toggleMenu()">☰</div>
+    <ul class="top_mobile_navbar" [class.active]="menuOpen">
       <div class="left_nav">
-        <li [routerLink]="['/home']">Accueil</li>
-        <li>Articles</li>
-        <li>Tests</li>
+        <li [routerLink]="['/home']" (click)="closeMenu()">Accueil</li>
+        <li (click)="closeMenu()">Articles</li>
+        <li (click)="closeMenu()">Tests</li>
       </div>
       <div class="right_nav">
-        <li [routerLink]="['/login']">Connexion</li>
+        <li [routerLink]="['/login']" (click)="closeMenu()">Connexion</li>
       </div>
     </ul>
   </nav>
