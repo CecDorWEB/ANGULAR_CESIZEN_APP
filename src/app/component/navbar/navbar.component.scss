@@ -1,26 +1,82 @@
-// header {
-//   border-bottom: 1px solid black;
-//   padding: 1em clamp(0.5rem, 4vw, 2rem);
-// }
+@use "../../../variables" as *;
 
-// nav {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   object-fit: contain;
-//   .logo {
-//     max-height: clamp(2rem, 20vw, 5.5rem);
-//   }
-//   button {
-//     all: unset;
-//     cursor: pointer;
-//     text-align: center;
-//     max-height: clamp(2rem, 20vw, 5.5rem);
-//     a {
-//       color: black;
-//     }
-//     img {
-//       max-height: clamp(1.5rem, 14vw, 5rem);
-//     }
-//   }
-// }
+/* 🔹 Styles par défaut (mobile) */
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.burger-menu {
+  display: flex;
+  justify-content: end;
+  cursor: pointer;
+  padding: 1em 2em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.top_mobile_navbar {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 210px;
+  right: 26%;
+  background-color: #fff;
+  width: 200px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+}
+
+.top_mobile_navbar.active {
+  display: flex;
+}
+
+li {
+  font-family: $secondTitle_font;
+  padding: 1em;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
+}
+
+/* 🔹 Pour les écrans de plus de 768px (tablette & desktop) */
+@media screen and (min-width: 768px) {
+  .burger-menu {
+    display: none; /* Cache le bouton burger */
+  }
+
+  .top_mobile_navbar {
+    display: flex; /* Affiche la nav en desktop */
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 3em;
+    position: static;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .left_nav,
+  .right_nav {
+    flex-direction: row;
+    display: flex;
+  }
+
+  nav {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    ul {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 3em;
+      div {
+        display: flex;
+        li {
+          align-items: center;
+        }
+      }
+    }
+  }
+}

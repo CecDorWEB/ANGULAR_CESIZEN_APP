@@ -1,3 +1,43 @@
 main {
   margin: 2em;
 }
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em clamp(0.5rem, 4vw, 2rem);
+  gap: 2em;
+  cursor: pointer;
+  img {
+    display: none;
+  }
+  .header_title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+      font-size: 60px;
+      color: rgba(0, 163, 136, 1);
+      font-weight: 400;
+    }
+    h2 {
+      font-family: "Italiana";
+      font-size: 24px;
+      color: rgba(206, 197, 25, 1);
+      font-weight: bold;
+      letter-spacing: 5px;
+      text-align: center;
+    }
+  }
+}
+
+//Pour les écrants de plus de 768px (tablette)
+@media screen and (min-width: 768px) {
+  header {
+    img {
+      display: initial;
+      max-height: 100px;
+    }
+  }
+}

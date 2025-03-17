@@ -12,9 +12,18 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   user$: Observable<any>;
+  menuOpen: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.user$ = this.authService.user$; // Observable directement utilisable dans le HTML
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu() {
+    this.menuOpen = false;
   }
 
   logout(): void {

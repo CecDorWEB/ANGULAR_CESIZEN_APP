@@ -1,45 +1,43 @@
-<header *ngIf="user$ | async as user; else notLoggedIn">
-  <nav>
-    <button>
-      <a
-        [routerLink]="
-          user.type == 'administrator' ? ['/admin/dashbord'] : ['/home']
-        "
-        ><h2>Accueil</h2></a
-      >
-    </button>
-    <img
-      src="assets/logo.png"
-      alt="logo"
-      [routerLink]="
-        user.type == 'administrator' ? ['/admin/dashbord'] : ['/home']
-      "
-    />
-    <button (click)="logout()"><h2>Deconnexion</h2></button>
-  </nav>
-</header>
+<nav *ngIf="user$ | async as user; else notLoggedIn">
+  <div class="burger-menu" (click)="toggleMenu()">☰</div>
+  <ul class="top_mobile_navbar" [class.active]="menuOpen">
+    <div class="left_nav">
+      <li [routerLink]="['/home']" (click)="closeMenu()">Accueil</li>
+      <li (click)="closeMenu()">Articles</li>
+      <li (click)="closeMenu()">Tests</li>
+    </div>
+    <div class="right_nav">
+      <div *ngIf="user.type == 'member'">
+        <li (click)="closeMenu()">Favoris</li>
+        <li (click)="closeMenu()">Mon espace personnel</li>
+      </div>
+      <div *ngIf="user.type == 'administrator'">
+        <li
+          [routerLink]="
+            user.type == 'administrator' ? ['/admin/dashbord'] : ['/home']
+          "
+          (click)="closeMenu()"
+        >
+          Mon espace Admin
+        </li>
+      </div>
+      <li (click)="logout()" (click)="closeMenu()">Déconnexion</li>
+    </div>
+  </ul>
+</nav>
 
 <ng-template #notLoggedIn>
-  <header>
-    <nav>
-      <button>
-        <a [routerLink]="['/home']"
-          ><img src="assets/Home.svg" alh="house" />
-          <h2>Accueil</h2></a
-        >
-      </button>
-      <img
-        class="logo"
-        src="assets/logo.png"
-        alt="logo"
-        [routerLink]="['/home']"
-      />
-      <button>
-        <a [routerLink]="['/login']"
-          ><img src="assets/Connexion.svg" alh="people" />
-          <h2>Connexion</h2></a
-        >
-      </button>
-    </nav>
-  </header>
+  <nav>
+    <div class="burger-menu" (click)="toggleMenu()">☰</div>
+    <ul class="top_mobile_navbar" [class.active]="menuOpen">
+      <div class="left_nav">
+        <li [routerLink]="['/home']" (click)="closeMenu()">Accueil</li>
+        <li (click)="closeMenu()">Articles</li>
+        <li (click)="closeMenu()">Tests</li>
+      </div>
+      <div class="right_nav">
+        <li [routerLink]="['/login']" (click)="closeMenu()">Connexion</li>
+      </div>
+    </ul>
+  </nav>
 </ng-template>
