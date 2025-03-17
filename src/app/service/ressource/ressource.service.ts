@@ -32,6 +32,15 @@ export class RessourceService {
     });
   }
 
+  getParagraphListbyArticleId(ressourceId: number): Observable<Paragraph[]> {
+    return this.http.get<Paragraph[]>(
+      `${this.paragraphUrl}/${ressourceId}/paragraph`,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      }
+    );
+  }
+
   addRessource(ressource: Ressource): Observable<Ressource> {
     return this.http.post<Ressource>(this.ressourceUrl, ressource);
   }
@@ -67,10 +76,27 @@ export class RessourceService {
     );
   }
 
+  updateParagraph(paragraph: Paragraph): Observable<any> {
+    return this.http.put(
+      `${this.paragraphUrl}/paragraph/${paragraph.id}/modify`,
+      paragraph
+    );
+  }
+
   deleteRessource(ressourceId: number): Observable<string> {
     return this.http.post<string>(
       this.ressourceDeleteUrl,
       { id: ressourceId }, // Envoie l'ID dans le corps de la requête
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        responseType: 'text' as 'json',
+      }
+    );
+  }
+
+  deleteParagraph(paragraphId: number): Observable<string> {
+    return this.http.delete<string>(
+      `${this.paragraphUrl}/paragraph/${paragraphId}`,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         responseType: 'text' as 'json',

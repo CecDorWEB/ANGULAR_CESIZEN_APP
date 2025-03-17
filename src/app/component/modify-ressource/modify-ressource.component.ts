@@ -17,13 +17,18 @@ export class ModifyRessourceComponent {
   ressourceId!: number;
   isEditing: boolean = false;
   AddParagraphOrQuestion: boolean = false;
+
   newParagraph: Paragraph = {
     id: 0,
     paragraphOrder: 0,
     title: '',
     body: '',
     visualSupport: '',
+    altVisualSupport: '',
   };
+  paragraphList: Paragraph[] = [];
+  paragraph: any = {};
+
   errorMessage: string | null = null;
 
   constructor(
@@ -38,6 +43,7 @@ export class ModifyRessourceComponent {
       this.ressourceId = Number(params.get('id'));
 
       this.loadRessources();
+      this.loadParagraphList();
     });
   }
 
@@ -52,8 +58,27 @@ export class ModifyRessourceComponent {
     );
   }
 
+  loadParagraphList(): void {
+    this.ressourceService
+      .getParagraphListbyArticleId(this.ressourceId)
+      .subscribe(
+        (paragraphs) => {
+          this.paragraphList = paragraphs;
+          console.log('Liste des paragraphes:', paragraphs);
+        },
+        (error) => {
+          console.error('Erreur lors du chargement des paragraphes:', error);
+        }
+      );
+  }
+
   toggleEdit() {
     this.isEditing = !this.isEditing;
+  }
+
+  toggleParagraphEdit(paragraph: any): void {
+    this.paragraphList.forEach((p) => (p.isEditing = false)); // Réinitialise les autres
+    paragraph.isEditing = true;
   }
 
   updateRessource(): void {
@@ -75,6 +100,30 @@ export class ModifyRessourceComponent {
       },
       error: (error) => {
         console.error('Erreur lors de la modification de la ressource:', error);
+      },
+    });
+  }
+
+  setParagraphToEdit(selectedParagraph: any) {
+    this.paragraph = { ...selectedParagraph }; // Copie les données dans l'objet utilisé par le formulaire
+  }
+
+  // Méthode pour soumettre le formulaire
+  updateParagraph() {
+    if (!this.paragraph.id) {
+      console.error('Aucun ID de paragraphe fourni');
+      return;
+    }
+
+    this.ressourceService.updateParagraph(this.paragraph).subscribe({
+      next: (updatedParagraph) => {
+        console.log('Paragraphe mis à jour :', updatedParagraph);
+        alert('Mise à jour réussie !');
+        this.loadParagraphList();
+      },
+      error: (err) => {
+        console.error('Erreur lors de la mise à jour du paragraphe :', err);
+        alert('Échec de la mise à jour.');
       },
     });
   }
@@ -110,6 +159,22 @@ export class ModifyRessourceComponent {
           console.log('Requête terminée');
         },
       });
+  }
+
+  deleteParagraph(paragraphId: number) {
+    if (confirm('Voulez-vous vraiment supprimer ce paragraphe ?')) {
+      this.ressourceService.deleteParagraph(paragraphId).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert('Paragraphe supprimé avec succès !');
+          this.ngOnInit();
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression :', error);
+          alert('Erreur : ' + error.error);
+        },
+      });
+    }
   }
 
   retour() {

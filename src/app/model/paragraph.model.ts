@@ -4,4 +4,6 @@ export interface Paragraph {
   title: string;
   body: string;
   visualSupport: string;
+  altVisualSupport: string;
+  isEditing?: boolean;
 }

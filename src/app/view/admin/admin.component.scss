@@ -6,4 +6,7 @@
 .admin_button {
   display: flex;
   gap: 2em;
+  button {
+    margin: 0;
+  }
 }
