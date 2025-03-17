@@ -1,45 +1,40 @@
-<header *ngIf="user$ | async as user; else notLoggedIn">
-  <nav>
-    <button>
-      <a
-        [routerLink]="
-          user.type == 'administrator' ? ['/admin/dashbord'] : ['/home']
-        "
-        ><h2>Accueil</h2></a
-      >
-    </button>
-    <img
-      src="assets/logo.png"
-      alt="logo"
-      [routerLink]="
-        user.type == 'administrator' ? ['/admin/dashbord'] : ['/home']
-      "
-    />
-    <button (click)="logout()"><h2>Deconnexion</h2></button>
-  </nav>
-</header>
+<nav *ngIf="user$ | async as user; else notLoggedIn">
+  <ul>
+    <div class="left_nav">
+      <li [routerLink]="['/home']">Accueil</li>
+      <li>Articles</li>
+      <li>Tests</li>
+    </div>
+    <div class="right_nav">
+      <div *ngIf="user.type == 'member'">
+        <li>Favoris</li>
+        <li>Mon espace personnel</li>
+      </div>
+      <div *ngIf="user.type == 'administrator'">
+        <li
+          [routerLink]="
+            user.type == 'administrator' ? ['/admin/dashbord'] : ['/home']
+          "
+        >
+          Mon espace Admin
+        </li>
+      </div>
+      <li (click)="logout()">Déconnexion</li>
+    </div>
+  </ul>
+</nav>
 
 <ng-template #notLoggedIn>
-  <header>
-    <nav>
-      <button>
-        <a [routerLink]="['/home']"
-          ><img src="assets/Home.svg" alh="house" />
-          <h2>Accueil</h2></a
-        >
-      </button>
-      <img
-        class="logo"
-        src="assets/logo.png"
-        alt="logo"
-        [routerLink]="['/home']"
-      />
-      <button>
-        <a [routerLink]="['/login']"
-          ><img src="assets/Connexion.svg" alh="people" />
-          <h2>Connexion</h2></a
-        >
-      </button>
-    </nav>
-  </header>
+  <nav>
+    <ul class="burger_menu desktop_menu">
+      <div class="left_nav">
+        <li [routerLink]="['/home']">Accueil</li>
+        <li>Articles</li>
+        <li>Tests</li>
+      </div>
+      <div class="right_nav">
+        <li [routerLink]="['/login']">Connexion</li>
+      </div>
+    </ul>
+  </nav>
 </ng-template>

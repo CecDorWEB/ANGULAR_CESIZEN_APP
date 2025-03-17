@@ -34,13 +34,7 @@ export class LogInComponent {
           typeof response === 'string' ? JSON.parse(response) : response;
         // Enregistrer les données utilisateur dans le service
         this.authService.login(user);
-
-        // Rediriger vers une autre page (par exemple, le tableau de bord)
-        if (user.role == 2) {
-          this.router.navigate(['/admin']);
-        } else {
-          this.router.navigate(['/home']);
-        }
+        this.router.navigate(['/home']);
       },
       error: (error) => {
         console.error('Erreur :', error.error);
