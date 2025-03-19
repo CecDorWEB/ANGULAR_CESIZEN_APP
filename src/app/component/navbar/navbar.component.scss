@@ -51,7 +51,6 @@ li {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    min-height: 3em;
     position: static;
     width: 100%;
     box-shadow: none;
@@ -70,11 +69,12 @@ li {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      min-height: 3em;
       div {
         display: flex;
         li {
+          height: auto;
           align-items: center;
+          font-size: 13px;
         }
       }
     }
