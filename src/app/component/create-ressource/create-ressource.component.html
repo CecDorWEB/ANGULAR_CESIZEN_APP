@@ -23,6 +23,7 @@
         [ngModelOptions]="{ standalone: true }"
         #headerIntroduction="ngModel"
         required
+        [rows]="5"
       ></textarea>
     </div>
     <div *ngIf="headerIntroduction.invalid && headerIntroduction.touched">

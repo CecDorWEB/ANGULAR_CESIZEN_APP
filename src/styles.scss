@@ -38,6 +38,10 @@ textarea {
   font-size: $p_mobile_size;
 }
 
+label {
+  width: 70px;
+}
+
 .subtitle {
   font-family: $subtitle;
   font-size: 1em;
@@ -56,6 +60,7 @@ input[type="submit"] {
   background-color: $Primary_color;
   color: $background-color;
   font-family: $secondTitle_font;
+  font-size: $button_desktop_size;
   border-radius: 1em;
   padding: 0.6em;
   width: fit-content;
@@ -79,8 +84,9 @@ form {
   margin: auto;
   div {
     display: flex;
-    justify-content: space-between;
-    gap: 1em;
+    // justify-content: space-between;
+    // width: 100%;
+    gap: 0.5em;
     span {
       color: red;
     }
@@ -148,10 +154,14 @@ td {
   section.createItems {
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: center;
     gap: 1em;
+    width: 100%;
     button {
-      max-width: fit-content;
+      text-align: end;
+      justify-content: end;
+      margin: initial;
+      align-items: end;
     }
   }
 }
@@ -182,9 +192,10 @@ input {
     font-size: $p_desktop_size;
   }
 
-  form {
-    width: 80%;
+  label {
+    width: 110px;
   }
+
   .adminPanel section.listItems table {
     max-width: 100%;
   }
