@@ -1,5 +1,12 @@
 div.header_form {
   display: flex;
   flex-direction: column;
-  gap: 0.2em;
+}
+
+//Pour les écrants de plus de 768px (tablette)
+@media screen and (min-width: 768px) {
+  div.header_form {
+    gap: 0.2em;
+    min-width: 500px;
+  }
 }

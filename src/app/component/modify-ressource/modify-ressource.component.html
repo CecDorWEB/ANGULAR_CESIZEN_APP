@@ -84,6 +84,7 @@
         [ngModelOptions]="{ standalone: true }"
         #body="ngModel"
         required
+        rows="10"
       ></textarea>
       <div *ngIf="body.invalid && body.touched">
         <span *ngIf="body.errors?.['required']">Contenu requis</span>
@@ -176,6 +177,7 @@
         [ngModelOptions]="{ standalone: true }"
         #body="ngModel"
         required
+        rows="10"
       ></textarea>
       <div *ngIf="body.invalid && body.touched">
         <span *ngIf="body.errors?.['required']">Contenu requis</span>

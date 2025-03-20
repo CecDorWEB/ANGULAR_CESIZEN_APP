@@ -86,6 +86,10 @@ section.modify_ressource_container {
   }
   .form_paragraph_mode {
     margin: 1em auto;
+    gap: 0.5em;
+    label {
+      width: initial;
+    }
   }
 }
 
@@ -150,6 +154,25 @@ section.modify_ressource_container {
     }
     .form_paragraph_mode {
       width: 70%;
+    }
+  }
+
+  .Add_paragraph_or_question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    section {
+      form {
+        gap: 0.5em;
+        label {
+          width: initial;
+        }
+        textarea {
+          min-width: 450px;
+        }
+      }
     }
   }
 }

@@ -1,7 +1,9 @@
 <main class="home_main">
   <article class="subscribe_invitation" *ngIf="(user$ | async) === null">
     <p>Retrouvez le sourire !</p>
-    <button class="home_link">-> Créez un compte</button>
+    <button class="home_link" [routerLink]="['/login']">
+      -> Créez un compte
+    </button>
   </article>
   <section class="presentation_container">
     <h1>Mieux comprendre la santé mentale pour mieux agir</h1>
