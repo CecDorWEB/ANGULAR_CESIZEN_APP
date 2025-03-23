@@ -12,7 +12,6 @@ import { ModifyRessourceComponent } from './component/modify-ressource/modify-re
 
 const routes: Routes = [
   { path: 'login', component: LogInComponent },
-  { path: 'register', component: RegisterComponent },
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   {
@@ -22,9 +21,9 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashbord', pathMatch: 'full' },
       { path: 'dashbord', component: AdminDashbordComponent },
       { path: 'users', component: UserManagementComponent },
-      { path: 'ressource/:type', component: EditRessourceComponent },
+      { path: 'ressources/:type', component: EditRessourceComponent },
       {
-        path: 'ressource/:type/:id/modify',
+        path: 'ressources/:type/:id/modify',
         component: ModifyRessourceComponent,
       },
     ],

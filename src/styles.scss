@@ -202,4 +202,8 @@ input {
   .adminPanel .sticky {
     background: transparent;
   }
+
+  li {
+    font-size: $button_desktop_size;
+  }
 }

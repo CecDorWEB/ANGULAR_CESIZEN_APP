@@ -3,6 +3,7 @@
 .home_link {
   all: unset;
   font-family: $secondTitle_font;
+  font-size: 18px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -37,10 +38,6 @@
       flex-direction: column;
       align-items: center;
       gap: 1em;
-      // img {
-      //   max-width: 400px;
-      //   max-height: 200px;
-      // }
       .presentation_home {
         display: flex;
         flex-direction: column;
@@ -77,6 +74,10 @@
 
 //Pour les écrants de plus de 768px (tablette)
 @media screen and (min-width: 768px) {
+  .home_link {
+    font-size: 20px;
+  }
+
   .home_main {
     gap: 2em;
     .presentation_container {
