@@ -1,0 +1,21 @@
+.ressource_Card {
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.5rem;
+  width: 250px;
+  height: 350px;
+  border-radius: 1em;
+  box-shadow: 1px 1px 12px 2px #4141411a;
+  padding-bottom: 0.5rem;
+  img {
+    border-radius: 1em 1em 0 0;
+    height: 175px;
+    object-fit: cover;
+  }
+  p {
+    max-height: 50px;
+    overflow: hidden;
+  }
+}

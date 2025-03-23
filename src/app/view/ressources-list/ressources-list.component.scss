@@ -1,0 +1,65 @@
+@use "../../../variables" as *;
+
+.ressourceList_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  .introduction_ressourceList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(
+        rgba(0, 163, 136, 0.6),
+        rgba(255, 255, 255, 0.3)
+      ),
+      url("../../../assets/image_home.png");
+    background-repeat: no-repeat;
+    background-size: cover; /* Ajuste l'image pour couvrir toute la div */
+    background-position: center; /* Centre l'image */
+    width: 100%; /* Pour s’adapter aux écrans plus petits */
+    margin: auto;
+    text-align: center;
+    font-size: 50px; /* Taille du texte légèrement réduite pour plus d’élégance */
+    font-weight: 400;
+    color: white; /* Assure un bon contraste */
+    text-shadow: 1px 1px 15px rgba(0, 0, 0, 1); /* Ajoute une ombre pour améliorer la lisibilité */
+    min-height: 100px; /* Augmente la hauteur pour un effet plus aéré */
+    border-radius: 12px; /* Adoucit les bords */
+    transition: all 0.3s ease-in-out; /* Effet de transition fluide */
+  }
+
+  .search_ressource {
+    .search_ressource_form {
+      display: flex;
+      flex-direction: row;
+      border: none;
+      width: 80%;
+      margin: initial;
+      .search_input_ressource {
+        min-width: 400px;
+      }
+      input {
+        margin: initial;
+      }
+      input:focus {
+        outline: none;
+      }
+    }
+  }
+  .ressource_card_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+  }
+}
+
+/* 🔹 Pour les écrans de plus de 768px (tablette & desktop) */
+@media screen and (min-width: 768px) {
+  .ressourceList_container {
+    .introduction_ressourceList {
+      max-width: 60%;
+      font-size: 60px; /* Taille du texte légèrement réduite pour plus d’élégance */
+      min-height: 120px;
+    }
+  }
+}

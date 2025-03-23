@@ -22,6 +22,8 @@ import { LOCALE_ID } from '@angular/core';
 import { CreateRessourceComponent } from './component/create-ressource/create-ressource.component';
 import { ModifyRessourceComponent } from './component/modify-ressource/modify-ressource.component';
 import { DisplayParagraphComponent } from './component/display-paragraph/display-paragraph.component';
+import { RessourcesListComponent } from './view/ressources-list/ressources-list.component';
+import { RessourceCardComponent } from './component/ressource-card/ressource-card.component';
 
 registerLocaleData(localeFr);
 
@@ -39,6 +41,8 @@ registerLocaleData(localeFr);
     CreateRessourceComponent,
     ModifyRessourceComponent,
     DisplayParagraphComponent,
+    RessourcesListComponent,
+    RessourceCardComponent,
   ],
   imports: [
     BrowserModule,
