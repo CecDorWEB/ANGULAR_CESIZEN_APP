@@ -1,21 +1,69 @@
+@use "../../../variables" as *;
+
 .ressource_Card {
-  border: 1px solid #ccc;
   display: flex;
   flex-direction: column;
   text-align: center;
   gap: 0.5rem;
-  width: 250px;
-  height: 350px;
+  min-height: 100%;
   border-radius: 1em;
+  border: 1px solid #ccc;
   box-shadow: 1px 1px 12px 2px #4141411a;
-  padding-bottom: 0.5rem;
+  cursor: pointer;
   img {
     border-radius: 1em 1em 0 0;
     height: 175px;
     object-fit: cover;
   }
-  p {
-    max-height: 50px;
-    overflow: hidden;
+  .ressource_information {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    padding: 0em 1em 1em 1em;
+    height: 200px;
+    h2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    p.headerIntroduction {
+      display: -webkit-box;
+      text-align: start;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+      min-height: 55px;
+      line-height: 1em;
+    }
+  }
+}
+
+.ressource_Card:hover {
+  color: $Primary_color;
+  border: 1px solid $Primary_color;
+  box-shadow: 1px 1px 12px 2px rgba(0, 163, 136, 0.3);
+  // h2 {
+  //   color: black;
+  // }
+}
+
+/* 🔹 Pour les écrans de plus de 768px (tablette & desktop) */
+@media screen and (min-width: 768px) {
+  .ressource_Card {
+    gap: 1rem;
+    width: 300px;
+    img {
+      height: 200px;
+    }
+    .ressource_information {
+      gap: 0em;
+      height: 200px;
+      p.headerIntroduction {
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+        min-height: 80px;
+      }
+    }
   }
 }

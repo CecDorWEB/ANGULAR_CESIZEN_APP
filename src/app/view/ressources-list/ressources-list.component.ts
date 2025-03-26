@@ -30,12 +30,12 @@ export class RessourcesListComponent {
 
   loadData() {
     if (this.type === 'articles') {
-      this.ressources$ = this.ressourceService.getAllArticles();
+      this.ressources$ = this.ressourceService.getAllRessourcesAllowedByType(1);
       this.ressources$.subscribe((ressource) => {
         console.log('Liste des articles :', ressource);
       });
     } else if (this.type === 'tests') {
-      this.ressources$ = this.ressourceService.getAllTest();
+      this.ressources$ = this.ressourceService.getAllRessourcesAllowedByType(2);
       this.ressources$.subscribe((ressource) => {
         console.log('Liste des tests :', ressource);
       });
