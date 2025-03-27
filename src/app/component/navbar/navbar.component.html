@@ -3,8 +3,8 @@
   <ul class="top_mobile_navbar" [class.active]="menuOpen">
     <div class="left_nav">
       <li [routerLink]="['/home']" (click)="closeMenu()">Accueil</li>
-      <li (click)="closeMenu()">Articles</li>
-      <li (click)="closeMenu()">Tests</li>
+      <li routerLink="/articles" (click)="closeMenu()">Articles</li>
+      <li routerLink="/tests" (click)="closeMenu()">Tests</li>
     </div>
     <div class="right_nav">
       <div *ngIf="user.type == 'member'">
@@ -31,9 +31,9 @@
     <div class="burger-menu" (click)="toggleMenu()">☰</div>
     <ul class="top_mobile_navbar" [class.active]="menuOpen">
       <div class="left_nav">
-        <li [routerLink]="['/home']" (click)="closeMenu()">Accueil</li>
-        <li (click)="closeMenu()">Articles</li>
-        <li (click)="closeMenu()">Tests</li>
+        <li routerLink="/home" (click)="closeMenu()">Accueil</li>
+        <li routerLink="/articles" (click)="closeMenu()">Articles</li>
+        <li routerLink="/tests" (click)="closeMenu()">Tests</li>
       </div>
       <div class="right_nav">
         <li [routerLink]="['/login']" (click)="closeMenu()">Connexion</li>

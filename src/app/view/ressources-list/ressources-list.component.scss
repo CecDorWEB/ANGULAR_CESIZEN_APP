@@ -1,0 +1,95 @@
+@use "../../../variables" as *;
+
+.ressourceList_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  .introduction_ressourceList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(
+        rgba(0, 163, 136, 0.6),
+        rgba(255, 255, 255, 0.3)
+      ),
+      url("../../../assets/image_home.png");
+    background-repeat: no-repeat;
+    background-size: cover; /* Ajuste l'image pour couvrir toute la div */
+    background-position: center; /* Centre l'image */
+    width: 100%; /* Pour s’adapter aux écrans plus petits */
+    margin: auto;
+    text-align: center;
+    font-size: 50px; /* Taille du texte légèrement réduite pour plus d’élégance */
+    font-weight: 400;
+    color: white; /* Assure un bon contraste */
+    text-shadow: 1px 1px 15px rgba(0, 0, 0, 1); /* Ajoute une ombre pour améliorer la lisibilité */
+    min-height: 100px; /* Augmente la hauteur pour un effet plus aéré */
+    border-radius: 12px; /* Adoucit les bords */
+    transition: all 0.3s ease-in-out; /* Effet de transition fluide */
+  }
+
+  .search_ressource {
+    .search_ressource_form {
+      display: flex;
+      flex-direction: row;
+      border: none;
+      width: 80%;
+      margin: initial;
+      padding: 0;
+      gap: 0.5em;
+      .search_input_ressource {
+        min-width: 70%;
+      }
+      input[type="submit"] {
+        margin: initial;
+        min-width: fit-content;
+      }
+      input:focus {
+        outline: none;
+      }
+    }
+  }
+  .ressource_card_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+  }
+}
+
+/* 🔹 Pour les écrans de plus de 768px (tablette & desktop) */
+@media screen and (min-width: 768px) {
+  .ressourceList_container {
+    .introduction_ressourceList {
+      max-width: 60%;
+      font-size: 60px; /* Taille du texte légèrement réduite pour plus d’élégance */
+      min-height: 120px;
+    }
+    .ressource_card_container {
+      justify-content: space-around;
+    }
+    .search_ressource {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 60vw;
+      .search_ressource_form {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        border: none;
+        margin: initial;
+        .search_input_ressource {
+          min-width: 80%;
+        }
+        input[type="submit"] {
+          margin: initial;
+        }
+        input:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}

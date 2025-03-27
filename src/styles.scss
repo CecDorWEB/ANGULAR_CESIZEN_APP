@@ -74,6 +74,13 @@ input[type="submit"] {
   margin: auto;
 }
 
+button:hover,
+input[type="submit"]:hover {
+  background-color: white;
+  color: $Primary_color;
+  border: 1px solid $Primary_color;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -173,6 +180,12 @@ input {
   max-width: 100%; /* Évite qu'il déborde de l'écran */
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 1px solid $Primary_color;
 }
 
 //Pour les écrants de plus de 1024px

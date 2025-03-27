@@ -26,6 +26,14 @@ export class RessourceService {
     return this.http.get<Ressource[]>(this.testUrl);
   }
 
+  getAllRessourcesAllowedByType(
+    ressourceTypeId: number
+  ): Observable<Ressource[]> {
+    return this.http.get<Ressource[]>(
+      `${this.ressourceUrl}/all?ressourceTypeId=${ressourceTypeId}`
+    );
+  }
+
   getRessourceById(ressourceId: number): Observable<Ressource> {
     return this.http.get<Ressource>(`${this.ressourceUrl}/${ressourceId}`, {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
