@@ -7,16 +7,15 @@
       <input
         class="search_input_ressource"
         placeholder="Rechercher une ressource"
-        type="search"
-        id="search"
-        name="searchWord"
+        type="text"
         required=""
+        (input)="onSearch($event)"
       />
       <input type="submit" class="button-search w-button" value="Rechercher" />
     </form>
   </article>
   <section class="ressource_card_container">
-    <div *ngFor="let ressource of ressources$ | async">
+    <div *ngFor="let ressource of filteredRessources$ | async">
       <app-ressource-card [ressource]="ressource"></app-ressource-card>
     </div>
   </section>

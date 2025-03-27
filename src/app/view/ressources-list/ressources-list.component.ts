@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { Ressource } from '../../model/ressource.model';
 import { RessourceService } from '../../service/ressource/ressource.service';
 
@@ -14,6 +14,8 @@ import { RessourceService } from '../../service/ressource/ressource.service';
 export class RessourcesListComponent {
   type: string = '';
   ressources$!: Observable<Ressource[]>;
+  searchInput$ = new BehaviorSubject<string>('');
+  filteredRessources$!: Observable<Ressource[]>;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +27,18 @@ export class RessourcesListComponent {
       this.type = params.get('type') || '';
       console.log('Type sélectionné :', this.type);
       this.loadData();
+
+      // Filtrage en fonction de la recherche
+      this.filteredRessources$ = combineLatest([
+        this.ressources$,
+        this.searchInput$,
+      ]).pipe(
+        map(([ressources, searchInput]) =>
+          ressources.filter((ressource) =>
+            this.matchesSearch(ressource, searchInput)
+          )
+        )
+      );
     });
   }
 
@@ -42,5 +56,19 @@ export class RessourcesListComponent {
     } else {
       console.log('Type inconnu');
     }
+  }
+
+  onSearch(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    console.log(value);
+    this.searchInput$.next(value);
+  }
+
+  private matchesSearch(ressource: Ressource, searchInput: string): boolean {
+    if (!searchInput) return true;
+    return (
+      ressource.title.toLowerCase().includes(searchInput) ||
+      ressource.headerIntroduction.toLowerCase().includes(searchInput)
+    );
   }
 }
