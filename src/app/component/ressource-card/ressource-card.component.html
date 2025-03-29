@@ -1,4 +1,11 @@
-<a class="ressource_Card">
+<a
+  class="ressource_Card"
+  [routerLink]="
+    ressource.type_id === 1
+      ? ['/article', ressource.id]
+      : ['/test', ressource.id]
+  "
+>
   <img src="{{ ressource.headerImage }}" alt="" />
   <div class="ressource_information">
     <p>{{ ressource.publicationDate }}</p>

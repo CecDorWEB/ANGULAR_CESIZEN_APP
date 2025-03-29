@@ -9,6 +9,8 @@ import { UserManagementComponent } from './component/user-management/user-manage
 import { EditRessourceComponent } from './component/edit-ressource/edit-ressource.component';
 import { ModifyRessourceComponent } from './component/modify-ressource/modify-ressource.component';
 import { RessourcesListComponent } from './view/ressources-list/ressources-list.component';
+import { ArticlePageComponent } from './view/article-page/article-page.component';
+import { TestPageComponent } from './view/test-page/test-page.component';
 
 const routes: Routes = [
   { path: 'login', component: LogInComponent },
@@ -29,6 +31,8 @@ const routes: Routes = [
       },
     ],
   },
+  { path: 'article/:id', component: ArticlePageComponent },
+  { path: 'test/:id', component: TestPageComponent },
 ];
 
 @NgModule({

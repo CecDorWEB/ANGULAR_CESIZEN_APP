@@ -1,0 +1,54 @@
+@use "../../../variables" as *;
+
+div.ressource_header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  h1 {
+    text-align: center;
+  }
+  div.ressource_date_info {
+    display: flex;
+    gap: 2em;
+    background-color: #d4ecdd5e;
+    padding: 0.2em 1em;
+    border-radius: 1em;
+  }
+  .subtitle {
+    font-family: $subtitle;
+    font-size: 1em;
+  }
+
+  .introduction {
+    font-family: $subtitle;
+    font-size: $p_mobile_size; //20px
+    line-height: 1.5rem;
+  }
+  img {
+    max-height: 200px;
+  }
+}
+
+//Pour les écrants de plus de 768px (tablette)
+@media screen and (min-width: 768px) {
+  div.ressource_header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    div.ressource_date_info {
+      display: flex;
+      margin: auto;
+      width: fit-content;
+    }
+    img {
+      max-height: 360px;
+      min-width: 100%;
+      object-fit: cover;
+      object-position: 50% 60%;
+    }
+    .introduction {
+      text-align: justify;
+      font-size: $p_importante_desktop_size;
+    }
+  }
+}

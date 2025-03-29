@@ -5,13 +5,14 @@
   align-items: center;
   width: 100%;
   gap: 1em;
+  margin-top: 1em;
   p {
     text-align: left;
     hyphens: auto;
-    line-height: 1.3rem;
+    line-height: 1.5rem;
   }
   img {
-    max-height: 200px;
+    max-height: 180px;
     object-fit: contain;
     object-position: 50% 60%;
     border-radius: 8px;
@@ -21,12 +22,15 @@
 //Pour les écrants de plus de 768px (tablette)
 @media screen and (min-width: 768px) {
   .paragraph_container {
+    gap: 1.2em;
+    text-align: start;
+    align-items: start;
     img {
-      text-align: center;
+      margin: auto;
       object-fit: cover;
       border-radius: 20px;
-      max-height: 380px;
-      max-width: 80%;
+      max-height: 280px;
+      min-width: 300px;
     }
     p {
       text-align: justify;
