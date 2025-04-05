@@ -1,0 +1,9 @@
+<section class="article_page_container">
+  <app-display-article-header
+    [ressource]="ressource"
+  ></app-display-article-header>
+  <app-display-paragraph
+    *ngFor="let paragraph of paragraphList$ | async"
+    [paragraph]="paragraph"
+  ></app-display-paragraph>
+</section>

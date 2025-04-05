@@ -1,0 +1,10 @@
+//Pour les écrants de plus de 768px (tablette)
+@media screen and (min-width: 768px) {
+  .article_page_container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin: auto;
+    max-width: 70%;
+  }
+}

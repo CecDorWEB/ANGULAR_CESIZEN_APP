@@ -24,6 +24,9 @@ import { ModifyRessourceComponent } from './component/modify-ressource/modify-re
 import { DisplayParagraphComponent } from './component/display-paragraph/display-paragraph.component';
 import { RessourcesListComponent } from './view/ressources-list/ressources-list.component';
 import { RessourceCardComponent } from './component/ressource-card/ressource-card.component';
+import { ArticlePageComponent } from './view/article-page/article-page.component';
+import { TestPageComponent } from './view/test-page/test-page.component';
+import { DisplayArticleHeaderComponent } from './component/display-article-header/display-article-header.component';
 
 registerLocaleData(localeFr);
 
@@ -43,6 +46,9 @@ registerLocaleData(localeFr);
     DisplayParagraphComponent,
     RessourcesListComponent,
     RessourceCardComponent,
+    ArticlePageComponent,
+    TestPageComponent,
+    DisplayArticleHeaderComponent,
   ],
   imports: [
     BrowserModule,

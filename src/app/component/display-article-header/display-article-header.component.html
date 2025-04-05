@@ -1,0 +1,15 @@
+<div class="ressource_header">
+  <h1>{{ ressource.title }}</h1>
+  <div class="ressource_date_info">
+    <p class="subtitle">
+      <strong>Date de création :</strong>
+      {{ ressource.publicationDate | date }}
+    </p>
+    <p class="subtitle">
+      <strong>Date dernière modification :</strong>
+      {{ ressource.updateDate | date }}
+    </p>
+  </div>
+  <p class="introduction">{{ ressource.headerIntroduction }}</p>
+  <img [src]="ressource.headerImage" alt="Image de l'ressourceData" />
+</div>

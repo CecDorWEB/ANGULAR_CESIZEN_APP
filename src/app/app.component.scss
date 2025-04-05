@@ -1,7 +1,6 @@
 @use "../variables" as *;
-
 main {
-  margin: 1em;
+  padding: 1em;
 }
 
 header {
@@ -38,7 +37,7 @@ header {
 //Pour les écrants de plus de 768px (tablette)
 @media screen and (min-width: 768px) {
   main {
-    margin: 2em;
+    padding: 2em;
   }
 
   header {
