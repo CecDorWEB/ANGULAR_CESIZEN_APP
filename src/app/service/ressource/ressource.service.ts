@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ressource } from '../../model/ressource.model';
 import { Paragraph } from '../../model/paragraph.model';
+import { Question } from '../../model/question.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class RessourceService {
   private ressourceAutorizationUrl =
     'http://localhost:8080/ressource/autorization';
   private paragraphUrl = 'http://localhost:8080/ressource/article';
+  private questionUrl = 'http://localhost:8080/ressource/test';
 
   constructor(private http: HttpClient) {}
 
@@ -60,6 +62,13 @@ export class RessourceService {
     return this.http.post<Paragraph>(
       `${this.paragraphUrl}/${ressourceId}/paragraph`,
       paragraph
+    );
+  }
+
+  addQuestion(ressourceId: number, question: Question): Observable<Question> {
+    return this.http.post<Question>(
+      `${this.questionUrl}/${ressourceId}/question`,
+      question
     );
   }
 

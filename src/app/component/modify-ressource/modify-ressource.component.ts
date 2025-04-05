@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../../service/ressource/ressource.service';
 import { Ressource } from '../../model/ressource.model';
 import { Paragraph } from '../../model/paragraph.model';
+import { Question } from '../../model/question.model';
 
 @Component({
   selector: 'app-modify-ressource',
@@ -28,6 +29,13 @@ export class ModifyRessourceComponent {
   };
   paragraphList: Paragraph[] = [];
   paragraph: any = {};
+
+  newQuestion: Question = {
+    id: 0,
+    question: '',
+    rule: '',
+    number_expected_answers: null,
+  };
 
   errorMessage: string | null = null;
 
@@ -175,6 +183,26 @@ export class ModifyRessourceComponent {
         },
       });
     }
+  }
+
+  onSubmitNewQuestion() {
+    this.errorMessage = null;
+
+    this.ressourceService
+      .addQuestion(this.ressourceId, this.newQuestion)
+      .subscribe({
+        next: (response) => {
+          console.log('Formulaire envoyé !', response);
+          alert('Ajout de la question réussie !');
+          window.location.reload();
+        },
+        error: (error) => {
+          console.error('Erreur lors de l’ajout de la question', error);
+        },
+        complete: () => {
+          console.log('Requête terminée');
+        },
+      });
   }
 
   retour() {

@@ -103,7 +103,44 @@
 
   <!--Formulaire d'ajout d'une Question-->
   <section *ngIf="AddParagraphOrQuestion && type === 'test'">
-    <h1>Ici Ajout d'une question</h1>
+    <form #form="ngForm" (ngSubmit)="onSubmitNewQuestion()" novalidate>
+      <p>Veuillez remplir les champs ci-dessous:</p>
+      <label for="question">Question:</label>
+      <textarea
+        name="question"
+        [(ngModel)]="newQuestion.question"
+        [ngModelOptions]="{ standalone: true }"
+        #question="ngModel"
+        required
+        rows="2"
+      ></textarea>
+      <div *ngIf="question.invalid && question.touched">
+        <span *ngIf="question.errors?.['required']">Question requise</span>
+      </div>
+      <label for="rule">Consigne de réponse:</label>
+      <textarea
+        name="rule"
+        [(ngModel)]="newQuestion.rule"
+        [ngModelOptions]="{ standalone: true }"
+        #rule="ngModel"
+      ></textarea>
+      <label for="number_expected_answers"
+        >Nombre de réponse attendue (ne rien mettre si illimité):</label
+      >
+      <input
+        type="number"
+        name="number_expected_answers"
+        [(ngModel)]="newQuestion.number_expected_answers"
+        [ngModelOptions]="{ standalone: true }"
+        #number_expected_answers="ngModel"
+      />
+      <input
+        type="submit"
+        value="Ajouter la question"
+        [disabled]="form.invalid"
+      />
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
   </section>
 </section>
 
