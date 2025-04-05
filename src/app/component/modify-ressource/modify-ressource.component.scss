@@ -73,6 +73,12 @@ section.modify_ressource_container {
   }
 }
 
+.view_paragraph_or_question {
+  .admin_question_container {
+    display: flex;
+  }
+}
+
 //Pour les écrants de plus de 768px (tablette)
 @media screen and (min-width: 768px) {
   section.modify_ressource_container {

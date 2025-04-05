@@ -27,6 +27,7 @@ import { RessourceCardComponent } from './component/ressource-card/ressource-car
 import { ArticlePageComponent } from './view/article-page/article-page.component';
 import { TestPageComponent } from './view/test-page/test-page.component';
 import { DisplayArticleHeaderComponent } from './component/display-article-header/display-article-header.component';
+import { DisplayQuestionComponent } from './component/display-question/display-question.component';
 
 registerLocaleData(localeFr);
 
@@ -49,6 +50,7 @@ registerLocaleData(localeFr);
     ArticlePageComponent,
     TestPageComponent,
     DisplayArticleHeaderComponent,
+    DisplayQuestionComponent,
   ],
   imports: [
     BrowserModule,

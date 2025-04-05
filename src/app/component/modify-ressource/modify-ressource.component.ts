@@ -36,6 +36,8 @@ export class ModifyRessourceComponent {
     rule: '',
     number_expected_answers: null,
   };
+  questionList: Question[] = [];
+  question: any = {};
 
   errorMessage: string | null = null;
 
@@ -51,7 +53,12 @@ export class ModifyRessourceComponent {
       this.ressourceId = Number(params.get('id'));
 
       this.loadRessources();
-      this.loadParagraphList();
+
+      if (this.type == 'article') {
+        this.loadParagraphList();
+      } else if ((this.type = 'test')) {
+        this.loadQuestionList();
+      }
     });
   }
 
@@ -78,6 +85,18 @@ export class ModifyRessourceComponent {
           console.error('Erreur lors du chargement des paragraphes:', error);
         }
       );
+  }
+
+  loadQuestionList(): void {
+    this.ressourceService.getQuestionListbyTestId(this.ressourceId).subscribe(
+      (questions) => {
+        this.questionList = questions;
+        console.log('Liste des questions:', questions);
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des paragraphes:', error);
+      }
+    );
   }
 
   toggleEdit() {

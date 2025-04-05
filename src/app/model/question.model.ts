@@ -3,4 +3,5 @@ export interface Question {
   question: string;
   rule: string;
   number_expected_answers: number | null;
+  isEditing?: boolean; //pour afficher le formulaire d'édition
 }

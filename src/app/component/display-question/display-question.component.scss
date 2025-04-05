@@ -1,0 +1,26 @@
+.question_container {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  width: 100%;
+  gap: 0.25em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  padding: 0.5em;
+  h2 {
+    font-size: 1.25em;
+  }
+  p {
+    font-size: 1em;
+  }
+}
+
+//Pour les écrants de plus de 768px (tablette)
+@media screen and (min-width: 768px) {
+  .question_container {
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 80%;
+  }
+}

@@ -51,6 +51,15 @@ export class RessourceService {
     );
   }
 
+  getQuestionListbyTestId(ressourceId: number): Observable<Question[]> {
+    return this.http.get<Question[]>(
+      `${this.questionUrl}/${ressourceId}/question`,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      }
+    );
+  }
+
   addRessource(ressource: Ressource): Observable<Ressource> {
     return this.http.post<Ressource>(this.ressourceUrl, ressource);
   }

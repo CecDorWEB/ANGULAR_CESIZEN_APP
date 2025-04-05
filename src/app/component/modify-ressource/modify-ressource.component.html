@@ -144,7 +144,7 @@
   </section>
 </section>
 
-<!--Affichage des paragraphes ou des questions -->
+<!--Affichage des paragraphes -->
 <section
   class="view_paragraph_or_question"
   *ngFor="let paragraph of paragraphList"
@@ -233,6 +233,82 @@
       <button type="button" (click)="toggleParagraphEdit(null)">Annuler</button>
       <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
     </form>
+  </ng-template>
+</section>
+
+<!--Affichage des questions -->
+<section
+  class="view_paragraph_or_question"
+  *ngFor="let question of questionList"
+>
+  <div
+    class="display_mode_container"
+    *ngIf="!question.isEditing; else editQuestionMode"
+  >
+    <div class="question">
+      <app-display-question [question]="question"></app-display-question>
+      <button>+ Ajouter une réponse</button>
+
+      <!-- A faire 
+      <article class="question_admin_tools">
+        <button (click)="toggleQuestEdit(question)">Modifier</button>
+        <button class="delete" (click)="deleteQuestion(question.id)">
+          Supprimer
+        </button>
+      </article>
+      -->
+    </div>
+  </div>
+  <!--Mode édition paragraphe-->
+  <ng-template #editQuestionMode>
+    <!--A faire
+    <form
+      class="form_question_mode"
+      #form="ngForm"
+      novalidate
+      (ngSubmit)="updateQuestion()"
+    >
+      <p>Veuillez modifier les champs ci-dessous:</p>
+      <textarea
+        name="question"
+        [(ngModel)]="question.question"
+        [ngModelOptions]="{ standalone: true }"
+        #question="ngModel"
+        required
+        rows="2"
+      ></textarea>
+      <div *ngIf="question.invalid && question.touched">
+        <span *ngIf="question.errors?.['required']">Question requise</span>
+      </div>
+      <label for="rule">Condition de réponse:</label>
+      <textarea
+        name="rule"
+        [(ngModel)]="question.rule"
+        [ngModelOptions]="{ standalone: true }"
+        #rule="ngModel"
+      ></textarea>
+      <label for="number_expected_answers">Nombre de réponses attendues:</label>
+      <input
+        type="number"
+        name="number_expected_answers"
+        [(ngModel)]="question.number_expected_answers"
+        [ngModelOptions]="{ standalone: true }"
+        #number_expected_answers="ngModel"
+        required
+      />
+
+      <button
+        (click)="setQuestionToEdit(question)"
+        type="submit"
+        value="Modifier la question"
+        [disabled]="form.invalid"
+      >
+        Modifier
+      </button>
+      <button type="button" (click)="toggleQuestionEdit(null)">Annuler</button>
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
+    -->
   </ng-template>
 </section>
 
