@@ -108,6 +108,11 @@ export class ModifyRessourceComponent {
     paragraph.isEditing = true;
   }
 
+  toggleQuestionEdit(question: any): void {
+    this.questionList.forEach((q) => (q.isEditing = false)); // Réinitialise les autres
+    question.isEditing = true;
+  }
+
   updateRessource(): void {
     if (!this.ressource || !this.ressource.id) {
       console.error('Impossible de modifier : ressource invalide.');
@@ -135,6 +140,10 @@ export class ModifyRessourceComponent {
     this.paragraph = { ...selectedParagraph }; // Copie les données dans l'objet utilisé par le formulaire
   }
 
+  setQuestionToEdit(selectedQuestion: any) {
+    this.question = { ...selectedQuestion }; // Copie les données dans l'objet utilisé par le formulaire
+  }
+
   // Méthode pour soumettre le formulaire
   updateParagraph() {
     if (!this.paragraph.id) {
@@ -150,6 +159,26 @@ export class ModifyRessourceComponent {
       },
       error: (err) => {
         console.error('Erreur lors de la mise à jour du paragraphe :', err);
+        alert('Échec de la mise à jour.');
+      },
+    });
+  }
+
+  // Méthode pour soumettre le formulaire
+  updateQuestion() {
+    if (!this.question.id) {
+      console.error('Aucun ID de question fourni');
+      return;
+    }
+
+    this.ressourceService.updateQuestion(this.question).subscribe({
+      next: (updatedQuestion) => {
+        console.log('Question mise à jour :', updatedQuestion);
+        alert('Mise à jour réussie !');
+        this.loadQuestionList();
+      },
+      error: (err) => {
+        console.error('Erreur lors de la mise à jour de la question :', err);
         alert('Échec de la mise à jour.');
       },
     });
@@ -194,6 +223,22 @@ export class ModifyRessourceComponent {
         next: (response) => {
           console.log(response);
           alert('Paragraphe supprimé avec succès !');
+          this.ngOnInit();
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression :', error);
+          alert('Erreur : ' + error.error);
+        },
+      });
+    }
+  }
+
+  deleteQuestion(questionId: number) {
+    if (confirm('Voulez-vous vraiment supprimer cette question?')) {
+      this.ressourceService.deleteQuestion(questionId).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert('Question supprimée avec succès !');
           this.ngOnInit();
         },
         error: (error) => {

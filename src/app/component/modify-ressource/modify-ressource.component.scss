@@ -1,3 +1,5 @@
+@use "../../../variables" as *;
+
 section.modify_ressource_container {
   display: flex;
   flex-direction: column;
@@ -21,7 +23,12 @@ section.modify_ressource_container {
 }
 
 .view_paragraph_or_question {
+  margin: 0.5em 0;
   .display_mode_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
     .article {
       display: flex;
       flex-direction: column;
@@ -45,6 +52,7 @@ section.modify_ressource_container {
         align-items: center;
         width: 100%;
         gap: 1em;
+
         p {
           text-align: left;
           hyphens: auto;
@@ -63,6 +71,19 @@ section.modify_ressource_container {
         gap: 0.5em;
       }
     }
+    .question {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1em;
+      padding: 1em 0.25em;
+      background-color: rgba(212, 236, 221, 0.368627451);
+    }
+    .question_admin_tools {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+    }
   }
   .form_paragraph_mode {
     margin: 1em auto;
@@ -73,12 +94,15 @@ section.modify_ressource_container {
   }
 }
 
-.view_paragraph_or_question {
-  .admin_question_container {
-    display: flex;
-  }
+.secondary_button {
+  background-color: $primary_light;
 }
 
+.secondary_button:hover {
+  background-color: $background-color;
+  color: $primary_light;
+  border: 1px solid $primary_light;
+}
 //Pour les écrants de plus de 768px (tablette)
 @media screen and (min-width: 768px) {
   section.modify_ressource_container {
@@ -98,8 +122,11 @@ section.modify_ressource_container {
   }
 
   .view_paragraph_or_question {
-    padding: 0.5em 0;
+    margin: 0.5em auto;
     .display_mode_container {
+      flex-direction: row;
+      justify-content: center;
+      gap: 1em;
       .article {
         display: flex;
         flex-direction: row;
@@ -119,6 +146,9 @@ section.modify_ressource_container {
             word-spacing: -0.5px;
           }
         }
+      }
+      .question {
+        width: 60%;
       }
     }
     .form_paragraph_mode {

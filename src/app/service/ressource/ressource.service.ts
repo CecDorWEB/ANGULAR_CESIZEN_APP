@@ -109,6 +109,13 @@ export class RessourceService {
     );
   }
 
+  updateQuestion(question: Question): Observable<any> {
+    return this.http.put(
+      `${this.questionUrl}/question/${question.id}/modify`,
+      question
+    );
+  }
+
   deleteRessource(ressourceId: number): Observable<string> {
     return this.http.post<string>(
       this.ressourceDeleteUrl,
@@ -123,6 +130,16 @@ export class RessourceService {
   deleteParagraph(paragraphId: number): Observable<string> {
     return this.http.delete<string>(
       `${this.paragraphUrl}/paragraph/${paragraphId}`,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        responseType: 'text' as 'json',
+      }
+    );
+  }
+
+  deleteQuestion(questionId: number): Observable<string> {
+    return this.http.delete<string>(
+      `${this.questionUrl}/question/${questionId}`,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         responseType: 'text' as 'json',
