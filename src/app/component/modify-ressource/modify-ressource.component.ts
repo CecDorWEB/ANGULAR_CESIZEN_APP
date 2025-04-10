@@ -34,6 +34,7 @@ export class ModifyRessourceComponent {
     question: '',
     rule: '',
     number_expected_answers: null,
+    listOfAnswers: null,
   };
   questionList: Question[] = [];
   question: any = {};

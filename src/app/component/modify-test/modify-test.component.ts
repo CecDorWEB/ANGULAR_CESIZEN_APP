@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Question } from '../../model/question.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../../service/ressource/ressource.service';
+import { Answer } from '../../model/answer.model';
 
 @Component({
   selector: 'app-modify-test',
@@ -18,20 +19,25 @@ export class ModifyTestComponent {
 
   AddQuestion: boolean = false;
   isEditing: boolean = false;
+  selectedQuestionId: number | null = null;
 
   newQuestion: Question = {
     id: 0,
     question: '',
     rule: '',
     number_expected_answers: null,
+    listOfAnswers: [],
   };
+
+  newAnswer: Answer = {
+    title: '',
+    point: 0,
+    multiplied: false,
+  };
+
   errorMessage: string | null = null;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private ressourceService: RessourceService
-  ) {}
+  constructor(private ressourceService: RessourceService) {}
 
   actualizeQuestionList(): void {
     if (this.type == 'test') {
@@ -55,6 +61,10 @@ export class ModifyTestComponent {
     this.AddQuestion = !this.AddQuestion;
   }
 
+  showAddAnswer(questionId: number): void {
+    this.selectedQuestionId = questionId;
+  }
+
   onSubmitNewQuestion() {
     this.errorMessage = null;
 
@@ -73,6 +83,24 @@ export class ModifyTestComponent {
           console.log('Requête terminée');
         },
       });
+  }
+
+  onSubmitNewAnswer(questionId: number) {
+    this.errorMessage = null;
+
+    this.ressourceService.addAnswer(questionId, this.newAnswer).subscribe({
+      next: (response) => {
+        console.log('Formulaire envoyé !', response);
+        alert('Ajout de la réponse réussie !');
+        window.location.reload();
+      },
+      error: (error) => {
+        console.error('Erreur lors de l’ajout de la réponse', error);
+      },
+      complete: () => {
+        console.log('Requête terminée');
+      },
+    });
   }
 
   toggleQuestionEdit(question: any): void {

@@ -51,7 +51,76 @@
     >
       <div class="question">
         <app-display-question [question]="question"></app-display-question>
-        <button class="secondary_button">+ Ajouter une réponse</button>
+        <button class="secondary_button" (click)="showAddAnswer(question.id)">
+          + Ajouter une réponse
+        </button>
+        <!--Formulaire d'ajout d'une Réponse -->
+        <section *ngIf="selectedQuestionId === question.id">
+          <form
+            #form="ngForm"
+            (ngSubmit)="onSubmitNewAnswer(question.id)"
+            novalidate
+          >
+            <p>Veuillez remplir les champs ci-dessous:</p>
+            <label for="answer">Réponse:</label>
+            <input
+              name="response"
+              [(ngModel)]="newAnswer.title"
+              [ngModelOptions]="{ standalone: true }"
+              #answer="ngModel"
+              required
+            />
+            <div *ngIf="answer.invalid && answer.touched">
+              <span *ngIf="answer.errors?.['required']">Texte requis</span>
+            </div>
+            <label for="point">Nombre de point attribué à la réponse:</label>
+            <input
+              name="point"
+              [(ngModel)]="newAnswer.point"
+              [ngModelOptions]="{ standalone: true }"
+              #point="ngModel"
+              required
+            />
+            <div *ngIf="point.invalid && point.touched">
+              <span *ngIf="point.errors?.['required']"
+                >Nombre de point requis</span
+              >
+            </div>
+            <label>Point à multiplier :</label>
+            <fieldset>
+              <div>
+                <input
+                  type="radio"
+                  id="multipliedYes"
+                  name="multiplied"
+                  [value]="1"
+                  [(ngModel)]="newAnswer.multiplied"
+                  [ngModelOptions]="{ standalone: true }"
+                  #multiplied="ngModel"
+                />
+                <label for="multipliedYes">Oui</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="multipliedNo"
+                  name="multiplied"
+                  [value]="0"
+                  [(ngModel)]="newAnswer.multiplied"
+                  [ngModelOptions]="{ standalone: true }"
+                  #multiplied="ngModel"
+                />
+                <label for="multipliedNo">Non</label>
+              </div>
+            </fieldset>
+            <input
+              type="submit"
+              value="Ajouter la réponse"
+              [disabled]="form.invalid"
+            />
+            <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+          </form>
+        </section>
       </div>
       <article class="question_admin_tools">
         <button (click)="toggleQuestionEdit(question)">Modifier</button>
