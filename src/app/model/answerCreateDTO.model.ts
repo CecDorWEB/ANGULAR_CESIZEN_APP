@@ -1,5 +1,4 @@
-export interface Answer {
-  id: number;
+export interface AnswerCreateDTO {
   title: string;
   point: number;
   multiplied: boolean;

@@ -3,6 +3,7 @@ import { Question } from '../../model/question.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../../service/ressource/ressource.service';
 import { Answer } from '../../model/answer.model';
+import { AnswerCreateDTO } from '../../model/answerCreateDTO.model';
 @Component({
   selector: 'app-modify-test',
   standalone: false,
@@ -29,7 +30,7 @@ export class ModifyTestComponent {
     listOfAnswers: [],
   };
 
-  newAnswer: Answer = {
+  newAnswer: Partial<Answer> = {
     title: '',
     point: 0,
     multiplied: false,
@@ -147,6 +148,25 @@ export class ModifyTestComponent {
         next: (response) => {
           console.log(response);
           alert('Question supprimée avec succès !');
+          this.actualizeQuestionList();
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression :', error);
+          alert('Erreur : ' + error.error);
+        },
+      });
+    }
+  }
+
+  deleteAnswer(event: Event, answerId: number) {
+    event.preventDefault(); // évite le submit
+    event.stopPropagation(); // évite les effets collatéraux
+
+    if (confirm('Voulez-vous vraiment supprimer cette réponse?')) {
+      this.ressourceService.deleteAnswer(answerId).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert('Réponse supprimée avec succès!');
           this.actualizeQuestionList();
         },
         error: (error) => {

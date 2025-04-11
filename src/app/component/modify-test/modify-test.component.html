@@ -164,8 +164,15 @@
                 type="string"
                 name="answerTitle{{ i }}"
                 [(ngModel)]="myAnswer.title"
-                #answer="ngModel"
+                #answerPoint="ngModel"
               />
+              <button
+                type="button"
+                class="delete_answer_button"
+                (click)="deleteAnswer($event, myAnswer.id)"
+              >
+                x
+              </button>
             </div>
             <div class="answerPoint_ul">
               <label for="answerPoint">Point:</label>
@@ -173,7 +180,7 @@
                 type="string"
                 name="answerPoint{{ i }}"
                 [(ngModel)]="myAnswer.point"
-                #answer="ngModel"
+                #answerTitle="ngModel"
               />
             </div>
           </div>
