@@ -78,30 +78,28 @@
               >
             </div>
             <label>Point à multiplier :</label>
-            <fieldset>
-              <div>
-                <input
-                  type="radio"
-                  id="multipliedYes"
-                  name="multiplied"
-                  [value]="1"
-                  [(ngModel)]="newAnswer.multiplied"
-                  #multiplied="ngModel"
-                />
-                <label for="multipliedYes">Oui</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  id="multipliedNo"
-                  name="multiplied"
-                  [value]="0"
-                  [(ngModel)]="newAnswer.multiplied"
-                  #multiplied="ngModel"
-                />
-                <label for="multipliedNo">Non</label>
-              </div>
-            </fieldset>
+            <div>
+              <input
+                type="radio"
+                id="multipliedYes"
+                name="multiplied"
+                [value]="true"
+                [(ngModel)]="newAnswer.multiplied"
+                #multiplied="ngModel"
+              />
+              <label for="multipliedYes">Oui</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="multipliedNo"
+                name="multiplied"
+                [value]="false"
+                [(ngModel)]="newAnswer.multiplied"
+                #multiplied="ngModel"
+              />
+              <label for="multipliedNo">Non</label>
+            </div>
             <input type="submit" value="Ajouter la réponse" />
             <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
           </form>

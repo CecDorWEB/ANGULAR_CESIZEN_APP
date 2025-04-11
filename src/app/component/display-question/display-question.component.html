@@ -5,22 +5,65 @@
   <p>
     {{ question.rule }}
   </p>
-  <div
+  <section
     class="response_container"
     *ngIf="
       question.listOfAnswers! && question.listOfAnswers.length > 0;
       else noAnswers
     "
   >
-    <div *ngFor="let answer of question.listOfAnswers">
-      <input
-        type="checkbox"
-        id="{{ answer.title }}"
-        name="{{ answer.title }}"
-      />
-      <label for="{{ answer.title }}">{{ answer.title }}</label>
-    </div>
-  </div>
+    <article
+      class="answerList"
+      *ngIf="question.number_expected_answers === null"
+    >
+      <div *ngFor="let answer of question.listOfAnswers">
+        <input
+          type="checkbox"
+          id="{{ answer.title }}"
+          name="{{ answer.title }}"
+        />
+        <label for="{{ answer.title }}">{{ answer.title }}</label>
+      </div>
+    </article>
+    <article class="answerList" *ngIf="question.number_expected_answers === 1">
+      <div *ngFor="let answer of question.listOfAnswers">
+        <input
+          type="radio"
+          id="{{ answer.title }}"
+          name="{{ question.question }}"
+          value="{{ answer.title }}"
+        />
+        <label for="{{ answer.title }}">{{ answer.title }}</label>
+      </div>
+    </article>
+    <article
+      class="answerList"
+      *ngIf="
+        question.number_expected_answers && question.number_expected_answers > 1
+      "
+    >
+      <div *ngFor="let answer of question.listOfAnswers">
+        <input
+          type="checkbox"
+          id="{{ answer.title }}"
+          name="{{ question.question }}"
+          value="{{ answer.title }}"
+          (change)="
+            onCheckboxChange(
+              $event,
+              answer.title,
+              question.number_expected_answers
+            )
+          "
+          [disabled]="
+            selectedAnswers.length >= question.number_expected_answers &&
+            !selectedAnswers.includes(answer.title)
+          "
+        />
+        <label for="{{ answer.title }}">{{ answer.title }}</label>
+      </div>
+    </article>
+  </section>
   <ng-template #noAnswers>
     <p>Pas de réponse enregistrée pour cette question.</p>
   </ng-template>
