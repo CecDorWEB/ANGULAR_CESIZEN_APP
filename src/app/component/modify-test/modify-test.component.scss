@@ -43,7 +43,9 @@
   color: $primary_light;
   border: 1px solid $primary_light;
 }
-
+.error {
+  color: red;
+}
 //Pour les écrants de plus de 768px (tablette)
 @media screen and (min-width: 768px) {
   .view_question {

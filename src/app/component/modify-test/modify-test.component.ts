@@ -1,9 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Question } from '../../model/question.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../../service/ressource/ressource.service';
 import { Answer } from '../../model/answer.model';
-
 @Component({
   selector: 'app-modify-test',
   standalone: false,
@@ -18,6 +17,7 @@ export class ModifyTestComponent {
   @Input() ressourceId!: number;
 
   AddQuestion: boolean = false;
+  AddResponse: boolean = false;
   isEditing: boolean = false;
   selectedQuestionId: number | null = null;
 
@@ -63,10 +63,16 @@ export class ModifyTestComponent {
 
   showAddAnswer(questionId: number): void {
     this.selectedQuestionId = questionId;
+    this.AddResponse = !this.AddResponse;
   }
 
   onSubmitNewQuestion() {
     this.errorMessage = null;
+
+    if (!this.newQuestion.question || !this.newQuestion.question.trim()) {
+      this.errorMessage = 'Veuillez ajouter le texte de la question !';
+      return;
+    }
 
     this.ressourceService
       .addQuestion(this.ressourceId, this.newQuestion)
@@ -86,7 +92,10 @@ export class ModifyTestComponent {
   }
 
   onSubmitNewAnswer(questionId: number) {
-    this.errorMessage = null;
+    if (!this.newAnswer.title) {
+      this.errorMessage = 'Veuillez ajouter le texte de la réponse !';
+      return;
+    }
 
     this.ressourceService.addAnswer(questionId, this.newAnswer).subscribe({
       next: (response) => {
