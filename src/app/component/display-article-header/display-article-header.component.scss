@@ -26,6 +26,7 @@ div.ressource_header {
   }
   img {
     max-height: 200px;
+    object-fit: cover;
   }
 }
 
@@ -35,6 +36,7 @@ div.ressource_header {
     display: flex;
     flex-direction: column;
     gap: 1.5em;
+
     div.ressource_date_info {
       display: flex;
       margin: auto;
@@ -44,7 +46,6 @@ div.ressource_header {
       max-height: 360px;
       min-width: 100%;
       object-fit: cover;
-      object-position: 50% 60%;
     }
     .introduction {
       text-align: justify;

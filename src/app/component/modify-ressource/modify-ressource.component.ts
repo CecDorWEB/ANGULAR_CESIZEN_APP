@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../../service/ressource/ressource.service';
 import { Ressource } from '../../model/ressource.model';
 import { Paragraph } from '../../model/paragraph.model';
+import { Question } from '../../model/question.model';
 
 @Component({
   selector: 'app-modify-ressource',
@@ -16,7 +17,6 @@ export class ModifyRessourceComponent {
   ressource!: Ressource;
   ressourceId!: number;
   isEditing: boolean = false;
-  AddParagraphOrQuestion: boolean = false;
 
   newParagraph: Paragraph = {
     id: 0,
@@ -28,6 +28,16 @@ export class ModifyRessourceComponent {
   };
   paragraphList: Paragraph[] = [];
   paragraph: any = {};
+
+  newQuestion: Question = {
+    id: 0,
+    question: '',
+    rule: '',
+    number_expected_answers: null,
+    listOfAnswers: null,
+  };
+  questionList: Question[] = [];
+  question: any = {};
 
   errorMessage: string | null = null;
 
@@ -43,7 +53,12 @@ export class ModifyRessourceComponent {
       this.ressourceId = Number(params.get('id'));
 
       this.loadRessources();
-      this.loadParagraphList();
+
+      if (this.type == 'article') {
+        this.loadParagraphList();
+      } else if ((this.type = 'test')) {
+        this.loadQuestionList();
+      }
     });
   }
 
@@ -72,13 +87,20 @@ export class ModifyRessourceComponent {
       );
   }
 
-  toggleEdit() {
-    this.isEditing = !this.isEditing;
+  loadQuestionList(): void {
+    this.ressourceService.getQuestionListbyTestId(this.ressourceId).subscribe(
+      (questions) => {
+        this.questionList = questions;
+        console.log('Liste des questions:', questions);
+      },
+      (error) => {
+        console.error('Erreur lors du chargement des paragraphes:', error);
+      }
+    );
   }
 
-  toggleParagraphEdit(paragraph: any): void {
-    this.paragraphList.forEach((p) => (p.isEditing = false)); // Réinitialise les autres
-    paragraph.isEditing = true;
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
   }
 
   updateRessource(): void {
@@ -102,79 +124,6 @@ export class ModifyRessourceComponent {
         console.error('Erreur lors de la modification de la ressource:', error);
       },
     });
-  }
-
-  setParagraphToEdit(selectedParagraph: any) {
-    this.paragraph = { ...selectedParagraph }; // Copie les données dans l'objet utilisé par le formulaire
-  }
-
-  // Méthode pour soumettre le formulaire
-  updateParagraph() {
-    if (!this.paragraph.id) {
-      console.error('Aucun ID de paragraphe fourni');
-      return;
-    }
-
-    this.ressourceService.updateParagraph(this.paragraph).subscribe({
-      next: (updatedParagraph) => {
-        console.log('Paragraphe mis à jour :', updatedParagraph);
-        alert('Mise à jour réussie !');
-        this.loadParagraphList();
-      },
-      error: (err) => {
-        console.error('Erreur lors de la mise à jour du paragraphe :', err);
-        alert('Échec de la mise à jour.');
-      },
-    });
-  }
-
-  showAddParagraphOrQuestion() {
-    this.AddParagraphOrQuestion = !this.AddParagraphOrQuestion;
-  }
-
-  onSubmitNewParagraph() {
-    this.errorMessage = null;
-    if (
-      !this.newParagraph.paragraphOrder ||
-      this.newParagraph.paragraphOrder === 0 ||
-      !this.newParagraph.body
-    ) {
-      this.errorMessage =
-        "Attention renseigner le numéro d'ordre d'affichage du paragraphe (différent de 0) et le contenu";
-      return;
-    }
-
-    this.ressourceService
-      .addParagraph(this.ressourceId, this.newParagraph)
-      .subscribe({
-        next: (response) => {
-          console.log('Formulaire envoyé !', response);
-          alert('Ajout ressource réussie !');
-          window.location.reload();
-        },
-        error: (error) => {
-          console.error('Erreur lors de l’ajout du paragraphe', error);
-        },
-        complete: () => {
-          console.log('Requête terminée');
-        },
-      });
-  }
-
-  deleteParagraph(paragraphId: number) {
-    if (confirm('Voulez-vous vraiment supprimer ce paragraphe ?')) {
-      this.ressourceService.deleteParagraph(paragraphId).subscribe({
-        next: (response) => {
-          console.log(response);
-          alert('Paragraphe supprimé avec succès !');
-          this.ngOnInit();
-        },
-        error: (error) => {
-          console.error('Erreur lors de la suppression :', error);
-          alert('Erreur : ' + error.error);
-        },
-      });
-    }
   }
 
   retour() {

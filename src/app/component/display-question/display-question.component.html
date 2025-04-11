@@ -1,0 +1,27 @@
+<article class="question_container">
+  <h2>
+    {{ question.question }}
+  </h2>
+  <p>
+    {{ question.rule }}
+  </p>
+  <div
+    class="response_container"
+    *ngIf="
+      question.listOfAnswers! && question.listOfAnswers.length > 0;
+      else noAnswers
+    "
+  >
+    <div *ngFor="let answer of question.listOfAnswers">
+      <input
+        type="checkbox"
+        id="{{ answer.title }}"
+        name="{{ answer.title }}"
+      />
+      <label for="{{ answer.title }}">{{ answer.title }}</label>
+    </div>
+  </div>
+  <ng-template #noAnswers>
+    <p>Pas de réponse enregistrée pour cette question.</p>
+  </ng-template>
+</article>

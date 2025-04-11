@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Ressource } from '../../model/ressource.model';
 import { Paragraph } from '../../model/paragraph.model';
+import { Question } from '../../model/question.model';
+import { Answer } from '../../model/answer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +17,8 @@ export class RessourceService {
   private ressourceAutorizationUrl =
     'http://localhost:8080/ressource/autorization';
   private paragraphUrl = 'http://localhost:8080/ressource/article';
+  private questionUrl = 'http://localhost:8080/ressource/test';
+  private responseUrl = 'http://localhost:8080/ressource/test/question';
 
   constructor(private http: HttpClient) {}
 
@@ -49,6 +53,15 @@ export class RessourceService {
     );
   }
 
+  getQuestionListbyTestId(ressourceId: number): Observable<Question[]> {
+    return this.http.get<Question[]>(
+      `${this.questionUrl}/${ressourceId}/question`,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      }
+    );
+  }
+
   addRessource(ressource: Ressource): Observable<Ressource> {
     return this.http.post<Ressource>(this.ressourceUrl, ressource);
   }
@@ -60,6 +73,20 @@ export class RessourceService {
     return this.http.post<Paragraph>(
       `${this.paragraphUrl}/${ressourceId}/paragraph`,
       paragraph
+    );
+  }
+
+  addQuestion(ressourceId: number, question: Question): Observable<Question> {
+    return this.http.post<Question>(
+      `${this.questionUrl}/${ressourceId}/question`,
+      question
+    );
+  }
+
+  addAnswer(questionId: number, answer: Answer): Observable<Answer> {
+    return this.http.post<Answer>(
+      `${this.responseUrl}/${questionId}/answer`,
+      answer
     );
   }
 
@@ -91,6 +118,13 @@ export class RessourceService {
     );
   }
 
+  updateQuestion(question: Question): Observable<any> {
+    return this.http.put(
+      `${this.questionUrl}/question/${question.id}/modify`,
+      question
+    );
+  }
+
   deleteRessource(ressourceId: number): Observable<string> {
     return this.http.post<string>(
       this.ressourceDeleteUrl,
@@ -105,6 +139,16 @@ export class RessourceService {
   deleteParagraph(paragraphId: number): Observable<string> {
     return this.http.delete<string>(
       `${this.paragraphUrl}/paragraph/${paragraphId}`,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        responseType: 'text' as 'json',
+      }
+    );
+  }
+
+  deleteQuestion(questionId: number): Observable<string> {
+    return this.http.delete<string>(
+      `${this.questionUrl}/question/${questionId}`,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         responseType: 'text' as 'json',

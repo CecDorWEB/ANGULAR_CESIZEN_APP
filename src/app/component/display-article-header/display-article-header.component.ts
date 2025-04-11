@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { Ressource } from '../../model/ressource.model';
-import { Paragraph } from '../../model/paragraph.model';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../../service/ressource/ressource.service';

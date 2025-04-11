@@ -5,5 +5,5 @@ export interface Paragraph {
   body: string;
   visualSupport: string;
   altVisualSupport: string;
-  isEditing?: boolean;
+  isEditing?: boolean; //pour afficher le formulaire d'édition
 }
