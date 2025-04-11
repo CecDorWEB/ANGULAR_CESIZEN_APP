@@ -149,6 +149,35 @@
           [(ngModel)]="question.number_expected_answers"
           #number_expected_answersCtrl="ngModel"
         />
+        <div
+          class="modify_answer_input_container"
+          *ngIf="question.listOfAnswers"
+        >
+          <label for="answer">Liste des réponses liées à la question:</label>
+          <div
+            class="answer_lign"
+            *ngFor="let myAnswer of question.listOfAnswers; let i = index"
+          >
+            <div class="answerTitle_ul">
+              <label for="answerPoint">{{ i + 1 }}.</label>
+              <input
+                type="string"
+                name="answerTitle{{ i }}"
+                [(ngModel)]="myAnswer.title"
+                #answer="ngModel"
+              />
+            </div>
+            <div class="answerPoint_ul">
+              <label for="answerPoint">Point:</label>
+              <input
+                type="string"
+                name="answerPoint{{ i }}"
+                [(ngModel)]="myAnswer.point"
+                #answer="ngModel"
+              />
+            </div>
+          </div>
+        </div>
         <button
           (click)="setQuestionToEdit(question)"
           type="submit"

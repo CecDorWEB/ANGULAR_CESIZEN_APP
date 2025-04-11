@@ -34,9 +34,9 @@
         display: flex;
         flex-wrap: wrap;
         gap: 1em;
-      }
-      input {
-        min-width: 40px;
+        div {
+          width: 300px;
+        }
       }
     }
   }

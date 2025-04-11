@@ -32,6 +32,38 @@
       gap: 0.5em;
     }
   }
+  .form_question_mode {
+    label {
+      width: 100%;
+      font-weight: 800;
+    }
+    .modify_answer_input_container {
+      display: flex;
+      flex-direction: column;
+      .answer_lign {
+        display: flex;
+        flex-direction: column;
+        .answerTitle_ul {
+          display: flex;
+          label {
+            width: 0.5em;
+          }
+          input {
+            min-width: 240px;
+          }
+        }
+        .answerPoint_ul {
+          label {
+            width: 2.25em;
+          }
+          input {
+            width: 70px;
+            min-width: 70px;
+          }
+        }
+      }
+    }
+  }
 }
 
 .secondary_button {
