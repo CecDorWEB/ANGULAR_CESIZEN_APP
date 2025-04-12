@@ -10,7 +10,6 @@
       <textarea
         name="question"
         [(ngModel)]="newQuestion.question"
-        [ngModelOptions]="{ standalone: true }"
         #question="ngModel"
         required
         rows="2"
@@ -22,7 +21,6 @@
       <textarea
         name="rule"
         [(ngModel)]="newQuestion.rule"
-        [ngModelOptions]="{ standalone: true }"
         #rule="ngModel"
       ></textarea>
       <label for="number_expected_answers"
@@ -32,14 +30,9 @@
         type="number"
         name="number_expected_answers"
         [(ngModel)]="newQuestion.number_expected_answers"
-        [ngModelOptions]="{ standalone: true }"
         #number_expected_answers="ngModel"
       />
-      <input
-        type="submit"
-        value="Ajouter la question"
-        [disabled]="form.invalid"
-      />
+      <input type="submit" value="Ajouter la question" />
       <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
     </form>
   </section>
@@ -55,7 +48,7 @@
           + Ajouter une réponse
         </button>
         <!--Formulaire d'ajout d'une Réponse -->
-        <section *ngIf="selectedQuestionId === question.id">
+        <section *ngIf="selectedQuestionId === question.id && AddResponse">
           <form
             #form="ngForm"
             (ngSubmit)="onSubmitNewAnswer(question.id)"
@@ -66,7 +59,6 @@
             <input
               name="response"
               [(ngModel)]="newAnswer.title"
-              [ngModelOptions]="{ standalone: true }"
               #answer="ngModel"
               required
             />
@@ -77,7 +69,6 @@
             <input
               name="point"
               [(ngModel)]="newAnswer.point"
-              [ngModelOptions]="{ standalone: true }"
               #point="ngModel"
               required
             />
@@ -87,37 +78,29 @@
               >
             </div>
             <label>Point à multiplier :</label>
-            <fieldset>
-              <div>
-                <input
-                  type="radio"
-                  id="multipliedYes"
-                  name="multiplied"
-                  [value]="1"
-                  [(ngModel)]="newAnswer.multiplied"
-                  [ngModelOptions]="{ standalone: true }"
-                  #multiplied="ngModel"
-                />
-                <label for="multipliedYes">Oui</label>
-              </div>
-              <div>
-                <input
-                  type="radio"
-                  id="multipliedNo"
-                  name="multiplied"
-                  [value]="0"
-                  [(ngModel)]="newAnswer.multiplied"
-                  [ngModelOptions]="{ standalone: true }"
-                  #multiplied="ngModel"
-                />
-                <label for="multipliedNo">Non</label>
-              </div>
-            </fieldset>
-            <input
-              type="submit"
-              value="Ajouter la réponse"
-              [disabled]="form.invalid"
-            />
+            <div>
+              <input
+                type="radio"
+                id="multipliedYes"
+                name="multiplied"
+                [value]="true"
+                [(ngModel)]="newAnswer.multiplied"
+                #multiplied="ngModel"
+              />
+              <label for="multipliedYes">Oui</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="multipliedNo"
+                name="multiplied"
+                [value]="false"
+                [(ngModel)]="newAnswer.multiplied"
+                #multiplied="ngModel"
+              />
+              <label for="multipliedNo">Non</label>
+            </div>
+            <input type="submit" value="Ajouter la réponse" />
             <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
           </form>
         </section>
@@ -142,7 +125,6 @@
         <textarea
           name="question"
           [(ngModel)]="question.question"
-          [ngModelOptions]="{ standalone: true }"
           #questionCtrl="ngModel"
           required
           rows="2"
@@ -156,7 +138,6 @@
         <textarea
           name="rule"
           [(ngModel)]="question.rule"
-          [ngModelOptions]="{ standalone: true }"
           #ruleCtrl="ngModel"
         ></textarea>
         <label for="number_expected_answers"
@@ -166,9 +147,44 @@
           type="number"
           name="number_expected_answers"
           [(ngModel)]="question.number_expected_answers"
-          [ngModelOptions]="{ standalone: true }"
           #number_expected_answersCtrl="ngModel"
         />
+        <div
+          class="modify_answer_input_container"
+          *ngIf="question.listOfAnswers"
+        >
+          <label for="answer">Liste des réponses liées à la question:</label>
+          <div
+            class="answer_lign"
+            *ngFor="let myAnswer of question.listOfAnswers; let i = index"
+          >
+            <div class="answerTitle_ul">
+              <label for="answerPoint">{{ i + 1 }}.</label>
+              <input
+                type="string"
+                name="answerTitle{{ i }}"
+                [(ngModel)]="myAnswer.title"
+                #answerPoint="ngModel"
+              />
+              <button
+                type="button"
+                class="delete_answer_button"
+                (click)="deleteAnswer($event, myAnswer.id)"
+              >
+                x
+              </button>
+            </div>
+            <div class="answerPoint_ul">
+              <label for="answerPoint">Point:</label>
+              <input
+                type="string"
+                name="answerPoint{{ i }}"
+                [(ngModel)]="myAnswer.point"
+                #answerTitle="ngModel"
+              />
+            </div>
+          </div>
+        </div>
         <button
           (click)="setQuestionToEdit(question)"
           type="submit"

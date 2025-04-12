@@ -19,6 +19,7 @@ export class RessourceService {
   private paragraphUrl = 'http://localhost:8080/ressource/article';
   private questionUrl = 'http://localhost:8080/ressource/test';
   private responseUrl = 'http://localhost:8080/ressource/test/question';
+  private answerUrl = 'http://localhost:8080/ressource/test/question/answer';
 
   constructor(private http: HttpClient) {}
 
@@ -83,7 +84,7 @@ export class RessourceService {
     );
   }
 
-  addAnswer(questionId: number, answer: Answer): Observable<Answer> {
+  addAnswer(questionId: number, answer: Partial<Answer>): Observable<Answer> {
     return this.http.post<Answer>(
       `${this.responseUrl}/${questionId}/answer`,
       answer
@@ -154,5 +155,12 @@ export class RessourceService {
         responseType: 'text' as 'json',
       }
     );
+  }
+
+  deleteAnswer(answerId: number): Observable<string> {
+    return this.http.delete<string>(`${this.answerUrl}/${answerId}`, {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      responseType: 'text' as 'json',
+    });
   }
 }

@@ -14,6 +14,11 @@
   p {
     font-size: 1em;
   }
+  .response_container {
+    input {
+      min-width: 30px;
+    }
+  }
 }
 
 //Pour les écrants de plus de 768px (tablette)
@@ -23,5 +28,16 @@
     align-items: center;
     margin: auto;
     width: 80%;
+    .response_container {
+      padding: 1em;
+      .answerList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+        div {
+          width: 300px;
+        }
+      }
+    }
   }
 }

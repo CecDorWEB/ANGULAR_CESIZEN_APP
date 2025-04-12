@@ -32,6 +32,49 @@
       gap: 0.5em;
     }
   }
+  .form_question_mode {
+    padding: 0.5em;
+    label {
+      width: 100%;
+      font-weight: 800;
+    }
+    .modify_answer_input_container {
+      display: flex;
+      flex-direction: column;
+      .answer_lign {
+        display: flex;
+        flex-direction: column;
+        .answerTitle_ul {
+          display: flex;
+          gap: 0.2em;
+          label {
+            width: 0.7em;
+          }
+          input {
+            min-width: 230px;
+          }
+          button.delete_answer_button {
+            background-color: transparent;
+            color: red;
+            min-width: 20px;
+            padding: 0.1em;
+          }
+          button.delete_answer_button:hover {
+            border: 1px solid red;
+          }
+        }
+        .answerPoint_ul {
+          label {
+            width: 2.25em;
+          }
+          input {
+            width: 70px;
+            min-width: 70px;
+          }
+        }
+      }
+    }
+  }
 }
 
 .secondary_button {
@@ -43,7 +86,9 @@
   color: $primary_light;
   border: 1px solid $primary_light;
 }
-
+.error {
+  color: red;
+}
 //Pour les écrants de plus de 768px (tablette)
 @media screen and (min-width: 768px) {
   .view_question {
@@ -56,6 +101,27 @@
         width: 50em;
       }
     }
+    .form_question_mode {
+      padding: 1em;
+      .modify_answer_input_container {
+        display: flex;
+        flex-direction: column;
+        .answer_lign {
+          display: flex;
+          flex-direction: column;
+          .answerTitle_ul {
+            display: flex;
+            gap: 0.2em;
+            label {
+              width: 0.7em;
+            }
+            input {
+              min-width: 90%;
+            }
+          }
+        }
+      }
+    }
   }
   .Add_question {
     display: flex;
@@ -65,7 +131,7 @@
     gap: 1em;
     section {
       form {
-        gap: 0.5em;
+        gap: 1em;
         label {
           width: initial;
         }
