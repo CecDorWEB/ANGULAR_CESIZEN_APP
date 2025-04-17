@@ -30,6 +30,7 @@ import { DisplayArticleHeaderComponent } from './component/display-article-heade
 import { DisplayQuestionComponent } from './component/display-question/display-question.component';
 import { ModifyArticleComponent } from './component/modify-article/modify-article.component';
 import { ModifyTestComponent } from './component/modify-test/modify-test.component';
+import { DisplayTestHeaderComponent } from './component/display-test-header/display-test-header.component';
 
 registerLocaleData(localeFr);
 
@@ -55,6 +56,7 @@ registerLocaleData(localeFr);
     DisplayQuestionComponent,
     ModifyArticleComponent,
     ModifyTestComponent,
+    DisplayTestHeaderComponent,
   ],
   imports: [
     BrowserModule,
