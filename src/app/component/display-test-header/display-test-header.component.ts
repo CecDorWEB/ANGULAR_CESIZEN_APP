@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Ressource } from '../../model/ressource.model';
 
 @Component({
@@ -10,4 +10,13 @@ import { Ressource } from '../../model/ressource.model';
 })
 export class DisplayTestHeaderComponent {
   @Input() ressource!: Ressource;
+
+// transmission du changement de composant au parent view:test-page
+  @Output() start = new EventEmitter<void>();
+
+  onStart() {
+    console.log("J'ai cliqué sur le bouton démarré")
+    this.start.emit();
+  }
+
 }

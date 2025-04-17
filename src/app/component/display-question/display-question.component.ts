@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Question } from '../../model/question.model';
 import { Answer } from '../../model/answer.model';
 

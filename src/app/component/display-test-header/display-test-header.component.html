@@ -3,7 +3,6 @@
 <div class="test_header">
     <h1>{{ressource.title}}</h1>
     <p class="description_test">{{ ressource.headerIntroduction }}</p>
-    <!--<img [src]="ressource.headerImage" alt={{ressource.altHeaderImage}} />-->
-    <button [ngStyle]="{'background-image': 'url(' + ressource.headerImage + ')'}">Démarrer</button>
+    <button [ngStyle]="{'background-image': 'url(' + ressource.headerImage + ')'}" (click)="onStart()">Démarrer</button>
 </div>
 </section>
