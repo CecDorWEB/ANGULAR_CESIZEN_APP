@@ -1,0 +1,13 @@
+<article class="paragraph_container">
+  <h2 class="paragraph_title">
+    {{ paragraph.title }}
+  </h2>
+  <p>
+    {{ paragraph.body }}
+  </p>
+  <img
+    *ngIf="paragraph.visualSupport"
+    src="{{ paragraph.visualSupport }}"
+    alt="{{ paragraph.altVisualSupport }}"
+  />
+</article>

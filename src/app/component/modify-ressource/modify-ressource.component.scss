@@ -1,0 +1,46 @@
+@use "../../../variables" as *;
+
+section.modify_ressource_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: 1em 0;
+  .ressource_modify_section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+  form {
+    width: 100%;
+    label {
+      width: 100%;
+    }
+  }
+}
+
+//Pour les écrants de plus de 768px (tablette)
+@media screen and (min-width: 768px) {
+  section.modify_ressource_container {
+    // align-items: start;
+    gap: 1em;
+    // margin-left: 6em;
+    width: 90%;
+    margin: 1em auto;
+    .ressource_modify_section {
+      flex-direction: row-reverse;
+      justify-content: space-around;
+      align-items: flex-start;
+      .ressource_modify_button {
+        margin: 0;
+      }
+      .ressource_display {
+        width: 90%;
+      }
+    }
+    form {
+      button {
+        width: fit-content;
+      }
+    }
+  }
+}

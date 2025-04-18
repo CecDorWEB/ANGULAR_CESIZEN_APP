@@ -1,0 +1,63 @@
+<div class="adminPanel">
+  <section class="createItems">
+    <button (click)="toggleRegister()">
+      Ajouter un {{ type === "test" ? "nouveau test" : "nouvel article" }}
+    </button>
+    <app-create-ressource *ngIf="showRegister"></app-create-ressource>
+  </section>
+  <section class="listItems">
+    <h2>Liste des {{ type === "test" ? "tests" : "articles" }}:</h2>
+    <table>
+      <thead>
+        <tr>
+          <th class="sticky">Id</th>
+          <th class="sticky">Titre</th>
+          <th>Introduction</th>
+          <th>Date de Publication</th>
+          <th>Modifié le</th>
+          <th>Statut</th>
+          <th>Outils</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ressource of ressources$ | async">
+          <td class="sticky">{{ ressource.id }}</td>
+          <td class="sticky">{{ ressource.title }}</td>
+          <td>{{ ressource.headerIntroduction }}</td>
+          <td>{{ ressource.publicationDate | date : "dd/MM/yyyy" }}</td>
+          <td>{{ ressource.updateDate | date : "dd/MM/yyyy" }}</td>
+          <td
+            [ngStyle]="{
+              color: ressource.statut ? 'rgba(0, 163, 136, 1)' : 'red'
+            }"
+          >
+            {{ ressource.statut ? "Active" : "Suspendue" }}
+          </td>
+          <td>
+            <div class="admin_tools">
+              <button class="consulter" [routerLink]="[ressource.id, 'modify']">
+                Modifier
+              </button>
+              <button
+                class="disable"
+                [ngStyle]="{
+                  background: ressource.statut
+                    ? 'rgba(244, 195, 0, 1)'
+                    : 'rgba(0, 163, 136, 1)'
+                }"
+                (click)="
+                  changeRessourceStatut(ressource.id, ressource.statut ?? false)
+                "
+              >
+                {{ ressource.statut ? "Suspendre" : "Autoriser" }}
+              </button>
+              <button class="delete" (click)="deleteRessource(ressource.id)">
+                Supprimer
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

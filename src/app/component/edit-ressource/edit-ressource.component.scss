@@ -1,0 +1,13 @@
+table,
+tr,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 0.25em;
+}
+
+.sticky:nth-child(2) {
+  /* La deuxième colonne */
+  left: 30px;
+}

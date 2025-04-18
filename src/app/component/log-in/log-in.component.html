@@ -1,0 +1,40 @@
+<section>
+  <article>
+    <h1>Connexion</h1>
+    <form (ngSubmit)="onSubmit()">
+      <p>Veuillez renseigner vos identifiants de connexion:</p>
+      <div>
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          [(ngModel)]="LogInfos.email"
+          name="email"
+          id="email"
+          required
+        />
+      </div>
+      <div>
+        <label for="password">Mot de passe:</label>
+        <input
+          type="password"
+          [(ngModel)]="LogInfos.password"
+          name="password"
+          id="password"
+          required
+          #password="ngModel"
+        />
+      </div>
+      <div *ngIf="password.errors">
+        <p *ngIf="password.errors?.['required']">Le Mot de passe est requis</p>
+      </div>
+      <p><link />Mot de passe oublié?<link /></p>
+      <input type="submit" value="Connexion" />
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
+  </article>
+  <hr />
+  <article>
+    <h1>Inscrivez-vous !</h1>
+    <app-register></app-register>
+  </article>
+</section>

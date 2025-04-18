@@ -1,0 +1,19 @@
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+
+h1 {
+  text-align: center;
+}
+
+.adminRoleChoise {
+  display: flex;
+  flex-direction: column;
+  div {
+    display: flex;
+    justify-content: start;
+  }
+}

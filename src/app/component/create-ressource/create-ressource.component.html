@@ -1,0 +1,55 @@
+<section>
+  <input type="hidden" [value]="(user$ | async)?.id" />
+  <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <p>Veuillez remplir les champs ci-dessous:</p>
+    <div class="header_form">
+      <label for="title">Titre:</label>
+      <textarea
+        name="title"
+        [(ngModel)]="newRessource.title"
+        [ngModelOptions]="{ standalone: true }"
+        #title="ngModel"
+        required
+      ></textarea>
+    </div>
+    <div *ngIf="title.invalid && title.touched">
+      <span *ngIf="title.errors?.['required']">Titre requis</span>
+    </div>
+    <div class="header_form">
+      <label for="header_introduction">Introduction:</label>
+      <textarea
+        name="header_introduction"
+        [(ngModel)]="newRessource.headerIntroduction"
+        [ngModelOptions]="{ standalone: true }"
+        #headerIntroduction="ngModel"
+        required
+        [rows]="5"
+      ></textarea>
+    </div>
+    <div *ngIf="headerIntroduction.invalid && headerIntroduction.touched">
+      <span *ngIf="headerIntroduction.errors?.['required']"
+        >Introduction requise</span
+      >
+    </div>
+    <div class="header_form">
+      <label for="header_image">Image:</label>
+      <textarea
+        name="header_image"
+        [(ngModel)]="newRessource.headerImage"
+        [ngModelOptions]="{ standalone: true }"
+        #headerImage="ngModel"
+      ></textarea>
+    </div>
+    <div class="header_form">
+      <label for="alt_header_image">Description de l'image (accessibilité):</label>
+      <input
+        name="alt_header_image"
+        [(ngModel)]="newRessource.altHeaderImage"
+        [ngModelOptions]="{ standalone: true }"
+        #altHeaderImage="ngModel"
+      />
+    </div>
+    <input type="submit" value="Créer" [disabled]="form.invalid" />
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </form>
+</section>

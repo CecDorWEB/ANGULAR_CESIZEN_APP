@@ -1,0 +1,98 @@
+<section>
+  <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate>
+    <p>Veuillez remplir les champs ci-dessous:</p>
+    <div>
+      <label for="lastname">Nom:</label>
+      <input
+        type="text"
+        name="lastname"
+        [(ngModel)]="newUser.lastname"
+        [ngModelOptions]="{ standalone: true }"
+        #lastname="ngModel"
+        required
+      />
+    </div>
+    <div *ngIf="lastname.invalid && lastname.touched">
+      <span *ngIf="lastname.errors?.['required']">Nom requis</span>
+    </div>
+    <div>
+      <label for="firstname">Prénom:</label>
+      <input
+        type="text"
+        name="firstname"
+        [(ngModel)]="newUser.firstname"
+        [ngModelOptions]="{ standalone: true }"
+        #firstname="ngModel"
+        required
+      />
+    </div>
+    <div *ngIf="firstname.invalid && firstname.touched">
+      <span *ngIf="firstname.errors?.['required']">Prénom requis</span>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input
+        type="text"
+        name="email"
+        [(ngModel)]="newUser.email"
+        [ngModelOptions]="{ standalone: true }"
+        #email="ngModel"
+        required
+        email
+      />
+    </div>
+    <div *ngIf="email.invalid && email.touched">
+      <span *ngIf="email.errors?.['required']">Email requis</span>
+      <span *ngIf="email.errors?.['email']">Adresse mail invalide</span>
+    </div>
+    <div>
+      <label for="password">Mot de passe:</label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="newUser.password"
+        [ngModelOptions]="{ standalone: true }"
+        #password="ngModel"
+        minlength="6"
+        required
+      />
+    </div>
+    <div *ngIf="password.invalid && password.touched">
+      <span *ngIf="password.errors?.['required']">Mot de passe requis</span>
+      <span *ngIf="password.errors?.['minlength']">Minimum 6 caractères</span>
+    </div>
+    <!-- Pavé spécial pour choisir le rôle de l'utilisateur -->
+    <div
+      class="adminRoleChoise"
+      *ngIf="(user$ | async)?.type == 'administrator'"
+    >
+      <p>Sélectionner le profil du nouveau membre :</p>
+      <div>
+        <input
+          type="radio"
+          id="1"
+          name="role"
+          value="MEMBER"
+          [(ngModel)]="newUser.type"
+          (change)="onTypeChange()"
+          checked
+        />
+        <label for="MEMBER">Membre</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="2"
+          name="role"
+          value="ADMIN"
+          [(ngModel)]="newUser.type"
+          (change)="onTypeChange()"
+          checked
+        />
+        <label for="ADMIN">Admin</label>
+      </div>
+    </div>
+    <input type="submit" value="Inscription" [disabled]="form.invalid" />
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  </form>
+</section>

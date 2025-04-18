@@ -1,0 +1,12 @@
+.admin_section {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.admin_button {
+  display: flex;
+  gap: 2em;
+  button {
+    margin: 0;
+  }
+}

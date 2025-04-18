@@ -1,0 +1,67 @@
+<main class="home_main">
+  <article class="subscribe_invitation" *ngIf="(user$ | async) === null">
+    <p>Retrouvez le sourire !</p>
+    <button class="home_link" [routerLink]="['/login']">
+      -> Créez un compte
+    </button>
+  </article>
+  <section class="presentation_container">
+    <h1>Mieux comprendre la santé mentale pour mieux agir</h1>
+    <section class="section_home">
+      <img src="../../../assets/girl_smile_home.png" />
+      <article class="presentation_home">
+        <p>
+          Accédez à nos articles pour approfondir vos connaissances sur la santé
+          mentale, mieux comprendre ses enjeux et déconstruire les idées reçues.
+          Informez-vous grâce à nos contenus pour adopter une approche plus
+          sereine et bienveillante du bien-être psychologique
+        </p>
+        <button class="home_link">-> Accéder aux articles</button>
+      </article>
+    </section>
+    <img class="logo_lotus_home" src="../../../assets/lotus_deco_home.png" />
+    <section class="section_home">
+      <article class="presentation_home">
+        <p>
+          Découvrez nos tests, dont l’échelle de Holmes et Rahe pour évaluer
+          l'impact du stress sur votre santé. Ces tests vont vous aider à mieux
+          comprendre vos réactions en situation de stress et ainsi définir des
+          solutions adaptées à vos besoins.
+        </p>
+        <button class="home_link">-> Accéder aux tests</button>
+      </article>
+      <img src="../../../assets/woman_smile_home.png" />
+    </section>
+    <img class="logo_lotus_home" src="../../../assets/lotus_deco_home.png" />
+    <section class="section_home reverse">
+      <article class="presentation_home">
+        <p>
+          Découvrez nos outils pour mieux gérer le stress et prendre soin de
+          votre bien-être mental.
+        </p>
+        <div class="container_tools_item_home">
+          <button class="home_tools_item">
+            <img src="../../../assets/tracker_item.png" />
+            <p>Tracker d’émotion<br />(à venir)</p>
+          </button>
+          <button class="home_tools_item">
+            <img src="../../../assets/breathe_item.png" />
+            <p>Exercices de respiration<br />(à venir)</p>
+          </button>
+          <button class="home_tools_item">
+            <img src="../../../assets/detente_item.png" />
+            <p>
+              Activités de détente<br />
+              (à venir)
+            </p>
+          </button>
+        </div>
+      </article>
+      <img src="../../../assets/man_smile_home.png" />
+    </section>
+    <p class="end_home">
+      Ce service vous est proposé par le Ministère de la Santé et des
+      Solidarités
+    </p>
+  </section>
+</main>

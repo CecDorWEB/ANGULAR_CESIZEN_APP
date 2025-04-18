@@ -1,0 +1,203 @@
+<section class="Add_question">
+  <!-- Ajouter une question -->
+  <button (click)="showAddQuestion()">+ Ajouter une question</button>
+
+  <!--Formulaire d'ajout d'une Question-->
+  <section *ngIf="AddQuestion && type === 'test'">
+    <form #form="ngForm" (ngSubmit)="onSubmitNewQuestion()" novalidate>
+      <p>Veuillez remplir les champs ci-dessous:</p>
+      <label for="question">Question:</label>
+      <textarea
+        name="question"
+        [(ngModel)]="newQuestion.question"
+        #question="ngModel"
+        required
+        rows="2"
+      ></textarea>
+      <div *ngIf="question.invalid && question.touched">
+        <span *ngIf="question.errors?.['required']">Question requise</span>
+      </div>
+      <label for="rule">Consigne de réponse:</label>
+      <textarea
+        name="rule"
+        [(ngModel)]="newQuestion.rule"
+        #rule="ngModel"
+      ></textarea>
+      <label for="number_expected_answers"
+        >Nombre de réponse attendue (ne rien mettre si illimité):</label
+      >
+      <input
+        type="number"
+        name="number_expected_answers"
+        [(ngModel)]="newQuestion.number_expected_answers"
+        #number_expected_answers="ngModel"
+      />
+      <input type="submit" value="Ajouter la question" />
+      <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    </form>
+  </section>
+  <!--Affichage des questions -->
+  <section class="view_question border" *ngFor="let question of questionList">
+    <div
+      class="display_mode_container"
+      *ngIf="!question.isEditing; else editQuestionMode"
+    >
+      <div class="question">
+        <app-display-question [question]="question"></app-display-question>
+        <button class="secondary_button" (click)="showAddAnswer(question.id)">
+          + Ajouter une réponse
+        </button>
+        <!--Formulaire d'ajout d'une Réponse -->
+        <section *ngIf="selectedQuestionId === question.id && AddResponse">
+          <form
+            #form="ngForm"
+            (ngSubmit)="onSubmitNewAnswer(question.id)"
+            novalidate
+          >
+            <p>Veuillez remplir les champs ci-dessous:</p>
+            <label for="answer">Réponse:</label>
+            <input
+              name="response"
+              [(ngModel)]="newAnswer.title"
+              #answer="ngModel"
+              required
+            />
+            <div *ngIf="answer.invalid && answer.touched">
+              <span *ngIf="answer.errors?.['required']">Texte requis</span>
+            </div>
+            <label for="point">Nombre de point attribué à la réponse:</label>
+            <input
+              name="point"
+              [(ngModel)]="newAnswer.point"
+              #point="ngModel"
+              required
+            />
+            <div *ngIf="point.invalid && point.touched">
+              <span *ngIf="point.errors?.['required']"
+                >Nombre de point requis</span
+              >
+            </div>
+            <label>Point à multiplier :</label>
+            <div>
+              <input
+                type="radio"
+                id="multipliedYes"
+                name="multiplied"
+                [value]="true"
+                [(ngModel)]="newAnswer.multiplied"
+                #multiplied="ngModel"
+              />
+              <label for="multipliedYes">Oui</label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                id="multipliedNo"
+                name="multiplied"
+                [value]="false"
+                [(ngModel)]="newAnswer.multiplied"
+                #multiplied="ngModel"
+              />
+              <label for="multipliedNo">Non</label>
+            </div>
+            <input type="submit" value="Ajouter la réponse" />
+            <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+          </form>
+        </section>
+      </div>
+      <article class="question_admin_tools">
+        <button (click)="toggleQuestionEdit(question)">Modifier</button>
+        <button class="delete" (click)="deleteQuestion(question.id)">
+          Supprimer
+        </button>
+      </article>
+    </div>
+    <!--Mode édition d'une question-->
+    <ng-template #editQuestionMode>
+      <form
+        class="form_question_mode"
+        #form="ngForm"
+        (ngSubmit)="updateQuestion()"
+        novalidate
+      >
+        <p>Veuillez modifier les champs ci-dessous:</p>
+        <label for="question">Question:</label>
+        <textarea
+          name="question"
+          [(ngModel)]="question.question"
+          #questionCtrl="ngModel"
+          required
+          rows="2"
+        ></textarea>
+        <div *ngIf="questionCtrl.invalid && questionCtrl.touched">
+          <span *ngIf="questionCtrl.errors?.['required']"
+            >Question requise</span
+          >
+        </div>
+        <label for="rule">Consigne de réponse:</label>
+        <textarea
+          name="rule"
+          [(ngModel)]="question.rule"
+          #ruleCtrl="ngModel"
+        ></textarea>
+        <label for="number_expected_answers"
+          >Nombre de réponse attendue (ne rien mettre si illimité):</label
+        >
+        <input
+          type="number"
+          name="number_expected_answers"
+          [(ngModel)]="question.number_expected_answers"
+          #number_expected_answersCtrl="ngModel"
+        />
+        <div
+          class="modify_answer_input_container"
+          *ngIf="question.listOfAnswers"
+        >
+          <label for="answer">Liste des réponses liées à la question:</label>
+          <div
+            class="answer_lign"
+            *ngFor="let myAnswer of question.listOfAnswers; let i = index"
+          >
+            <div class="answerTitle_ul">
+              <label for="answerPoint">{{ i + 1 }}.</label>
+              <input
+                type="string"
+                name="answerTitle{{ i }}"
+                [(ngModel)]="myAnswer.title"
+                #answerPoint="ngModel"
+              />
+              <button
+                type="button"
+                class="delete_answer_button"
+                (click)="deleteAnswer($event, myAnswer.id)"
+              >
+                x
+              </button>
+            </div>
+            <div class="answerPoint_ul">
+              <label for="answerPoint">Point:</label>
+              <input
+                type="string"
+                name="answerPoint{{ i }}"
+                [(ngModel)]="myAnswer.point"
+                #answerTitle="ngModel"
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          (click)="setQuestionToEdit(question)"
+          type="submit"
+          value="Modifier la question"
+          [disabled]="form.invalid"
+        >
+          Modifier
+        </button>
+        <button type="button" (click)="toggleQuestionEdit(null)">
+          Annuler
+        </button>
+        <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+      </form>
+    </ng-template>
+  </section>
+</section>

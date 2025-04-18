@@ -1,0 +1,56 @@
+<h2>
+  Page de modification {{ type === "test" ? "du test" : "de l'article" }}:
+</h2>
+<section class="modify_ressource_container" *ngIf="ressource">
+  <div class="ressource_modify_section">
+    <button class="ressource_modify_button" (click)="toggleEdit()">
+      Modifier
+    </button>
+    <div class="ressource_display" *ngIf="!isEditing; else editMode">
+      <app-display-article-header
+        [ressource]="ressource"
+      ></app-display-article-header>
+    </div>
+  </div>
+
+  <!-- Mode édition -->
+  <ng-template #editMode>
+    <form #ressourceForm="ngForm">
+      <label>Titre :</label>
+      <textarea [(ngModel)]="ressource.title" name="title" rows="3"></textarea>
+
+      <label>Introduction :</label>
+      <textarea
+        [(ngModel)]="ressource.headerIntroduction"
+        name="introduction"
+        rows="5"
+      ></textarea>
+
+      <label>Image :</label>
+      <textarea
+        [(ngModel)]="ressource.headerImage"
+        name="image"
+        rows="3"
+      ></textarea>
+
+      <button type="button" (click)="updateRessource()">Enregistrer</button>
+      <button type="button" (click)="toggleEdit()">Annuler</button>
+    </form>
+  </ng-template>
+
+  <app-modify-article
+    *ngIf="type === 'article'"
+    [paragraph]="paragraph"
+    [paragraphList]="paragraphList"
+    [type]="type"
+    [ressourceId]="ressourceId"
+  ></app-modify-article>
+  <app-modify-test
+    *ngIf="type === 'test'"
+    [question]="question"
+    [questionList]="questionList"
+    [type]="type"
+    [ressourceId]="ressourceId"
+  ></app-modify-test>
+  <button class="retour" (click)="retour()">Retour</button>
+</section>

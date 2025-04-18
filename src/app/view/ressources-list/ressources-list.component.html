@@ -1,0 +1,22 @@
+<div class="ressourceList_container">
+  <h1 class="introduction_ressourceList">
+    {{ type === "articles" ? "Articles" : "Tests" }}
+  </h1>
+  <article class="search_ressource">
+    <form class="search_ressource_form">
+      <input
+        class="search_input_ressource"
+        placeholder="Rechercher une ressource"
+        type="text"
+        required=""
+        (input)="onSearch($event)"
+      />
+      <input type="submit" class="button-search w-button" value="Rechercher" />
+    </form>
+  </article>
+  <section class="ressource_card_container">
+    <div *ngFor="let ressource of filteredRessources$ | async">
+      <app-ressource-card [ressource]="ressource"></app-ressource-card>
+    </div>
+  </section>
+</div>

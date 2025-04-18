@@ -1,0 +1,66 @@
+@use "../../../variables" as *;
+
+section.test_presentation_container{
+    padding:2em 0.2em 2em 0.2em;
+    border-radius: 1em;
+    margin: auto;
+    background-size: cover;
+}
+
+div.test_header{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 10px 2px #4141411a;
+    border-radius: 1em;
+    padding: 1em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    gap: 1em;
+    background-color: $background-color;
+    opacity: 95%;
+    button{
+        min-width: 150px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        color: black;
+        /* Accessibilité : amélioration du contraste */
+        text-shadow: 1px 1px 4px rgba(255, 255, 255, 1.5);
+        transition: min-width 0.3s ease, border 0.3s ease;
+    }
+    button:hover{
+        min-width: 180px;
+        border: 1px solid $background-color;
+    }
+}
+
+/* 🔹 Pour les écrans de plus de 768px (tablette & desktop) */
+@media screen and (min-width: 768px) {
+    section.test_presentation_container{
+        padding:3em 1em;
+        border-radius: 1em;
+        width: 80%;
+        margin: auto;
+        opacity: 90%;
+    }
+
+    div.test_header{
+        border: 1px solid #ccc;
+        box-shadow: 1px 1px 10px 2px #4141411a;
+        border-radius: 1em;
+        padding: 1.5em;
+        width: 80%;
+        gap: 2em;
+        img{
+            width: 400px;
+        }
+        p{
+            width: 70%;
+            text-align: justify;
+            font-size: 24px;
+        }
+    }
+
+}

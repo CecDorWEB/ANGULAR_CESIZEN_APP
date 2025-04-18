@@ -1,0 +1,18 @@
+<section class="admin_section" *ngIf="user$ | async as user; else notLoggedIn">
+  <p>
+    Bonjour {{ user.firstname }}, vous êtes sur votre espace administrateur,
+    quelle action souhaitez-vous effectuer?
+  </p>
+  <section class="admin_button">
+    <button routerLink="users">Gérer les utilisateurs</button>
+    <button routerLink="ressources/article">Gérer les Articles</button>
+    <button routerLink="ressources/test">Gérer les Tests</button>
+  </section>
+  <router-outlet></router-outlet>
+</section>
+
+<ng-template #notLoggedIn>
+  <h1>
+    Bienvenue sur l'application Cesizen, désolé vous n'avez pas les droits.
+  </h1>
+</ng-template>

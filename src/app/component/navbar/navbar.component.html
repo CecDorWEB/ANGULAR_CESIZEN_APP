@@ -1,0 +1,43 @@
+<nav *ngIf="user$ | async as user; else notLoggedIn">
+  <div class="burger-menu" (click)="toggleMenu()">☰</div>
+  <ul class="top_mobile_navbar" [class.active]="menuOpen">
+    <div class="left_nav">
+      <li [routerLink]="['/home']" (click)="closeMenu()">Accueil</li>
+      <li routerLink="/articles" (click)="closeMenu()">Articles</li>
+      <li routerLink="/tests" (click)="closeMenu()">Tests</li>
+    </div>
+    <div class="right_nav">
+      <div *ngIf="user.type == 'member'">
+        <li (click)="closeMenu()">Favoris</li>
+        <li (click)="closeMenu()">Mon espace personnel</li>
+      </div>
+      <div *ngIf="user.type == 'administrator'">
+        <li
+          [routerLink]="
+            user.type == 'administrator' ? ['/admin/dashbord'] : ['/home']
+          "
+          (click)="closeMenu()"
+        >
+          Mon espace Admin
+        </li>
+      </div>
+      <li (click)="logout()" (click)="closeMenu()">Déconnexion</li>
+    </div>
+  </ul>
+</nav>
+
+<ng-template #notLoggedIn>
+  <nav>
+    <div class="burger-menu" (click)="toggleMenu()">☰</div>
+    <ul class="top_mobile_navbar" [class.active]="menuOpen">
+      <div class="left_nav">
+        <li routerLink="/home" (click)="closeMenu()">Accueil</li>
+        <li routerLink="/articles" (click)="closeMenu()">Articles</li>
+        <li routerLink="/tests" (click)="closeMenu()">Tests</li>
+      </div>
+      <div class="right_nav">
+        <li [routerLink]="['/login']" (click)="closeMenu()">Connexion</li>
+      </div>
+    </ul>
+  </nav>
+</ng-template>
