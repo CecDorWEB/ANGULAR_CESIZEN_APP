@@ -19,6 +19,9 @@ export class DisplayQuestionComponent {
 
   selectedPoints: number[] = [];
 
+  checkedAnswers: { [key: number]: boolean } = {};
+  multipliedValues: { [key: number]: number } = {};
+
   ngOnInit(): void {
     console.log('Question reçue dans OnInit:', this.question);
   }
@@ -41,22 +44,37 @@ export class DisplayQuestionComponent {
     }
   }
 
-  onAnswerChange(event: Event, point: number) {
+  onAnswerChange(event: Event, point: number, answerId:number) {
     const inputElement = event.target as HTMLInputElement;
+
+    this.checkedAnswers[answerId] = inputElement.checked;
   
-    if (inputElement.checked) {
-      this.selectedPoints.push(point);
-    } else {
-      const index = this.selectedPoints.indexOf(point);
-      if (index > -1) {
-        this.selectedPoints.splice(index, 1);
-      }
+    if (!this.multipliedValues[answerId]) {
+      this.multipliedValues[answerId] = 1;
     }
   }
 
   calculateScore(): number {
-    return this.selectedPoints.reduce((acc, val) => acc + val, 0);
+    let totalPoints = 0;
+
+    // Parcourir toutes les réponses de la question
+    if(this.question && this.question.listOfAnswers){
+    this.question.listOfAnswers.forEach((answer) => {
+        // Vérifier si l'input de la réponse est coché
+        if (this.checkedAnswers[answer.id]) {
+            const multiplier = this.multipliedValues[answer.id] || 1;
+            totalPoints += answer.point * multiplier;
+        }
+    });
   }
+
+    console.log("Total des points calculés : " + totalPoints);
+    return totalPoints;
+}
+
+  // calculateScore(): number {
+  //   return this.selectedPoints.reduce((acc, val) => acc + val, 0);
+  // }
 
   resetAnswers() {
     this.selectedPoints = [];

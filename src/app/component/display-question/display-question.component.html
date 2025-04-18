@@ -22,9 +22,11 @@
           type="checkbox"
           id="{{ answer.title }}"
           name="{{ answer.title }}"
-          (change)="onAnswerChange($event, answer.point)"
+          (change)="onAnswerChange($event, answer.point, answer.id)"
         />
         <label for="{{ answer.title }}">{{ answer.title }}</label>
+        <input *ngIf="answer.multiplied && checkedAnswers[answer.id]" type="number" [(ngModel)]="multipliedValues[answer.id]"
+        [attr.placeholder]="'1'"/>
       </div>
     </article>
     <!--Question lorsque j'attend 1 seule réponse-->
@@ -35,9 +37,11 @@
           id="{{ answer.title }}"
           name="{{ question.question }}"
           value="{{ answer.title }}"
-          (change)="onAnswerChange($event, answer.point)"
+          (change)="onAnswerChange($event, answer.point, answer.id)"
         />
         <label for="{{ answer.title }}">{{ answer.title }}</label>
+        <input *ngIf="answer.multiplied && checkedAnswers[answer.id]" type="number" [(ngModel)]="multipliedValues[answer.id]"
+        [attr.placeholder]="'1'"/>
       </div>
     </article>
     <!--Question lorsque j'attend PLUS d'une seule réponse-->
@@ -53,7 +57,7 @@
           id="{{ answer.title }}"
           name="{{ question.question }}"
           value="{{ answer.title }}"
-          (change)="onAnswerChange($event, answer.point)"
+          (change)="onAnswerChange($event, answer.point, answer.id)"
           (change)="
             onCheckboxChange(
               $event,
@@ -67,6 +71,8 @@
           "
         />
         <label for="{{ answer.title }}">{{ answer.title }}</label>
+        <input class="multiplied_input" *ngIf="answer.multiplied && checkedAnswers[answer.id]" type="number" [(ngModel)]="multipliedValues[answer.id]"
+        [attr.placeholder]="'1'"/>
       </div>
     </article>
   </section>
