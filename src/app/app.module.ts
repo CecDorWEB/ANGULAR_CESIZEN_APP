@@ -58,7 +58,7 @@ registerLocaleData(localeFr);
     ModifyArticleComponent,
     ModifyTestComponent,
     DisplayTestHeaderComponent,
-    DisplayTestResultComponent,
+    DisplayTestResultComponent
   ],
   imports: [
     BrowserModule,
