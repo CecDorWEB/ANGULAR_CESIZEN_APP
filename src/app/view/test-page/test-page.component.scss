@@ -1,0 +1,14 @@
+div.question_container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1em;
+    button.replay_button{
+        background-color:rgba(206, 197, 25, 1);
+    }
+    button.replay_button:hover{
+        color: rgba(206, 197, 25, 1);
+        background-color:#fefefe;
+        border:1px solid rgba(206, 197, 25, 1);
+    }
+}

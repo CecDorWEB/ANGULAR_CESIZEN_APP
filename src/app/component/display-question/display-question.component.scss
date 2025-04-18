@@ -3,20 +3,39 @@
   flex-direction: column;
   text-align: start;
   width: 100%;
-  gap: 0.25em;
+  gap: 1em;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 1em;
-  padding: 0.5em;
+  padding: 1em;
   background-color: #fefefe;
   h2 {
     font-size: 1.25em;
   }
   p {
-    font-size: 1em;
+    font-size: 1.1em;
+    font-style: italic;
   }
   .response_container {
     input {
       min-width: 30px;
+    }
+    article.answerList{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.8em;
+    }
+    div{
+      display: flex;
+      align-content: center;
+      gap: 0.1em;
+      input{
+        height: 1em;
+      }
+      label{
+        width: 100%;
+        min-width: 80px;
+      }
     }
   }
 }
@@ -27,15 +46,20 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    width: 80%;
+    min-width: 600px;
     .response_container {
+      align-items: center;
+      margin: auto;
       padding: 1em;
-      .answerList {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1em;
+      input {
+        min-width: 15px;
+      }
+      article.answerList {
+        flex-direction: column;
+          flex-wrap: wrap;
+          justify-content: start;
         div {
-          width: 300px;
+          gap:0.5em
         }
       }
     }

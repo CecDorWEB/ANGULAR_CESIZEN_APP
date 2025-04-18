@@ -70,7 +70,8 @@ export class TestPageComponent {
       }
     }
 
-    beforeQuestion() {
+    replay() {
+      //this.currentStep = 'intro';
       if (this.currentQuestionIndex > 0) {
         this.currentQuestionIndex--;
       } else {
