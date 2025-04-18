@@ -6,4 +6,4 @@
 <button class="replay_button" *ngIf="currentQuestionIndex >= 0" (click)="replay()">Recommencer</button>
 </div>
 
-<app-display-test-result *ngIf="currentStep === 'result'" [totalScore]="totalScore"></app-display-test-result>
+<app-display-test-result *ngIf="currentStep === 'result'" [totalScore]="totalScore" [ressource]="ressource"></app-display-test-result>
