@@ -17,6 +17,7 @@ export class CreateRessourceComponent {
     id: 0,
     title: '',
     headerImage: '',
+    altHeaderImage:'',
     headerIntroduction: '',
     type_id: 0,
     user_id: 0,

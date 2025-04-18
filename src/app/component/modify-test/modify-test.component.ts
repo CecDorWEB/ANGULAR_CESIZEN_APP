@@ -101,7 +101,6 @@ export class ModifyTestComponent {
     this.ressourceService.addAnswer(questionId, this.newAnswer).subscribe({
       next: (response) => {
         console.log('Formulaire envoyé !', response);
-        alert('Ajout de la réponse réussie !');
         window.location.reload();
       },
       error: (error) => {

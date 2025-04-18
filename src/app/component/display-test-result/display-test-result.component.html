@@ -1,0 +1,17 @@
+<section class="result_container">
+<h2>Merci d'avoir répondu à ce questionnaire.</h2>
+<article class="result_presentation">
+    <img src="{{ ressource.headerImage}}" alt="" />
+    <div class="result_score">
+        <h1>Votre score est de : {{totalScore}} points !</h1>
+        <div class="result_text">
+            <h2>{{scoringText.title}}</h2>
+            <p>{{scoringText.content}}</p>
+        </div>
+    </div>
+</article>
+<div class="result_button">
+<button [routerLink]="['/home']">Sauvegarder</button>
+<button [routerLink]="['/home']" class="skip_button">Quitter</button>
+</div>
+</section>

@@ -11,5 +11,5 @@
     </p>
   </div>
   <p class="introduction">{{ ressource.headerIntroduction }}</p>
-  <img [src]="ressource.headerImage" alt="Image de l'ressourceData" />
+  <img [src]="ressource.headerImage" [alt]="ressource.altHeaderImage ? ressource.altHeaderImage : 'image de la ressource'" />
 </div>

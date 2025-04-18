@@ -40,6 +40,15 @@
         #headerImage="ngModel"
       ></textarea>
     </div>
+    <div class="header_form">
+      <label for="alt_header_image">Description de l'image (accessibilité):</label>
+      <input
+        name="alt_header_image"
+        [(ngModel)]="newRessource.altHeaderImage"
+        [ngModelOptions]="{ standalone: true }"
+        #altHeaderImage="ngModel"
+      />
+    </div>
     <input type="submit" value="Créer" [disabled]="form.invalid" />
     <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
   </form>

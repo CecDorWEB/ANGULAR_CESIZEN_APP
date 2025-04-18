@@ -7,6 +7,15 @@
   <img src="assets/logo_arc_en_ciel.png" alt="logo" />
 </header>
 <app-navbar></app-navbar>
-<main class="main">
+<main>
   <router-outlet></router-outlet>
 </main>
+<footer>
+  <p>&copy; 2025 Cesizen. <span th:text="#{footer.rights}">Tous droits réservés.</span></p>
+  <p>
+      <a href="#">FAQ</a> |
+      <a href="#">Contact</a> |
+      <a href="#">Politique de Confidentialité</a> |
+      <a href="#">Conditions</a>
+  </p>
+</footer>

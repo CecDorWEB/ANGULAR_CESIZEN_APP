@@ -5,6 +5,8 @@ import { Ressource } from '../../model/ressource.model';
 import { Paragraph } from '../../model/paragraph.model';
 import { Question } from '../../model/question.model';
 import { Answer } from '../../model/answer.model';
+import { ScoringText } from '../../model/scoringText.model';
+import { InMemoryScrollingFeature } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +22,7 @@ export class RessourceService {
   private questionUrl = 'http://localhost:8080/ressource/test';
   private responseUrl = 'http://localhost:8080/ressource/test/question';
   private answerUrl = 'http://localhost:8080/ressource/test/question/answer';
+  private resultUrl = "http://localhost:8080/results/search"
 
   constructor(private http: HttpClient) {}
 
@@ -61,6 +64,16 @@ export class RessourceService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       }
     );
+  }
+
+  getResultTestText(ressourceId: number, score :number):Observable<ScoringText>{
+    return this.http.get<ScoringText>(
+      this.resultUrl,{
+      params: {
+        ressourceId: ressourceId.toString(),
+        score: score.toString()
+      }
+    });
   }
 
   addRessource(ressource: Ressource): Observable<Ressource> {
