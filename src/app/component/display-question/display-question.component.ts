@@ -11,9 +11,13 @@ import { Answer } from '../../model/answer.model';
 })
 export class DisplayQuestionComponent {
   @Input() question!: Question; // Récupère les données du parent
+  @Input() score!: number; // Récupère les données du parent
+  @Output() scoreChange = new EventEmitter<number>();
 
   sortedAnswers!: Answer[];
   selectedAnswers: string[] = [];
+
+  selectedPoints: number[] = [];
 
   ngOnInit(): void {
     console.log('Question reçue dans OnInit:', this.question);
@@ -35,5 +39,26 @@ export class DisplayQuestionComponent {
     } else {
       this.selectedAnswers = this.selectedAnswers.filter((a) => a !== answer);
     }
+  }
+
+  onAnswerChange(event: Event, point: number) {
+    const inputElement = event.target as HTMLInputElement;
+  
+    if (inputElement.checked) {
+      this.selectedPoints.push(point);
+    } else {
+      const index = this.selectedPoints.indexOf(point);
+      if (index > -1) {
+        this.selectedPoints.splice(index, 1);
+      }
+    }
+  }
+
+  calculateScore(): number {
+    return this.selectedPoints.reduce((acc, val) => acc + val, 0);
+  }
+
+  resetAnswers() {
+    this.selectedPoints = [];
   }
 }

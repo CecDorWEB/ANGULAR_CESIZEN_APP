@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 
 @Component({
   selector: 'app-display-test-result',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './display-test-result.component.scss'
 })
 export class DisplayTestResultComponent {
-
+ @Input() totalScore!: number; 
 }

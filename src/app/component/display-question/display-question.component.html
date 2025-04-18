@@ -12,6 +12,7 @@
       else noAnswers
     "
   >
+  <!--Question avec réponse illimitée-->
     <article
       class="answerList"
       *ngIf="question.number_expected_answers === null"
@@ -21,10 +22,12 @@
           type="checkbox"
           id="{{ answer.title }}"
           name="{{ answer.title }}"
+          (change)="onAnswerChange($event, answer.point)"
         />
         <label for="{{ answer.title }}">{{ answer.title }}</label>
       </div>
     </article>
+    <!--Question lorsque j'attend 1 seule réponse-->
     <article class="answerList" *ngIf="question.number_expected_answers === 1">
       <div *ngFor="let answer of question.listOfAnswers">
         <input
@@ -32,10 +35,12 @@
           id="{{ answer.title }}"
           name="{{ question.question }}"
           value="{{ answer.title }}"
+          (change)="onAnswerChange($event, answer.point)"
         />
         <label for="{{ answer.title }}">{{ answer.title }}</label>
       </div>
     </article>
+    <!--Question lorsque j'attend PLUS d'une seule réponse-->
     <article
       class="answerList"
       *ngIf="
@@ -48,6 +53,7 @@
           id="{{ answer.title }}"
           name="{{ question.question }}"
           value="{{ answer.title }}"
+          (change)="onAnswerChange($event, answer.point)"
           (change)="
             onCheckboxChange(
               $event,

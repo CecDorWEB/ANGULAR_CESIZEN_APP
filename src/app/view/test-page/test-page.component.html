@@ -1,9 +1,9 @@
 <app-display-test-header [ressource]="ressource" *ngIf="currentStep === 'intro'" (start)="startTest()"></app-display-test-header>
 
 <div class="question_container" *ngIf="currentStep === 'question'">
-<app-display-question  [question]="questionList[currentQuestionIndex]"></app-display-question>
+<app-display-question  [question]="questionList[currentQuestionIndex]" [score]="score"></app-display-question>
 <button (click)="nextQuestion()"> {{ currentQuestionIndex === questionList.length - 1 ? 'Voir le résultat' : 'Suivant' }}</button>
 <button class="replay_button" *ngIf="currentQuestionIndex >= 0" (click)="replay()">Recommencer</button>
 </div>
 
-<app-display-test-result *ngIf="currentStep === 'result'"></app-display-test-result>
+<app-display-test-result *ngIf="currentStep === 'result'" [totalScore]="totalScore"></app-display-test-result>

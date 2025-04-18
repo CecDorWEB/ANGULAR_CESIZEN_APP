@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Ressource } from '../../model/ressource.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../../service/ressource/ressource.service';
 import { Question } from '../../model/question.model';
+import { DisplayQuestionComponent } from '../../component/display-question/display-question.component';
 
 @Component({
   selector: 'app-test-page',
@@ -20,6 +21,11 @@ export class TestPageComponent {
   currentStep = 'intro';
   currentQuestionIndex = 0;
 
+  //Initialisation du compteur de score à 0
+  @ViewChild(DisplayQuestionComponent) questionComponent!: DisplayQuestionComponent;
+  score: number = 0;
+  totalScore: number = 0;
+
   constructor(
       private route: ActivatedRoute,
       private ressourceService: RessourceService
@@ -31,6 +37,7 @@ export class TestPageComponent {
   
         this.loadRessources();
         this.loadQuestionList();
+
       });
     }
   
@@ -63,11 +70,20 @@ export class TestPageComponent {
     }
 
     nextQuestion() {
+      const questionScore = this.questionComponent.calculateScore();
+      this.totalScore += questionScore;
+
       if (this.currentQuestionIndex < this.questionList.length - 1) {
+        console.log("score finale :" + this.totalScore);
         this.currentQuestionIndex++;
+        this.score = 0;
+        this.questionComponent.resetAnswers();
       } else {
+        console.log("score finale :" + this.totalScore);
+        this.questionComponent.resetAnswers();
         this.currentStep = 'result';
       }
+
     }
 
     replay() {
