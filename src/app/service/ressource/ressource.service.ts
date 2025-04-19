@@ -169,6 +169,16 @@ export class RessourceService {
     );
   }
 
+  deleteResult(resultId: number): Observable<string> {
+    return this.http.delete<string>(
+      `${this.resultUrl}/delete/${resultId}`,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        responseType: 'text' as 'json',
+      }
+    );
+  }
+
   deleteQuestion(questionId: number): Observable<string> {
     return this.http.delete<string>(
       `${this.questionUrl}/question/${questionId}`,

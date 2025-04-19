@@ -210,6 +210,22 @@ export class ModifyTestComponent {
     this.question = { ...selectedQuestion }; // Copie les données dans l'objet utilisé par le formulaire
   }
 
+  deleteResult(resultId: number) {
+    if (confirm('Voulez-vous vraiment supprimer ce résultat?')) {
+      this.ressourceService.deleteResult(resultId).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert('Résultat supprimé avec succès !');
+          this.loadResult();
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression :', error);
+          alert('Erreur : ' + error.error);
+        },
+      });
+    }
+  }
+
   deleteQuestion(questionId: number) {
     if (confirm('Voulez-vous vraiment supprimer cette question?')) {
       this.ressourceService.deleteQuestion(questionId).subscribe({
