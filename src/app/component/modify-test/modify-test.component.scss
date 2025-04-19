@@ -11,6 +11,28 @@
   }
 }
 
+div.result_container{
+  div.table_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    table.result_table {
+      min-width: 600px;
+      border-collapse: collapse;
+      width: 100%;
+
+      div.admin_result_tools{
+        button{
+          min-width: 20px;
+        }
+      }
+    }
+  }
+}
+
+
 .view_question {
   margin: 0.5em 0;
   .display_mode_container {
@@ -102,6 +124,7 @@
       }
     }
     .form_question_mode {
+      width: 800px;
       padding: 1em;
       .modify_answer_input_container {
         display: flex;
@@ -140,5 +163,19 @@
         }
       }
     }
+  }
+  div.result_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    div.table_wrapper {
+      justify-content: start;
+    width: 90%;
+      table.result_table {
+        width: 90%;
+      }
+    }
+    
   }
 }

@@ -110,6 +110,13 @@ td {
 .delete {
   background-color: red;
 }
+
+.delete:hover {
+  background-color: white;
+  border: 1px solid red;
+  color:red;
+}
+
 .disable {
   color: white;
 }
@@ -120,22 +127,22 @@ td {
   gap: 1em;
   width: 100%;
   overflow-x: auto;
-  .sticky {
-    position: sticky;
-    left: -1px;
-    background: white;
-    border: 1px solid black;
-    z-index: 2;
-  }
+  // .sticky {
+  //   position: sticky;
+  //   left: -1px;
+  //   background: white;
+  //   border: 1px solid black;
+  //   z-index: 2;
+  // }
 
-  .sticky:nth-child(2) {
-    /* La deuxième colonne */
-    left: 20px;
-  }
+  // .sticky:nth-child(2) {
+  //   /* La deuxième colonne */
+  //   left: 20px;
+  // }
 
-  th.sticky {
-    z-index: 3;
-  }
+  // th.sticky {
+  //   z-index: 3;
+  // }
   section {
     display: flex;
     flex-direction: column;
@@ -145,7 +152,8 @@ td {
     width: 100%;
     table {
       table-layout: auto;
-      max-width: 60%;
+      min-width: 1200px;
+      width: 100%;
       border-collapse: collapse;
     }
   }
