@@ -12,9 +12,15 @@
 }
 
 div.result_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap:1em;
   div.table_wrapper {
     display: flex;
     flex-direction: column;
+    margin: auto;
     gap: 1em;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -44,6 +50,7 @@ div.result_container{
       display: flex;
       flex-direction: column;
       justify-content: center;
+      border-radius: 1em;
       gap: 1em;
       padding: 1em 0.25em;
       background-color: rgba(212, 236, 221, 0.368627451);
@@ -120,7 +127,7 @@ div.result_container{
       justify-content: center;
       gap: 1em;
       .question {
-        width: 50em;
+        width: 55em;
       }
     }
     .form_question_mode {
@@ -165,13 +172,7 @@ div.result_container{
     }
   }
   div.result_container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     div.table_wrapper {
-      justify-content: start;
-    width: 90%;
       table.result_table {
         width: 90%;
       }

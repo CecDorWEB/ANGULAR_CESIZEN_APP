@@ -1,21 +1,22 @@
 <section class="Add_question">
   <!-- Afficher le tableau des résultats -->
    <div class="result_container">
+    <br>
     <h2>Tableau des résultats:</h2>
     <div class="table_wrapper">
       <table class="result_table">
         <thead>
           <tr>
-            <th scope="col">Min_score</th>
-            <th scope="col">Max_score</th>
+            <th scope="col">MinScore</th>
+            <th scope="col">MaxScore</th>
             <th scope="col">Titre</th>
             <th scope="col">Contenu</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let scoringLign of scoringText">
-            <th scope="row">{{scoringLign.min_score}}</th>
-            <td>{{scoringLign.max_score}}</td>
+            <th scope="row">{{scoringLign.minScore}}</th>
+            <td>{{scoringLign.maxScore}}</td>
             <td>{{scoringLign.title}}</td>
             <td>{{scoringLign.content}}</td>
             <td>
@@ -27,30 +28,32 @@
           </tr>
         </tbody>
       </table>
-      <button (click)="showAddResult(0)"> + Ajouter un résultat</button>
+      
     </div>
+    <button (click)="showAddResult(0)"> + Ajouter un résultat</button>
+    <br>
   </div>
   <!--Formulaire ajout d'un résultat et modification-->
   <section *ngIf="AddResult">
     <form #form="ngForm" (ngSubmit)="onSubmitResult()" novalidate>
       <p>Veuillez remplir les champs ci-dessous:</p>
-      <label for="min_score"
+      <label for="minScore"
         >Score minimum:</label
       >
       <input
         type="number"
-        name="min_score"
-        [(ngModel)]="newResult.min_score"
-        #result.min_score="ngModel"
+        name="minScore"
+        [(ngModel)]="newResult.minScore"
+        #minScore="ngModel"
       />
-      <label for="max_score"
+      <label for="maxScore"
         >Score maximum:</label
       >
       <input
         type="number"
-        name="max_score"
-        [(ngModel)]="newResult.max_score"
-        #result.min_score="ngModel"
+        name="maxScore"
+        [(ngModel)]="newResult.maxScore"
+        #maxScore="ngModel"
       />
       <label for="title">Titre du résultat:</label>
       <textarea

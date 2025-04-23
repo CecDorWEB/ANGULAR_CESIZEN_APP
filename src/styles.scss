@@ -119,6 +119,23 @@ td {
 
 .disable {
   color: white;
+  background-color: rgb(244, 195, 0);
+}
+
+.disable:hover {
+  border: 1px solid rgb(244, 195, 0);
+  color: rgb(244, 195, 0);
+  background-color: white;
+}
+
+.enable{
+  background-color: $primary_light;
+}
+
+.enable:hover{
+  background-color: $background-color;
+  color:$primary_light;
+  border:1px solid $primary_light;
 }
 
 .adminPanel {

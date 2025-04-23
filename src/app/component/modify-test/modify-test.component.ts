@@ -41,8 +41,8 @@ export class ModifyTestComponent {
   };
 
   newResult: Partial<ScoringText> = {
-    min_score:0,
-    max_score:0,
+    minScore:0,
+    maxScore:0,
     title: '',
     content: ''
   };
@@ -99,8 +99,8 @@ export class ModifyTestComponent {
 
     if (resultId === 0){
        this.newResult = {
-      min_score: 0,
-      max_score: 0,
+      minScore: 0,
+      maxScore: 0,
       title: '',
       content: ''
     };
@@ -116,8 +116,8 @@ export class ModifyTestComponent {
   cancelEditResult(): void {
     this.AddResult = false;
     this.newResult = {
-      min_score: 0,
-      max_score: 0,
+      minScore: 0,
+      maxScore: 0,
       title: '',
       content: ''
     };
@@ -133,7 +133,26 @@ export class ModifyTestComponent {
   }
 
   onSubmitResult() {
-    console.log("j'ai cliqué sur ajouter un résutat");
+    this.errorMessage = null;
+
+    console.log("Données envoyées :", this.newResult);
+
+    this.ressourceService
+      .addResult(this.ressourceId, this.newResult)
+      .subscribe({
+        next: (response) => {
+          console.log('Formulaire envoyé !', response);
+          alert('Ajout ou modification du résultat réussie !');
+          window.location.reload();
+        },
+        error: (error) => {
+          console.error('Erreur lors de l’ajout', error);
+        },
+        complete: () => {
+          console.log('Requête terminée');
+        },
+      });
+
   }
 
   onSubmitNewQuestion() {

@@ -5,8 +5,26 @@
 }
 .admin_button {
   display: flex;
-  gap: 2em;
+  flex-wrap: wrap;
+  gap: 1em;
   button {
     margin: 0;
+    background-color: rgb(0, 122, 102) ;
+  }
+  button:hover {
+    margin: 0;
+    font-weight: bold;
+    background-color: white;
+    color: rgb(0, 122, 102) ;
+    border:1px solid rgb(0, 122, 102);
+  }
+}
+
+//Pour les écrants de plus de 1024px
+@media screen and (min-width: 768px) {
+  .admin_button {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
   }
 }

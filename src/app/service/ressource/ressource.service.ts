@@ -99,6 +99,13 @@ export class RessourceService {
     );
   }
 
+  addResult(ressourceId: number, scoringText: Partial<ScoringText>): Observable<ScoringText> {
+    return this.http.post<ScoringText>(
+      `${this.resultUrl}/${ressourceId}/create`,
+      scoringText
+    );
+  }
+
   addQuestion(ressourceId: number, question: Question): Observable<Question> {
     return this.http.post<Question>(
       `${this.questionUrl}/${ressourceId}/question`,

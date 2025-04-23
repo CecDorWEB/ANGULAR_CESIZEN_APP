@@ -1,7 +1,7 @@
 export interface ScoringText {
     id: number;
-    min_score:number;
-    max_score:number;
+    minScore:number;
+    maxScore:number;
     title: string;
     content: string;
     isEditing?: boolean; //pour afficher le formulaire d'édition
