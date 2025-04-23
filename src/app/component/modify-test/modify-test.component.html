@@ -1,4 +1,81 @@
 <section class="Add_question">
+  <!-- Afficher le tableau des résultats -->
+   <div class="result_container">
+    <br>
+    <h2>Tableau des résultats:</h2>
+    <div class="table_wrapper">
+      <table class="result_table">
+        <thead>
+          <tr>
+            <th scope="col">MinScore</th>
+            <th scope="col">MaxScore</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Contenu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let scoringLign of scoringText">
+            <th scope="row">{{scoringLign.minScore}}</th>
+            <td>{{scoringLign.maxScore}}</td>
+            <td>{{scoringLign.title}}</td>
+            <td>{{scoringLign.content}}</td>
+            <td>
+              <div class="admin_result_tools">
+                <button (click)="showAddResult(scoringLign.id)">M</button>
+                <button class="delete" (click)="deleteResult(scoringLign.id)">X</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </div>
+    <button (click)="showAddResult(0)"> + Ajouter un résultat</button>
+    <br>
+  </div>
+  <!--Formulaire ajout d'un résultat et modification-->
+  <section *ngIf="AddResult">
+    <form #form="ngForm" (ngSubmit)="onSubmitResult()" novalidate>
+      <p>Veuillez remplir les champs ci-dessous:</p>
+      <label for="minScore"
+        >Score minimum:</label
+      >
+      <input
+        type="number"
+        name="minScore"
+        [(ngModel)]="newResult.minScore"
+        #minScore="ngModel"
+      />
+      <label for="maxScore"
+        >Score maximum:</label
+      >
+      <input
+        type="number"
+        name="maxScore"
+        [(ngModel)]="newResult.maxScore"
+        #maxScore="ngModel"
+      />
+      <label for="title">Titre du résultat:</label>
+      <textarea
+        name="title"
+        [(ngModel)]="newResult.title"
+        #title="ngModel"
+        required
+        rows="2"
+      ></textarea>
+      <label for="content">Contenu du résultat:</label>
+      <textarea
+        name="content"
+        [(ngModel)]="newResult.content"
+        #content="ngModel"
+        required
+        rows="10"
+      ></textarea>
+      <input type="submit" [value]="newResult.id ? 'Modifier le résultat' : 'Ajouter le résultat'"/>
+      <button class="delete" (click)="cancelEditResult()">Annuler</button>
+    </form>
+  </section>
+
   <!-- Ajouter une question -->
   <button (click)="showAddQuestion()">+ Ajouter une question</button>
 

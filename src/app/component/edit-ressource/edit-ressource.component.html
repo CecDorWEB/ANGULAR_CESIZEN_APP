@@ -39,12 +39,7 @@
                 Modifier
               </button>
               <button
-                class="disable"
-                [ngStyle]="{
-                  background: ressource.statut
-                    ? 'rgba(244, 195, 0, 1)'
-                    : 'rgba(0, 163, 136, 1)'
-                }"
+                [class]="ressource.statut ? 'disable' : 'enable'"
                 (click)="
                   changeRessourceStatut(ressource.id, ressource.statut ?? false)
                 "

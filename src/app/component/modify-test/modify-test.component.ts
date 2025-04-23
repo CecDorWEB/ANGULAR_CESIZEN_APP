@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RessourceService } from '../../service/ressource/ressource.service';
 import { Answer } from '../../model/answer.model';
 import { AnswerCreateDTO } from '../../model/answerCreateDTO.model';
+import { ScoringText } from '../../model/scoringText.model';
 @Component({
   selector: 'app-modify-test',
   standalone: false,
@@ -17,8 +18,11 @@ export class ModifyTestComponent {
   @Input() type!: String;
   @Input() ressourceId!: number;
 
+  scoringText: ScoringText[] = [];
+
   AddQuestion: boolean = false;
   AddResponse: boolean = false;
+  AddResult: boolean = false;
   isEditing: boolean = false;
   selectedQuestionId: number | null = null;
 
@@ -36,9 +40,41 @@ export class ModifyTestComponent {
     multiplied: false,
   };
 
+  newResult: Partial<ScoringText> = {
+    minScore:0,
+    maxScore:0,
+    title: '',
+    content: ''
+  };
+
   errorMessage: string | null = null;
 
   constructor(private ressourceService: RessourceService) {}
+
+  ngOnInit(): void {
+
+      this.loadResult();
+  }
+
+  loadResult(): void {
+      this.ressourceService.getScoringTextByRessourceId(this.ressourceId).subscribe(
+        (results) => {
+          this.scoringText = results.map(result => ({
+            ...result,
+            isEditing: false
+          }));
+          console.log("Liste des résultats du test:", results)
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération des résultats.', error);
+        }
+      );
+    }
+
+    // Méthode pour activer l'édition d'une ligne
+    enableEditing(line: any): void {
+      line.isEditing = !line.isEditing;
+    }
 
   actualizeQuestionList(): void {
     if (this.type == 'test') {
@@ -58,6 +94,35 @@ export class ModifyTestComponent {
     );
   }
 
+  showAddResult(resultId: number) {
+    this.AddResult = !this.AddResult;
+
+    if (resultId === 0){
+       this.newResult = {
+      minScore: 0,
+      maxScore: 0,
+      title: '',
+      content: ''
+    };
+    }
+    else{
+      const resultToEdit = this.scoringText.find(item => item.id === resultId);
+      if (resultToEdit) {
+        this.newResult = { ...resultToEdit }; // Copie des valeurs
+      }
+    }
+  }
+
+  cancelEditResult(): void {
+    this.AddResult = false;
+    this.newResult = {
+      minScore: 0,
+      maxScore: 0,
+      title: '',
+      content: ''
+    };
+  }
+
   showAddQuestion() {
     this.AddQuestion = !this.AddQuestion;
   }
@@ -65,6 +130,29 @@ export class ModifyTestComponent {
   showAddAnswer(questionId: number): void {
     this.selectedQuestionId = questionId;
     this.AddResponse = !this.AddResponse;
+  }
+
+  onSubmitResult() {
+    this.errorMessage = null;
+
+    console.log("Données envoyées :", this.newResult);
+
+    this.ressourceService
+      .addResult(this.ressourceId, this.newResult)
+      .subscribe({
+        next: (response) => {
+          console.log('Formulaire envoyé !', response);
+          alert('Ajout ou modification du résultat réussie !');
+          window.location.reload();
+        },
+        error: (error) => {
+          console.error('Erreur lors de l’ajout', error);
+        },
+        complete: () => {
+          console.log('Requête terminée');
+        },
+      });
+
   }
 
   onSubmitNewQuestion() {
@@ -139,6 +227,22 @@ export class ModifyTestComponent {
 
   setQuestionToEdit(selectedQuestion: any) {
     this.question = { ...selectedQuestion }; // Copie les données dans l'objet utilisé par le formulaire
+  }
+
+  deleteResult(resultId: number) {
+    if (confirm('Voulez-vous vraiment supprimer ce résultat?')) {
+      this.ressourceService.deleteResult(resultId).subscribe({
+        next: (response) => {
+          console.log(response);
+          alert('Résultat supprimé avec succès !');
+          this.loadResult();
+        },
+        error: (error) => {
+          console.error('Erreur lors de la suppression :', error);
+          alert('Erreur : ' + error.error);
+        },
+      });
+    }
   }
 
   deleteQuestion(questionId: number) {

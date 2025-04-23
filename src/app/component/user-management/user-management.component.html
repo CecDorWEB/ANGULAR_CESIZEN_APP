@@ -34,12 +34,7 @@
           <td>
             <div class="admin_tools">
               <button
-                class="disable"
-                [ngStyle]="{
-                  background: user.statut
-                    ? 'rgba(244, 195, 0, 1)'
-                    : 'rgba(0, 163, 136, 1)'
-                }"
+              [class]="user.statut ? 'disable' : 'enable'"
                 (click)="changeUserStatut(user.id, user.statut ?? false)"
               >
                 {{ user.statut ? "Suspendre" : "Autoriser" }}

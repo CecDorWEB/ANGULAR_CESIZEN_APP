@@ -22,7 +22,7 @@ export class RessourceService {
   private questionUrl = 'http://localhost:8080/ressource/test';
   private responseUrl = 'http://localhost:8080/ressource/test/question';
   private answerUrl = 'http://localhost:8080/ressource/test/question/answer';
-  private resultUrl = "http://localhost:8080/results/search"
+  private resultUrl = "http://localhost:8080/results"
 
   constructor(private http: HttpClient) {}
 
@@ -66,9 +66,18 @@ export class RessourceService {
     );
   }
 
+  getScoringTextByRessourceId(ressourceId : number):Observable<ScoringText[]>{
+    return this.http.get<ScoringText[]>(
+      `${this.resultUrl}/all/${ressourceId}`,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      }
+    )
+  }
+
   getResultTestText(ressourceId: number, score :number):Observable<ScoringText>{
     return this.http.get<ScoringText>(
-      this.resultUrl,{
+      `${this.resultUrl}/search`,{
       params: {
         ressourceId: ressourceId.toString(),
         score: score.toString()
@@ -87,6 +96,13 @@ export class RessourceService {
     return this.http.post<Paragraph>(
       `${this.paragraphUrl}/${ressourceId}/paragraph`,
       paragraph
+    );
+  }
+
+  addResult(ressourceId: number, scoringText: Partial<ScoringText>): Observable<ScoringText> {
+    return this.http.post<ScoringText>(
+      `${this.resultUrl}/${ressourceId}/create`,
+      scoringText
     );
   }
 
@@ -153,6 +169,16 @@ export class RessourceService {
   deleteParagraph(paragraphId: number): Observable<string> {
     return this.http.delete<string>(
       `${this.paragraphUrl}/paragraph/${paragraphId}`,
+      {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+        responseType: 'text' as 'json',
+      }
+    );
+  }
+
+  deleteResult(resultId: number): Observable<string> {
+    return this.http.delete<string>(
+      `${this.resultUrl}/delete/${resultId}`,
       {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
         responseType: 'text' as 'json',
