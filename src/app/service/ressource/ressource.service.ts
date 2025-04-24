@@ -7,6 +7,7 @@ import { Question } from '../../model/question.model';
 import { Answer } from '../../model/answer.model';
 import { ScoringText } from '../../model/scoringText.model';
 import { InMemoryScrollingFeature } from '@angular/router';
+import { UserResult } from '../../model/userResult.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,7 @@ export class RessourceService {
   private responseUrl = 'http://localhost:8080/ressource/test/question';
   private answerUrl = 'http://localhost:8080/ressource/test/question/answer';
   private resultUrl = "http://localhost:8080/results"
+  private userTestResultUrl = "http://localhost:8080/userResults"
 
   constructor(private http: HttpClient) {}
 
@@ -83,6 +85,11 @@ export class RessourceService {
         score: score.toString()
       }
     });
+  }
+
+  addUserResult(userResult:Partial<UserResult>){
+    return this.http.post<UserResult>(
+      `${this.userTestResultUrl}/save`, userResult);
   }
 
   addRessource(ressource: Ressource): Observable<Ressource> {
