@@ -11,6 +11,7 @@ export class UserService {
   private userLogInUrl = 'http://localhost:8080/user/login';
   private userDeleteUrl = 'http://localhost:8080/user/delete';
   private userAutorizationUrl = 'http://localhost:8080/user/autorization';
+  private userNewPasswordUrl='http://localhost:8080/user/modify';
 
   constructor(private http: HttpClient) {}
 
@@ -48,5 +49,11 @@ export class UserService {
         responseType: 'text' as 'json',
       }
     );
+  }
+
+  updatePassword(newPassword : Partial<User>): Observable<string> {
+    return this.http.post<string>(this.userNewPasswordUrl, newPassword, {
+      responseType: 'text' as 'json',
+    });
   }
 }
