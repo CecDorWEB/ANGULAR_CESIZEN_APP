@@ -8,8 +8,7 @@
     </div>
     <div class="right_nav">
       <div *ngIf="user.type == 'member'">
-        <li (click)="closeMenu()">Favoris</li>
-        <li (click)="closeMenu()">Mon espace personnel</li>
+        <li [routerLink]="['/profile']" (click)="closeMenu()">Mon espace personnel</li>
       </div>
       <div *ngIf="user.type == 'administrator'">
         <li

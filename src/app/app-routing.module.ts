@@ -11,11 +11,13 @@ import { ModifyRessourceComponent } from './component/modify-ressource/modify-re
 import { RessourcesListComponent } from './view/ressources-list/ressources-list.component';
 import { ArticlePageComponent } from './view/article-page/article-page.component';
 import { TestPageComponent } from './view/test-page/test-page.component';
+import { UserProfileComponent } from './view/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: 'login', component: LogInComponent },
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
+  {path: 'profile', component: UserProfileComponent},
   { path: ':type', component: RessourcesListComponent },
   {
     path: 'admin',

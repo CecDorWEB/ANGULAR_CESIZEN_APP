@@ -1,0 +1,23 @@
+<div class="user_profile_container" *ngIf="user$ | async as user; else notLoggedIn">
+  <section class="history_test_section">
+     <h2>Historique des tests</h2>
+     <div  class="history_test_card_container">
+        <article class="history_test_card" *ngFor="let userTestResult of userTestResultList">
+          <p class="card_title"><strong>{{userTestResult.title}}</strong></p>
+          <div class="history_test_score">
+            <p><strong>Le:</strong> {{userTestResult.realizeDate}}</p>
+            <p class="card_score"><strong>Score:</strong> {{userTestResult.score}}</p>
+          </div>
+          <div class="history_test_info">
+            <p><strong>Résultat:</strong> <br>{{userTestResult.textResult}}</p>
+          </div>
+        </article>
+      </div>
+  </section>
+</div>
+
+<ng-template #notLoggedIn>
+    <h1>
+      Bienvenue sur l'application Cesizen, veuillez vous connecter pour accéder à cette page.
+    </h1>
+  </ng-template>

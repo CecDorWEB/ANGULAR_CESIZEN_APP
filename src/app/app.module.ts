@@ -32,6 +32,7 @@ import { ModifyArticleComponent } from './component/modify-article/modify-articl
 import { ModifyTestComponent } from './component/modify-test/modify-test.component';
 import { DisplayTestHeaderComponent } from './component/display-test-header/display-test-header.component';
 import { DisplayTestResultComponent } from './component/display-test-result/display-test-result.component';
+import { UserProfileComponent } from './view/user-profile/user-profile.component';
 
 registerLocaleData(localeFr);
 
@@ -58,7 +59,8 @@ registerLocaleData(localeFr);
     ModifyArticleComponent,
     ModifyTestComponent,
     DisplayTestHeaderComponent,
-    DisplayTestResultComponent
+    DisplayTestResultComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
