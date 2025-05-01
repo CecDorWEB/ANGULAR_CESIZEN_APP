@@ -4,6 +4,13 @@
     gap:2em;
 }
 
+.section_title{
+    display: flex;
+    gap:1em;
+    align-items: center;
+    font-size: 1.10em;
+}
+
 .history_test_section{
     display: flex;
     flex-direction: column;
@@ -59,6 +66,35 @@ section.change_password_section{
     }
 }
 
+section.contact_section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:1em;
+    .contact_link{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        border: 1px solid rgba(159, 195, 57, 1);
+        border-radius: 1.5em;
+        padding: 0.2em 0.8em;
+        width: fit-content;
+        cursor: pointer;
+            a{
+            all: unset;
+            padding: 0.5em 1em;
+            font-family: "Inconsolata";
+            font-size:17px;
+            }
+    }
+    .contact_link:hover{
+        background-color: rgba(159, 195, 57, 1);
+        border: 1px solid #fefefe;
+        color:#fefefe;
+    }
+}
+
 /* 🔹 Pour les écrans de plus de 768px (tablette & desktop) */
 @media screen and (min-width: 768px) {
     .user_profile_container{
@@ -92,6 +128,16 @@ section.change_password_section{
             margin: initial;
             width: 60%;
             border: none;
+        }
+    }
+    section.contact_section{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        .contact_link{
+            a{
+                font-size: 20px;
+            }
         }
     }
 }

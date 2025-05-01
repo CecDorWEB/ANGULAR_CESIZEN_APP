@@ -16,6 +16,7 @@ body {
   overflow-x: hidden;
 }
 
+
 h1 {
   font-family: $title_font;
   font-weight: 600;
@@ -26,7 +27,6 @@ h1 {
 h2 {
   font-family: $secondTitle_font;
   font-weight: 500;
-  font-size: 2em;
   font-size: $h2_mobile_size;
 }
 

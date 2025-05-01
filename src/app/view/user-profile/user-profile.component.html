@@ -1,6 +1,9 @@
 <div class="user_profile_container" *ngIf="user$ | async as user; else notLoggedIn">
   <section class="history_test_section">
-     <h2>Historique des tests</h2>
+    <div class="section_title">
+      <img src="../../../assets/lotus.png">
+      <h2>Historique des tests</h2>
+    </div>
      <div  class="history_test_card_container">
         <article class="history_test_card" *ngFor="let userTestResult of userTestResultList">
           <p class="card_title"><strong>{{userTestResult.title}}</strong></p>
@@ -15,7 +18,10 @@
       </div>
   </section>
   <section class="change_password_section">
-    <h2>Modifier mon mot de passe</h2>
+    <div class="section_title">
+      <img src="../../../assets/lotus.png">
+      <h2>Modifier mon mot de passe</h2>
+  </div>
     <form class="chamge_password_form" (ngSubmit)="onSubmit()">
       <p>Veuillez renseigner le nouveau mot de passe:</p>
       <div>
@@ -28,6 +34,17 @@
       </div>
         <input type="submit" value="Valider" />
     </form>
+  </section>
+  <section class="contact_section">
+    <div class="section_title">
+      <img src="../../../assets/lotus.png">
+      <h2>Contacter l'administrateur</h2>
+   </div>
+    <div class="contact_link">
+      <a href="mailto:admin@cesizen.com">Envoyer un mail</a>
+      <img src="../../../assets/e-mail.png">
+    </div>
+    
   </section>
 </div>
 
