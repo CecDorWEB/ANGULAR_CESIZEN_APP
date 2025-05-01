@@ -8,6 +8,7 @@ import { Answer } from '../../model/answer.model';
 import { ScoringText } from '../../model/scoringText.model';
 import { InMemoryScrollingFeature } from '@angular/router';
 import { UserResult } from '../../model/userResult.model';
+import { UserTestResultHistory } from '../../model/userTestResultHistory.model';
 
 @Injectable({
   providedIn: 'root',
@@ -85,6 +86,15 @@ export class RessourceService {
         score: score.toString()
       }
     });
+  }
+
+  getUserTestResult(userId:number):Observable<UserTestResultHistory[]>{
+    return this.http.get<UserTestResultHistory[]>(this.userTestResultUrl,{
+       params: {
+        userId:userId.toString()
+    }
+    }
+  );
   }
 
   addUserResult(userResult:Partial<UserResult>){
