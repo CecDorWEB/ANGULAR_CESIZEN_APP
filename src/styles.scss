@@ -38,10 +38,6 @@ textarea {
   font-size: $p_mobile_size;
 }
 
-label {
-  width: 70px;
-}
-
 button,
 input[type="submit"] {
   all: unset;
@@ -169,8 +165,7 @@ td {
     width: 100%;
     table {
       table-layout: auto;
-      min-width: 1200px;
-      width: 100%;
+      min-width: 1000px;
       border-collapse: collapse;
     }
   }
@@ -221,12 +216,9 @@ textarea:focus {
     font-size: $p_desktop_size;
   }
 
-  label {
-    width: 110px;
-  }
-
   .adminPanel section.listItems table {
-    max-width: 100%;
+    margin: auto;
+    max-width: 1200px;
   }
   .adminPanel .sticky {
     background: transparent;

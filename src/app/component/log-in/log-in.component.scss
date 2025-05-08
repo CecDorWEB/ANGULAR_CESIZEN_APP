@@ -1,4 +1,4 @@
-section {
+section.log_in_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,7 +9,13 @@ section {
     justify-content: center;
     width: 100%;
     gap: 1em;
+    form{
+      label{
+        width: 100px;
+      }
+    }
   }
+
 }
 
 h1 {
@@ -17,8 +23,15 @@ h1 {
 }
 
 @media screen and (min-width: 600px) {
-  section {
+  section.log_in_container {
     display: flex;
     flex-direction: row;
+    article{
+      form{
+        label{
+          width: 120px;
+        }
+      }
+    }
   }
 }

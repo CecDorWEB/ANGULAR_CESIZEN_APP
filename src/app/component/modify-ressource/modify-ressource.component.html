@@ -33,6 +33,12 @@
         rows="3"
       ></textarea>
 
+        <label for="alt_header_image">Description de l'image (accessibilité):</label>
+        <input
+          name="alt_header_image"
+          [(ngModel)]="ressource.altHeaderImage"
+        />
+
       <button type="button" (click)="updateRessource()">Enregistrer</button>
       <button type="button" (click)="toggleEdit()">Annuler</button>
     </form>
